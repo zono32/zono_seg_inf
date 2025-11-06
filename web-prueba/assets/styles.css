@@ -13,6 +13,7 @@ body {
   padding: 1rem;
 }
 
+/* Encabezado y pie */
 header,
 footer {
   text-align: center;
@@ -22,11 +23,12 @@ footer {
 }
 
 main {
-  max-width: 960px;
+  max-width: 1260px;
   margin: auto;
   padding: 1rem;
 }
 
+/* Secciones */
 section.seguridad {
   margin: 2rem 0;
   padding: 1rem;
@@ -42,41 +44,51 @@ figure {
   margin: 1rem 0;
 }
 
+/* Contenedor de video */
 .video-container {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   margin-bottom: 1rem;
-}
-.container-virus{
-  background: linear-gradient(135deg, #ffffff, #9640cf)
-}
-.container-actualizado{
-  background: linear-gradient(135deg, #ffffff, #f33838)
-}
-.container-pass{
-  background: linear-gradient(135deg, #ffffff, #474fc9)
-}
-.container-copia{
-  background: linear-gradient(135deg, #ffffff, #28a745)
-}
-.container-privacidad{
-  background: linear-gradient(135deg, #ffffff, #17a2b8)
-}
-.container-pasos{
-  background: linear-gradient(135deg, #ffffff, #d3d010)
+  aspect-ratio: 16 / 9;
+  background: #000; /* Color base, se sobreescribe en los gradientes */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
-video {
-  max-width: 640px;
-  width: 100%;
-  border: 2px solid #111111;
-  border-radius: 6px;
+/* Fondo degradado según tipo */
+.container-virus {
+  background: linear-gradient(135deg, #ffffff, #9640cf);
+}
+.container-actualizado {
+  background: linear-gradient(135deg, #ffffff, #f33838);
+}
+.container-pass {
+  background: linear-gradient(135deg, #ffffff, #474fc9);
+}
+.container-copia {
+  background: linear-gradient(135deg, #ffffff, #28a745);
+}
+.container-privacidad {
+  background: linear-gradient(135deg, #ffffff, #17a2b8);
+}
+.container-pasos {
+  background: linear-gradient(135deg, #ffffff, #d3d010);
 }
 
+/* El video mantiene proporción sin cubrir el fondo */
+.video-container video {
+  width: 90%;           /* deja ver el fondo alrededor */
+  height: 90%;
+  border: 3px solid #111;
+  border-radius: 10px;
+  object-fit: contain;  /* mantiene proporción original sin recortar */
+  background-color: #000; /* evita salto blanco */
+  display: block;
+}
+
+/* Transcripción */
 .transcripcion {
   margin-top: 1rem;
   background-color: #f0f0f0;
@@ -89,7 +101,7 @@ video {
   margin-bottom: 0.5rem;
 }
 
-/* Estilo específico por tipo de seguridad */
+/* Colores de fondo según tipo */
 .actualizado {
   background-color: #fff5f5;
   border-left: 8px solid #e74c3c;
@@ -109,13 +121,31 @@ video {
   background-color: #f0fff5;
   border-left: 8px solid #27ae60;
 }
+
 .privacidad {
   background-color: #f0f5ff;
   border-left: 8px solid #3498db;
 }
+
 .pasos {
   background-color: #fffaf0;
   border-left: 8px solid #f39c12;
+}
+
+/* Animación */
+.video-container {
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive */
@@ -131,5 +161,10 @@ video {
 
   .transcripcion {
     font-size: 0.9rem;
+  }
+
+  .video-container video {
+    width: 100%;
+    height: auto;
   }
 }
