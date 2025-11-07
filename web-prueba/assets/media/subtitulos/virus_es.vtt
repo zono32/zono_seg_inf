@@ -1,23 +1,44 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:10.000
+00:00:00.000 --> 00:00:06.000
 En este vídeo aprenderás a usar Windows Defender, el antivirus integrado en Windows 11.
 
-00:00:10.000 --> 00:00:25.000
-Windows Defender protege tu equipo en tiempo real y analiza archivos sospechosos.
+00:00:06.000 --> 00:00:10.000
+para proteger tu equipo frente Virus, Malware y otras amenazas
 
-00:00:25.000 --> 00:00:45.000
-Abre Seguridad de Windows, entra en Protección contra virus y amenazas, y selecciona “Análisis rápido”.
+00:00:10.000 --> 00:00:16.000
+Windows Defender, es la herramienta de seguridad que viene instalada por defecto en el sistema
 
-00:00:45.000 --> 00:01:05.000
-Para una revisión completa, elige “Opciones de examen” y selecciona “Examen completo” o “Análisis sin conexión”.
+00:00:16.000 --> 00:00:21.000
+protege en tiempo real analiza archivos y bloquea comportamientos sospechosos.
 
-00:01:05.000 --> 00:01:20.000
-Defender se actualiza con Windows Update. También puedes buscar actualizaciones manualmente.
+00:00:21.000 --> 00:00:28.000
+para iniciar un analisis abre el menú de inicio y busca Seguridad de Windows
 
-00:01:20.000 --> 00:01:30.000
-Mantén el antivirus activo, evita software sospechoso y analiza tu equipo con frecuencia.
+00:00:28.000 --> 00:00:33.000
+entra en Protección contra virus y amenazas, y haz click en “Análisis rápido”.
 
-00:01:20.000 --> 00:01:40.000
-Mantén el antivirus activo y analiza tu equipo regularmente. 
-Si prefieres una protección más personalizada, puedes instalar un antivirus adicional compatible con Windows 11.
+00:00:33.000 --> 00:00:40.000
+este examen revisa los archivos y procesos más importantes del sistema si sospechas que algo anda mal
+
+00:00:40.000 --> 00:00:47.000
+selecciona opciones de examen y elige examen completo o analisis sin conexión
+
+00:00:47.000 --> 00:00:51.000
+este último reinicia el equipo para buscar amenazas difíciles de eliminar
+
+00:00:51.000 --> 00:01:00.000
+Defender se actualiza automáticamente con Windows Update, pero también puedes pulsar buscar actualizaciones de protección
+
+00:01:00.000 --> 00:01:02.000
+para descargar las últimas definiciones.
+
+00:01:02.000 --> 00:01:08.000
+Mantén defender activo, realiza análisis periódicos y no instales programas de dudosa procedencia.
+
+00:01:08.000 --> 00:01:17.000
+y si prefieres una protección más personalizada, puedes instalar un antivirus adicional compatible aunque para la mayoria de los usuarios.
+
+00:01:17.000 --> 00:01:20.000
+windows defender es más que suficiente.
+
