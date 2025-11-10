@@ -38,7 +38,7 @@
               width="100%"
             >
               <source
-                src="./assets/media/videos/Mi video.mp4"
+                src="./assets/media/videos/Actualizar_Windows.mp4"
                 type="video/mp4"
               />
               <track
@@ -62,7 +62,10 @@
         <div class="transcripcion">
           <h3>Transcripción:</h3>
           <p>1. Mantén el sistema operativo siempre actualizado.</p>
-          <p>2. Activa las actualizaciones automáticas del antivirus (windows 11 hace las actualizaciones automáticas por defecto).</p>
+          <p>
+            2. Activa las actualizaciones automáticas del antivirus (windows 11
+            hace las actualizaciones automáticas por defecto).
+          </p>
           <p>3. No ignores las notificaciones de seguridad.</p>
         </div>
       </section>
@@ -78,7 +81,7 @@
               width="100%"
             >
               <source
-                src="./assets/media/videos/Mi video-1.mp4"
+                src="./assets/media/videos/windows_Defender.mp4"
                 type="video/mp4"
               />
               <track
@@ -125,41 +128,78 @@
       <section class="seguridad passwords">
         <h2>Contraseñas</h2>
         <figure>
-          <div class="video-container container-pass">
-            <video
-              controls
-              preload="metadata"
-              poster="./assets/media/images/contraseñas.jpg"
-              width="100%"
-            >
-              <source
-                src="./assets/media/videos/hip-hop.mp4"
-                type="video/mp4"
-              />
-              <track
-                src="./assets/media/subtitulos/hiphop_es.vtt"
-                kind="subtitles"
-                srclang="es"
-                label="Español"
-                default
-              />
-              <track
-                src="./assets/media/subtitulos/hiphop_en.vtt"
-                kind="subtitles"
-                srclang="en"
-                label="English"
-              />
-              Tu navegador no soporta la reproducción de vídeos.
-            </video>
+          <article class="artcontra">
+            <img
+              class="imgcontra"
+              src="./assets/media/images/contraseñas.jpg"
+              alt="imagen_contraseñas"
+            />
+
+            <p>
+              Usar contraseñas fuertes y únicas es crucial para proteger tus
+              cuentas en línea, es importante tener una contraseña diferente
+              para cada sitio y cambiar periódicamente las contraseñas, por
+              ejemplo una vez al mes. Para crear contraseñas seguras y fuertes
+              puedes realizar un patrón que te ayude a crear y memorizar todas
+              tus contraseñas, por ejemplo Google&1234ABC&enero, el patron por
+              ejemplo es, el sitio web con la primera letra en mayúsculas
+              seguido de un simbolo, la matrícula de tu primer coche un símbolo
+              y el mes en el que estás. También puedes crear contraseñas con un
+              generador de contraseñas. Aquí tienes un generador de contraseñas
+              para ayudarte a crear contraseñas seguras.
+            </p>
+          </article>
+          <article class="artdospasos">
+            <img
+              class="imgdosp"
+              src="./assets/media/images/pasos.webp"
+              alt="autenticación en dos pasos"
+            />
+
+            <p>
+              <b class="hdosp">Verificación en dos pasos</b><br />
+              la verificación en dos pasos (2FA) añade una capa extra de
+              seguridad a tus cuentas al requerir un segundo método de
+              autenticación además de la contraseña. Esto puede ser un código
+              enviado a tu teléfono, una aplicación de autenticación o una clave
+              física. Activar 2FA en tus cuentas importantes ayuda a protegerlas
+              incluso si tu contraseña es comprometida.
+            </p>
+          </article>
+
+          <div class="card" id="pw-card">
+            <h3>Generador de contraseñas</h3>
+
+            <label>
+              Longitud:
+              <input id="pwLen" type="number" min="8" max="64" value="16" />
+            </label>
+
+            <label class="check-symbols">
+              <input id="useSymbols" type="checkbox" checked />
+              Incluir símbolos
+            </label>
+
+            <div class="pw-buttons">
+              <button id="genPwBtn">Generar contraseña</button>
+              <button id="copyPwBtn">Copiar</button>
+            </div>
+
+            <div class="pw-output">
+              <input id="pwOutput" type="text" readonly />
+              <div class="pw-meter" aria-hidden="true">
+                <i id="pwBar"></i>
+              </div>
+              <small id="pwText">Fuerza: —</small>
+            </div>
           </div>
-          <figcaption>contraseñas fuertes.</figcaption>
+          <div class="transcripcion">
+            <h3>Transcripción:</h3>
+            <p>1. Crea contraseñas largas y únicas para cada cuenta.</p>
+            <p>2. Utiliza passphrases en vez de palabras cortas.</p>
+            <p>3. Usa un gestor de contraseñas seguro y activa 2FA siempre que sea posible.</p>
+          </div>
         </figure>
-        <div class="transcripcion">
-          <h3>Transcripción:</h3>
-          <p>1. .</p>
-          <p>2. .</p>
-          <p>3. .</p>
-        </div>
       </section>
 
       <section class="seguridad copias">
@@ -241,46 +281,6 @@
           <p>3. .</p>
         </div>
       </section>
-
-      <section class="seguridad pasos">
-        <h2>Verificación en dos pasos</h2>
-        <figure>
-          <div class="video-container container-pasos">
-            <video
-              controls
-              preload="metadata"
-              poster="./assets/media/images/pasos.webp"
-              width="100%"
-            >
-              <source
-                src="./assets/media/videos/hip-hop.mp4"
-                type="video/mp4"
-              />
-              <track
-                src="./assets/media/subtitulos/hiphop_es.vtt"
-                kind="subtitles"
-                srclang="es"
-                label="Español"
-                default
-              />
-              <track
-                src="./assets/media/subtitulos/hiphop_en.vtt"
-                kind="subtitles"
-                srclang="en"
-                label="English"
-              />
-              Tu navegador no soporta la reproducción de vídeos.
-            </video>
-          </div>
-          <figcaption>Como haser la verificación en dos pasos</figcaption>
-        </figure>
-        <div class="transcripcion">
-          <h3>Transcripción:</h3>
-          <p>1. .</p>
-          <p>2. .</p>
-          <p>3. .</p>
-        </div>
-      </section>
     </main>
 
     <footer>
@@ -292,5 +292,6 @@
         >segundo video de seguridad.</a
       >
     </footer>
+    <script src="./assets/script.js"></script>
   </body>
 </html>

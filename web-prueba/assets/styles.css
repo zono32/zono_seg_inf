@@ -73,17 +73,14 @@ figure {
 .container-privacidad {
   background: linear-gradient(135deg, #ffffff, #17a2b8);
 }
-.container-pasos {
-  background: linear-gradient(135deg, #ffffff, #d3d010);
-}
 
 /* El video mantiene proporción sin cubrir el fondo */
 .video-container video {
-  width: 90%;           /* deja ver el fondo alrededor */
+  width: 90%; /* deja ver el fondo alrededor */
   height: 90%;
   border: 3px solid #111;
   border-radius: 10px;
-  object-fit: contain;  /* mantiene proporción original sin recortar */
+  object-fit: contain; /* mantiene proporción original sin recortar */
   background-color: #000; /* evita salto blanco */
   display: block;
 }
@@ -127,9 +124,41 @@ figure {
   border-left: 8px solid #3498db;
 }
 
-.pasos {
-  background-color: #fffaf0;
-  border-left: 8px solid #f39c12;
+.artcontra,
+.artdospasos {
+  display: flex;
+  align-items: center; /* Centra verticalmente el texto con la imagen */
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+  flex-wrap: wrap; /* Permite adaptarse a pantallas pequeñas */
+}
+
+/* Imágenes: 50% del ancho aproximadamente */
+.artcontra img,
+.artdospasos img {
+  width: 45%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Texto: ocupa la otra mitad */
+.artcontra p,
+.artdospasos p {
+  width: 45%;
+  text-align: justify;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Título "Verificación en dos pasos" centrado */
+.hdosp {
+  display: block;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #1e40af;
+  margin-bottom: 0.5rem;
 }
 
 /* Animación */
