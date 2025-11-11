@@ -8,7 +8,7 @@
   </head>
   <body>
     <header>
-      <h1>Guia de seguridad informática</h1>
+      <h1>Guía de seguridad informática</h1>
       <p>Equipo a prueba de balas</p>
     </header>
 
@@ -20,22 +20,74 @@
         Asegurar un equipo informático significa protegerlo frente a ataques,
         virus, pérdida de datos o accesos no autorizados. Igual que cerramos la
         puerta de casa, debemos cerrar las puertas digitales de nuestros
-        dispositivos
-      </p>
+        dispositivos.
+      </p>     
+
       <audio controls>
         <source src="./assets/media/audio/intro.mp3" type="audio/mp3" />
         Tu navegador no soporta la reproducción de audio.
       </audio>
 
+<!-- =====================================
+           SECCIÓN ENTORNO DE NEGOCIO
+      ================================== -->
+
+       <section class="seguridad entorno">
+        <p><h2>Mi entorno</h2>
+          Vamos a imaginar que tenemos nuestro negocio, por ejemplo una autoescuela. En mi autoescuela tenemos los siguientes equipos informáticos:</p>
+          <ul>
+            <li>Un Servidor </li>
+            <li>Un Sai (para proteger los equipos ante las caídas de corriente)</li>
+            <li>un Swich (que es el que conecta todas las computadoras)</li>
+            <li>Un Router </li>
+            <li>Una impresora multifunción (Recepción)</li>
+            <li>Varios ordenadores de sobremesa para los alumnos y recepción </li>
+            <li>Varios portatiles para el profesorado</li>
+          </ul> 
+         </p>
+         <p>
+          <img src="./assets/media/images/recepcion.jpg" alt="recepción"/>
+            <h2>Recepción</h2>
+            
+            En la recepción tenemos varios equipos informáticos situados en mesas solidas y estables a 5 centimetros del suelo(para evitar el contacto con posibles caidas de liquidos) y la impresora multufunción.
+            La impresora multifunción está conectada a la red mediante cable Ethernet (para mayor seguridad) y tiene una contraseña fuerte para evitar accesos no autorizados.
+            Los equipos informáticos de recepción tienen instalado un antivirus actualizado y realizan copias de seguridad automáticas de los datos importantes, además todos los equipos tienen correctamente configurados los permisos garantizando que solo el personal autorizado puede realizar cambios críticos en los sistemas.
+            Por último, la recepción cuenta con un sistema de videovigilancia para monitorear el área y prevenir robos o accesos no autorizados.
+          </p>
+          <p>
+            <h2>Sala de Servidores</h2>
+            Tenemos una habitación específica para ubicar Los Servidores, el Swich, el sai y el Router que son los equipos más importantes para mantener la seguridad.
+            Esta habitación tiene acceso restringido solo para el personal autorizado (puerta con cerradura especial o tarjeta de acceso) ademas contamos con cámaras de videovigilancia para evitar que nadie ajeno al recinto pueda acceder a el.
+            Los equipos están colocados en Rack debidamente protegidos contra incendios y tienen un sistema de ventilacíon adecuado para evitar sobrecalentamientos.
+            Todods los equios están debidamente configurados con los permisos necesarios para evitar accesos no autorizados y cuentan con un sistema de copias de seguridad automáticas.
+            La habitación tb está aislada contra las humedades, tiene un sistema de detección de incendios y aire acondicionado.
+            Por último en la temnemos un registro de acceso en la que cada persona que entra tenemos apuntada la hora de entrada y salida.
+          </p>
+          <p>
+            <h2>Aulas</h2>
+            En las aulas tenemos varios ordenadores de sobremesa para los alumnos y portátiles para el profesorado.
+            Los equipos están situados en mesas estables y sólidas a 5 centimetros del suelo (para evitar el contacto con posibles caidas de liquidos).
+            Cada alumno tiene una cuenta de usuario individual con permisos limitados para evitar cambios no autorizados en el sistema.
+            Los equipos tienen cortafuegos activados y un software de control parental para filtrar contenidos inapropiados.
+            Además, las aulas cuentan con un sistema de videovigilancia para monitorear el área y prevenir robos o accesos no autorizados.
+          </p>
+          <p>
+            <h2>Personal</h2>
+            En la autoescuela contamos con una política de seguridad informática que incluye la formación periódica del personal sobre buenas prácticas de seguridad, como el uso de contraseñas fuertes, la identificación de correos electrónicos sospechosos y la importancia de mantener los sistemas actualizados. A parte de una empresa de seguridad externa que realiza auditorías de seguridad mensuales para identificar y corregir posibles vulnerabilidades en nuestros sistemas.
+          </p>
+      </section>
+
+      <!-- ============================
+           SECCIÓN ACTUALIZACIONES
+      ============================ -->
       <section class="seguridad actualizado">
-        <h2>Como mantener el equipo actualizado</h2>
+        <h2>Cómo mantener el equipo actualizado</h2>
         <figure>
           <div class="video-container container-actualizado">
             <video
               controls
               preload="metadata"
               poster="./assets/media/images/img1.jpeg"
-              width="100%"
             >
               <source
                 src="./assets/media/videos/Actualizar_Windows.mp4"
@@ -57,19 +109,23 @@
               Tu navegador no soporta la reproducción de vídeos.
             </video>
           </div>
-          <figcaption>Como tener el equipo actualizado.</figcaption>
+          <figcaption>Cómo tener el equipo actualizado.</figcaption>
         </figure>
+
         <div class="transcripcion">
           <h3>Transcripción:</h3>
           <p>1. Mantén el sistema operativo siempre actualizado.</p>
           <p>
-            2. Activa las actualizaciones automáticas del antivirus (windows 11
-            hace las actualizaciones automáticas por defecto).
+            2. Activa las actualizaciones automáticas del antivirus (Windows 11
+            las realiza por defecto).
           </p>
           <p>3. No ignores las notificaciones de seguridad.</p>
         </div>
       </section>
 
+      <!-- ============================
+           SECCIÓN ANTIVIRUS
+      ============================ -->
       <section class="seguridad virus">
         <h2>Antivirus y Malware</h2>
         <figure>
@@ -78,7 +134,6 @@
               controls
               preload="metadata"
               poster="./assets/media/images/antivirus.png"
-              width="100%"
             >
               <source
                 src="./assets/media/videos/windows_Defender.mp4"
@@ -100,8 +155,9 @@
               Tu navegador no soporta la reproducción de vídeos.
             </video>
           </div>
-          <figcaption>Instalación de antivirus y malware</figcaption>
+          <figcaption>Instalación de antivirus y análisis de malware.</figcaption>
         </figure>
+
         <div class="transcripcion">
           <h3>Transcripción:</h3>
           <p>1. Abre el menú Inicio y busca “Seguridad de Windows”.</p>
@@ -118,64 +174,58 @@
             “Buscar actualizaciones de protección”.
           </p>
           <p>
-            6. Y si prefieres un antivirus personalizado, puedes instalar uno
-            adicional compatible con Windows 11, aunque para la mayoría de los
-            usuarios Defender es suficiente.
+            6. Si prefieres un antivirus personalizado, puedes instalar uno
+            adicional compatible con Windows 11, aunque Defender suele ser
+            suficiente para la mayoría de usuarios.
           </p>
         </div>
       </section>
 
+      <!-- ============================
+           SECCIÓN CONTRASEÑAS
+      ============================ -->
       <section class="seguridad passwords">
         <h2>Contraseñas</h2>
-        <figure>
+        <figure class="container-pass">
           <article class="artcontra">
             <img
-              class="imgcontra"
               src="./assets/media/images/contraseñas.jpg"
-              alt="imagen_contraseñas"
+              alt="imagen contraseñas"
             />
-
             <p>
+              <b class="hpass">Password</b><br />
               Usar contraseñas fuertes y únicas es crucial para proteger tus
-              cuentas en línea, es importante tener una contraseña diferente
-              para cada sitio y cambiar periódicamente las contraseñas, por
-              ejemplo una vez al mes. Para crear contraseñas seguras y fuertes
-              puedes realizar un patrón que te ayude a crear y memorizar todas
-              tus contraseñas, por ejemplo Google&1234ABC&enero, el patron por
-              ejemplo es, el sitio web con la primera letra en mayúsculas
-              seguido de un simbolo, la matrícula de tu primer coche un símbolo
-              y el mes en el que estás. También puedes crear contraseñas con un
-              generador de contraseñas. Aquí tienes un generador de contraseñas
-              para ayudarte a crear contraseñas seguras.
+              cuentas en línea. Es importante tener una contraseña diferente
+              para cada sitio y cambiarlas periódicamente, por ejemplo una vez
+              al mes. Puedes crear un patrón que te ayude a memorizarlas, por
+              ejemplo <b>Google&1234ABC&enero</b> (nombre del sitio + símbolo +
+              matrícula + símbolo + mes actual). También puedes crear contraseñas
+              con un generador aunque personamlente me gusta más el método del patrón.
             </p>
           </article>
+
           <article class="artdospasos">
             <img
-              class="imgdosp"
               src="./assets/media/images/pasos.webp"
               alt="autenticación en dos pasos"
             />
-
             <p>
               <b class="hdosp">Verificación en dos pasos</b><br />
-              la verificación en dos pasos (2FA) añade una capa extra de
+              La verificación en dos pasos (2FA) añade una capa extra de
               seguridad a tus cuentas al requerir un segundo método de
-              autenticación además de la contraseña. Esto puede ser un código
-              enviado a tu teléfono, una aplicación de autenticación o una clave
-              física. Activar 2FA en tus cuentas importantes ayuda a protegerlas
-              incluso si tu contraseña es comprometida.
+              autenticación además de la contraseña. Esto puede ser un código en
+              tu teléfono, una app de autenticación o una clave física.
             </p>
           </article>
 
           <div class="card" id="pw-card">
             <h3>Generador de contraseñas</h3>
-
             <label>
               Longitud:
               <input id="pwLen" type="number" min="8" max="64" value="16" />
             </label>
 
-            <label class="check-symbols">
+            <label>
               <input id="useSymbols" type="checkbox" checked />
               Incluir símbolos
             </label>
@@ -193,105 +243,95 @@
               <small id="pwText">Fuerza: —</small>
             </div>
           </div>
-          <div class="transcripcion">
-            <h3>Transcripción:</h3>
-            <p>1. Crea contraseñas largas y únicas para cada cuenta.</p>
-            <p>2. Utiliza passphrases en vez de palabras cortas.</p>
-            <p>3. Usa un gestor de contraseñas seguro y activa 2FA siempre que sea posible.</p>
-          </div>
         </figure>
-      </section>
 
-      <section class="seguridad copias">
-        <h2>Copias de seguridad</h2>
-        <figure>
-          <div class="video-container container-copia">
-            <video
-              controls
-              preload="metadata"
-              poster="./assets/media/images/copia.png"
-              width="100%"
-            >
-              <source
-                src="./assets/media/videos/hip-hop.mp4"
-                type="video/mp4"
-              />
-              <track
-                src="./assets/media/subtitulos/hiphop_es.vtt"
-                kind="subtitles"
-                srclang="es"
-                label="Español"
-                default
-              />
-              <track
-                src="./assets/media/subtitulos/hiphop_en.vtt"
-                kind="subtitles"
-                srclang="en"
-                label="English"
-              />
-              Tu navegador no soporta la reproducción de vídeos.
-            </video>
-          </div>
-          <figcaption>Copias de seguridad</figcaption>
-        </figure>
         <div class="transcripcion">
           <h3>Transcripción:</h3>
-          <p>1. .</p>
-          <p>2. .</p>
-          <p>3. .</p>
+          <p>1. Crea contraseñas largas y únicas para cada cuenta.</p>
+          <p>2. Utiliza passphrases en vez de palabras cortas.</p>
+          <p>
+            3. Usa un gestor de contraseñas seguro y activa 2FA siempre que sea
+            posible.
+          </p>
         </div>
       </section>
 
-      <section class="seguridad privacidad">
-        <h2>Privacidad y permisos</h2>
-        <figure>
-          <div class="video-container container-privacidad">
-            <video
-              controls
-              preload="metadata"
-              poster="./assets/media/images/privacidad.avif"
-              width="100%"
-            >
-              <source
-                src="./assets/media/videos/hip-hop.mp4"
-                type="video/mp4"
-              />
-              <track
-                src="./assets/media/subtitulos/hiphop_es.vtt"
-                kind="subtitles"
-                srclang="es"
-                label="Español"
-                default
-              />
-              <track
-                src="./assets/media/subtitulos/hiphop_en.vtt"
-                kind="subtitles"
-                srclang="en"
-                label="English"
-              />
-              Tu navegador no soporta la reproducción de vídeos.
-            </video>
-          </div>
-          <figcaption>Como cuidar de la Privacidad y los Permisos</figcaption>
-        </figure>
+      <!-- ============================
+           SECCIÓN COPIAS DE SEGURIDAD
+      ============================ -->
+      <section class="seguridad copias">
+        <h2>Copias de seguridad</h2>
+        <article class="artcopias">
+          <img src="./assets/media/images/copia.png" alt="Copias de seguridad"/>
+          <p>
+            <b class="hcopia">Copias de seguridad</b><br />
+            Realizar copias de seguridad de tus archivos es esencial para evitar
+            la pérdida de información importante en caso de fallos del sistema,
+            ataques de malware o eliminación accidental. <br /><br />
+            En <b>Windows 11</b>, puedes hacer una copia de seguridad automática
+            utilizando <b>Historial de archivos</b> o sincronizando tus carpetas
+            con <b>OneDrive</b>. <br /><br />
+            Guarda una copia en la nube y otra en un disco externo para mayor
+            seguridad. Revisa periódicamente tus copias y asegúrate de que se
+            actualicen correctamente.
+          </p>
+        </article>
+
         <div class="transcripcion">
           <h3>Transcripción:</h3>
-          <p>1. .</p>
-          <p>2. .</p>
-          <p>3. .</p>
+          <p>1. Abre “Configuración” → “Copia de seguridad de Windows”.</p>
+          <p>2. Activa la opción “OneDrive” o configura una unidad externa.</p>
+          <p>
+            3. Programa copias automáticas para mantener tus datos protegidos.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================
+           SECCIÓN PRIVACIDAD
+      ============================ -->
+      <section class="seguridad privacidad">
+        <h2>Privacidad en línea</h2>
+        <article class="artprivacidad">
+          <img
+            src="./assets/media/images/privacidad.avif"
+            alt="Privacidad en línea"
+          />
+          <p>
+            <b class="hprivacidad">Privacidad en línea</b><br />
+            Proteger tu privacidad en Internet es tan importante como mantener
+            tu equipo actualizado o usar contraseñas seguras. <br /><br />
+            En <b>Windows 11</b>, revisa qué datos compartes con Microsoft desde
+            <b>Configuración → Privacidad y seguridad</b>. Ajusta permisos de
+            ubicación, cámara, micrófono y actividad. <br /><br />
+            Usa navegadores con protección de rastreo y ventanas privadas cuando
+            navegues en sitios desconocidos. No compartas información personal
+            en redes sociales o páginas no confiables.
+          </p>
+        </article>
+
+        <div class="transcripcion">
+          <h3>Consejos rápidos:</h3>
+          <p>1. Abre “Configuración → Privacidad y seguridad”.</p>
+          <p>2. Ajusta los permisos de aplicaciones según tus preferencias.</p>
+          <p>
+            3. Usa navegación privada y revisa tus datos compartidos
+            periódicamente.
+          </p>
         </div>
       </section>
     </main>
 
     <footer>
       <p>&copy; 2025 Estilos de seguridad. Sitio accesible y educativo.</p>
-      <a href="https://www.youtube.com/watch?v=fdwihua_8Vg" target="_blank"
-        >clica aqui para ver el video</a
-      >
-      <a href="https://www.youtube.com/watch?v=rctz_w5SB3A" target="_blank"
-        >segundo video de seguridad.</a
-      >
+      <a href="https://www.youtube.com/watch?v=fdwihua_8Vg" target="_blank">
+        Clica aquí para ver el video
+      </a>
+      <a href="https://www.youtube.com/watch?v=rctz_w5SB3A" target="_blank">
+        Segundo video de seguridad
+      </a>
     </footer>
+
     <script src="./assets/script.js"></script>
   </body>
 </html>
