@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles.css">
+    <title>asegura tu equipo</title>
+</head>
+<body>
+     <!-- =====================================
+          CABECERA
+      ================================== -->
+
+    <header>
+      <h1>Guía de seguridad informática</h1>
+      <p>Equipo a prueba de balas</p>
+      <nav class="nav">
+        <a href="index.html">Inicio</a> |
+        <a href="entorno.html">Entorno Físico</a> |
+        <a href="seguridad.html">Seguridad Informática</a>
+      </nav>
+    </header>   
+    <main>
+        
+      <!-- ============================
+           SECCIÓN ACTUALIZACIONES
+      ============================ -->
+      <section class="seguridad actualizado">
+        <h2>Cómo mantener el equipo actualizado</h2>
+        <figure>
+          <div class="video-container container-actualizado">
+            <video
+              controls
+              preload="metadata"
+              poster="./assets/media/images/img1.jpeg"
+            >
+              <source
+                src="./assets/media/videos/Actualizar_Windows.mp4"
+                type="video/mp4"
+              />
+              <track
+                src="./assets/media/subtitulos/actualizado_es.vtt"
+                kind="subtitles"
+                srclang="es"
+                label="Español"
+                default
+              />
+              <track
+                src="./assets/media/subtitulos/actualizado_en.vtt"
+                kind="subtitles"
+                srclang="en"
+                label="English"
+              />
+              Tu navegador no soporta la reproducción de vídeos.
+            </video>
+          </div>
+          <figcaption>Cómo tener el equipo actualizado.</figcaption>
+        </figure>
+
+        <div class="transcripcion">
+          <h3>Transcripción:</h3>
+          <p>1. Mantén el sistema operativo siempre actualizado.</p>
+          <p>
+            2. Activa las actualizaciones automáticas del antivirus (Windows 11
+            las realiza por defecto).
+          </p>
+          <p>3. No ignores las notificaciones de seguridad.</p>
+        </div>
+      </section>
+
+      <!-- ============================
+           SECCIÓN ANTIVIRUS
+      ============================ -->
+      <section class="seguridad virus">
+        <h2>Antivirus y Malware</h2>
+        <figure>
+          <div class="video-container container-virus">
+            <video
+              controls
+              preload="metadata"
+              poster="./assets/media/images/antivirus.png"
+            >
+              <source
+                src="./assets/media/videos/windows_Defender.mp4"
+                type="video/mp4"
+              />
+              <track
+                src="./assets/media/subtitulos/virus_es.vtt"
+                kind="subtitles"
+                srclang="es"
+                label="Español"
+                default
+              />
+              <track
+                src="./assets/media/subtitulos/virus_en.vtt"
+                kind="subtitles"
+                srclang="en"
+                label="English"
+              />
+              Tu navegador no soporta la reproducción de vídeos.
+            </video>
+          </div>
+          <figcaption>Instalación de antivirus y análisis de malware.</figcaption>
+        </figure>
+
+        <div class="transcripcion">
+          <h3>Transcripción:</h3>
+          <p>1. Abre el menú Inicio y busca “Seguridad de Windows”.</p>
+          <p>2. Entra en “Protección contra virus y amenazas”.</p>
+          <p>
+            3. Pulsa en “Análisis rápido” para comprobar archivos principales.
+          </p>
+          <p>
+            4. Si sospechas de infección, usa “Opciones de examen” → “Examen
+            completo” o “Análisis sin conexión”.
+          </p>
+          <p>
+            5. Mantén Defender actualizado mediante Windows Update o desde
+            “Buscar actualizaciones de protección”.
+          </p>
+          <p>
+            6. Si prefieres un antivirus personalizado, puedes instalar uno
+            adicional compatible con Windows 11, aunque Defender suele ser
+            suficiente para la mayoría de usuarios.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================
+           SECCIÓN CONTRASEÑAS
+      ============================ -->
+      <section class="seguridad passwords">
+        <h2>Contraseñas</h2>
+        <figure class="container-pass">
+          <article class="artcontra">
+            <img
+              src="./assets/media/images/contraseñas.jpg"
+              alt="imagen contraseñas"
+            />
+            <p>
+              <b class="hpass">Password</b><br />
+              Usar contraseñas fuertes y únicas es crucial para proteger tus
+              cuentas en línea. Es importante tener una contraseña diferente
+              para cada sitio y cambiarlas periódicamente, por ejemplo una vez
+              al mes. Puedes crear un patrón que te ayude a memorizarlas, por
+              ejemplo <b>Google&1234ABC&enero</b> (nombre del sitio + símbolo +
+              matrícula + símbolo + mes actual). También puedes crear contraseñas
+              con un generador aunque personamlente me gusta más el método del patrón.
+            </p>
+          </article>
+
+          <article class="artdospasos">
+            <img
+              src="./assets/media/images/pasos.webp"
+              alt="autenticación en dos pasos"
+            />
+            <p>
+              <b class="hdosp">Verificación en dos pasos</b><br />
+              La verificación en dos pasos (2FA) añade una capa extra de
+              seguridad a tus cuentas al requerir un segundo método de
+              autenticación además de la contraseña. Esto puede ser un código en
+              tu teléfono, una app de autenticación o una clave física.
+            </p>
+          </article>
+
+          <div class="card" id="pw-card">
+            <h3>Generador de contraseñas</h3>
+            <label>
+              Longitud:
+              <input id="pwLen" type="number" min="8" max="64" value="16" />
+            </label>
+
+            <label>
+              <input id="useSymbols" type="checkbox" checked />
+              Incluir símbolos
+            </label>
+
+            <div class="pw-buttons">
+              <button id="genPwBtn">Generar contraseña</button>
+              <button id="copyPwBtn">Copiar</button>
+            </div>
+
+            <div class="pw-output">
+              <input id="pwOutput" type="text" readonly />
+              <div class="pw-meter" aria-hidden="true">
+                <i id="pwBar"></i>
+              </div>
+              <small id="pwText">Fuerza: —</small>
+            </div>
+          </div>
+        </figure>
+
+        <div class="transcripcion">
+          <h3>Transcripción:</h3>
+          <p>1. Crea contraseñas largas y únicas para cada cuenta.</p>
+          <p>2. Utiliza passphrases en vez de palabras cortas.</p>
+          <p>
+            3. Usa un gestor de contraseñas seguro y activa 2FA siempre que sea
+            posible.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================
+           SECCIÓN COPIAS DE SEGURIDAD
+      ============================ -->
+      <section class="seguridad copias">
+        <h2>Copias de seguridad</h2>
+        <article class="artcopias">
+          <img src="./assets/media/images/copia.png" alt="Copias de seguridad"/>
+          <p>
+            <b class="hcopia">Copias de seguridad</b><br />
+            Realizar copias de seguridad de tus archivos es esencial para evitar
+            la pérdida de información importante en caso de fallos del sistema,
+            ataques de malware o eliminación accidental. <br /><br />
+            En <b>Windows 11</b>, puedes hacer una copia de seguridad automática
+            utilizando <b>Historial de archivos</b> o sincronizando tus carpetas
+            con <b>OneDrive</b>. <br /><br />
+            Guarda una copia en la nube y otra en un disco externo para mayor
+            seguridad. Revisa periódicamente tus copias y asegúrate de que se
+            actualicen correctamente.
+          </p>
+        </article>
+
+        <div class="transcripcion">
+          <h3>Transcripción:</h3>
+          <p>1. Abre “Configuración” → “Copia de seguridad de Windows”.</p>
+          <p>2. Activa la opción “OneDrive” o configura una unidad externa.</p>
+          <p>
+            3. Programa copias automáticas para mantener tus datos protegidos.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================
+           SECCIÓN PRIVACIDAD
+      ============================ -->
+      <section class="seguridad privacidad">
+        <h2>Privacidad en línea</h2>
+        <article class="artprivacidad">
+          <img
+            src="./assets/media/images/privacidad.avif"
+            alt="Privacidad en línea"
+          />
+          <p>
+            <b class="hprivacidad">Privacidad en línea</b><br />
+            Proteger tu privacidad en Internet es tan importante como mantener
+            tu equipo actualizado o usar contraseñas seguras. <br /><br />
+            En <b>Windows 11</b>, revisa qué datos compartes con Microsoft desde
+            <b>Configuración → Privacidad y seguridad</b>. Ajusta permisos de
+            ubicación, cámara, micrófono y actividad. <br /><br />
+            Usa navegadores con protección de rastreo y ventanas privadas cuando
+            navegues en sitios desconocidos. No compartas información personal
+            en redes sociales o páginas no confiables.
+          </p>
+        </article>
+
+        <div class="transcripcion">
+          <h3>Consejos rápidos:</h3>
+          <p>1. Abre “Configuración → Privacidad y seguridad”.</p>
+          <p>2. Ajusta los permisos de aplicaciones según tus preferencias.</p>
+          <p>
+            3. Usa navegación privada y revisa tus datos compartidos
+            periódicamente.
+          </p>
+        </div>
+      </section>
+    </main>
+</body>
+</html>
