@@ -1,41 +1,81 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Informe de Auditoría - MF0487</title>
-    <script type="text/javascript" src="/eel.js"></script> 
-    <link rel="stylesheet" href="./assets/styleApp.css">
-</head>
-<body>
+    <script type="text/javascript" src="/eel.js"></script>
+    <link rel="stylesheet" href="./assets/styleApp.css" />
+
+  </head>
+  <body>
+    <header class="cabecera">
+      <img
+        class="icocab"
+        src="./assets/img/driving-logo-school-600nw-2493562929.webp"
+        alt=""
+      />
+      <div class="texto">
+        <h1>Seguridad informática</h1>
+        <p>Auditar equipos informáticos</p>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Inicio</a> |
+        <a href="entorno.html">Entorno Físico</a> |
+        <a href="./app.html">app</a>
+      </nav>
+    </header>
+
     <div class="container">
-        <h1>Informe de Auditoría de Seguridad (MF0487)</h1>
-        <p>Este informe interactivo presenta los hallazgos de la auditoría y una herramienta de prueba de concepto.</p>
-        
-        <hr>
+      <h1>Informe de Auditoría de Seguridad (MF0487)</h1>
+      <p>
+        Este informe interactivo presenta los hallazgos de la auditoría y una
+        herramienta de prueba de concepto.
+      </p>
 
-        <h2>Hallazgo Crítico: Contraseña de Archivo RAR Débil</h2>
-        <p>Se identificó un archivo cifrado con hash RAR5, susceptible a ataques de diccionario. A continuación, se proporciona una herramienta de prueba para demostrar la vulnerabilidad.</p>
+      <hr />
 
-        <div class="seccion-herramienta">
-            <h2>Herramienta Interactiva de Desencriptado</h2>
-            
-            <div id="drop-area">
-                <h3>ARRÁSTRA AQUÍ EL ARCHIVO .RAR</h3>
-                <p>Solo tienes que arrastrar y soltar el archivo.</p>
-                <p id="archivo-seleccionado" style="font-weight: bold; color: #007bff;">Esperando archivo...</p>
-            </div>
+      <h2>Hallazgo Crítico: Contraseña de Archivo RAR Débil</h2>
+      <p>
+        Se identificó un archivo cifrado con hash RAR5, susceptible a ataques de
+        diccionario. A continuación, se proporciona una herramienta de prueba
+        para demostrar la vulnerabilidad.
+      </p>
 
-            <button class="btn-start" onclick="iniciarCrackeo()" disabled id="btn-iniciar">
-                1. Iniciar Ataque con RockYou.txt
-            </button>
-            <button class="btn-cancelar" onclick="cancelarCrackeo()" disabled id="btn-cancelar">
-                2. Cancelar Proceso
-            </button>
-            
-            <h3>Salida del Crackeo:</h3>
-            <pre id="resultado-output">Esperando que se cargue el archivo...</pre>
+      <div class="seccion-herramienta">
+        <h2>Herramienta Interactiva de Desencriptado</h2>
+
+        <div id="drop-area">
+          <h3>ARRÁSTRA AQUÍ EL ARCHIVO .RAR</h3>
+          <p>Solo tienes que arrastrar y soltar el archivo.</p>
+          <p
+            id="archivo-seleccionado"
+            style="font-weight: bold; color: #007bff"
+          >
+            Esperando archivo...
+          </p>
         </div>
+
+        <button
+          class="btn-start"
+          onclick="iniciarCrackeo()"
+          disabled
+          id="btn-iniciar"
+        >
+          1. Iniciar Ataque con RockYou.txt
+        </button>
+        <button
+          class="btn-cancelar"
+          onclick="cancelarCrackeo()"
+          disabled
+          id="btn-cancelar"
+        >
+          2. Cancelar Proceso
+        </button>
+
+        <h3>Salida del Crackeo:</h3>
+        <pre id="resultado-output">Esperando que se cargue el archivo...</pre>
+      </div>
     </div>
-    
+
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
