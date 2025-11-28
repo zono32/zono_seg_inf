@@ -1,9 +1,9 @@
 Diapo,Tema,Tono Sugerido (20 Segundos)
-1,Presentación,"""Buenas noches a todos. Cuando me pidieron hablar sobre un tema que me apasionara, la respuesta fue inmediata: el cine. Pero no cualquier cine: hablo de la era dorada que se consumía en una época, la Generación del Videoclub. Hablo de las Películas de los 80's. ¡Abróchense los cinturones, porque la aventura comienza ahora!"""
+1,Presentación,"""muy buenas  a todos, compañera, compañeros, gran maestro xosé. hoy voy a hablaros de cine, pero no de cualquier cine: voy a hablaros de la era dorada del Videoclub. Hablo de las Películas de los 80's. ¡Abróchense los cinturones, porque la aventura comienza ahora!"""
 
-2,Bud Spencer y Terence Hill,"""¿Quién no conoce a estos dos? Para mí, son el sonido de la risa. Me hicieron reír muchísimo en el sofá de mi casa, con mi padre al lado, viendo un VHS desgastado. Su humor blanco, sus puñetazos sin dolor y sus títulos como Dos Súper-Súperesbirros representan ese espíritu de películas sencillas y divertidas de la época."""
+2,Bud Spencer y Terence Hill," Dos tipos tan diferentes  uno la inteligencia y el otro la fuerza bruta, el coctel perfecto para pasar un rato divertido. Me hicieron reír muchísimo en el sofá de mi casa, con mi padre al lado.  sus títulos como Dos Súper-Súperesbirros y si no nos enfadamos... representan ese espíritu de películas sencillas y divertidas de la época."
 
-3,Regreso al Futuro,"""La película definitiva de la década. Viajes en el tiempo en un DeLorean. Michael J. Fox es el alma de los 80, y la pregunta que nos hicimos todos: ¿Qué pasaría si la maquina del tiempo cayese en mis manos? Una obra maestra de la ciencia ficción familiar que define la imaginación de la época."""
+3,Regreso al Futuro,"""una de las mejores sagas de la década. La pregunta que nos hicimos todos: ¿Qué pasaría si el delorean de helmet brawn y de Marti Mcfly cayese en nuestras manos? Una obra maestra de la ciencia ficción familiar que define la imaginación de la época."""
 
 4,Indiana Jones,"""El arqueólogo más famoso del mundo. Harrison Ford, sombrero, látigo y un miedo atroz a las serpientes. Indiana Jones nos enseñó que la aventura es mejor que el museo, regalándonos acción sin parar en El Templo Maldito y La Última Cruzada. Pura adrenalina."""
 

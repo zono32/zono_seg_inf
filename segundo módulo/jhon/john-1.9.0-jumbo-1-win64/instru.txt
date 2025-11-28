@@ -1,0 +1,20 @@
+
+Asegúrate de que tu archivo RAR (por ejemplo, prueba.rar) esté en una ubicación fácil de acceder, o cópialo directamente a la carpeta run/ para simplificar.
+
+Ejecuta el extractor:
+
+.\rar2john.exe tu_archivo.rar > hash_rar.txt
+
+Sustituye tu_archivo.rar por el nombre real de tu archivo.
+
+Esto creará un nuevo archivo llamado hash_rar.txt en la carpeta run/ que contiene el hash que John the Ripper puede leer.
+
+Ahora, utiliza john.exe para aplicar el ataque de diccionario sobre el hash que acabas de extraer.
+
+.\john.exe hash_rar.txt
+
+John the Ripper automáticamente intentará descifrar el hash utilizando sus listas de palabras internas y ataques de fuerza bruta rápidos.
+
+Para un ataque de diccionario más efectivo (como el que se espera en un curso de seguridad), deberías usar una lista de palabras famosa como rockyou.txt (que tendrás que descargar e incluir en la carpeta run/ o indicarle la ruta).
+
+.\john.exe --wordlist=rockyou.txt hash_rar.txt

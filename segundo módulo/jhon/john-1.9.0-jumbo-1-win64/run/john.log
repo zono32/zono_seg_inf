@@ -2762,3 +2762,20 @@
 0:00:36:15 - Switching to length 6
 0:00:36:15 - Expanding tables for length 6 to character count 13
 0:00:36:15 - Trying length 6, fixed @3, character count 13
+0:00:00:00 Starting a new session
+0:00:00:00 Loaded a total of 1 password hash
+0:00:00:00 Cost 1 (iteration count) is 32768 for all loaded hashes
+0:00:00:00 Command line: ./john --wordlist=rockyou.txt hash_rar.txt 
+0:00:00:00 - UTF-8 input encoding enabled
+0:00:00:00 - Passwords will be stored UTF-8 encoded in .pot file
+0:00:00:00 - Hash type: RAR5 (min-len 0, max-len 10 [worst case UTF-8] to 32 [ASCII])
+0:00:00:00 - Algorithm: PBKDF2-SHA256 256/256 AVX2 8x
+0:00:00:00 - Will reject candidates longer than 32 bytes
+0:00:00:00 - Candidate passwords will be buffered and tried in chunks of 384
+0:00:00:00 Proceeding with wordlist mode
+0:00:00:00 - Wordlist file: rockyou.txt
+0:00:00:00 - memory mapping wordlist (139921507 bytes)
+0:00:00:00 - No word mangling rules
+0:00:00:00 - No stacked rules
+0:02:16:13 + Cracked Examen MF0487_3.rar
+0:02:16:13 Session completed

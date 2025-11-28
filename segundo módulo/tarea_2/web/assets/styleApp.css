@@ -1,0 +1,55 @@
+body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background-color: #f4f4f9;
+        }
+        .container { max-width: 960px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .seccion-herramienta { 
+            border: 2px dashed #007bff; 
+            padding: 20px; 
+            margin-top: 30px; 
+            background-color: #eaf6ff;
+            text-align: center;
+        }
+        #drop-area {
+            border: 3px solid #007bff;
+            background-color: #ffffff;
+            padding: 40px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        #resultado-output {
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px solid #333;
+            min-height: 100px;
+            background-color: #1e1e1e;
+            color: #00ff00;
+            white-space: pre-wrap;
+            overflow-y: auto;
+            text-align: left;
+        }
+        /* Estilos del Botón INICIAR */
+        .btn-start {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        /* Estilos del Botón CANCELAR */
+        .btn-cancelar {
+            background-color: #dc3545; /* Rojo */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .btn-start:disabled, .btn-cancelar:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
