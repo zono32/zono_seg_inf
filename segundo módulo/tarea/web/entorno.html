@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <title>Auditoría - Entorno Físico</title>
+</head>
+<body>
+    <header class="cabecera">
+        <img
+            class="icocab"
+            src="./assets/img/driving-logo-school-600nw-2493562929.webp"
+            alt="Logo de la organización"
+        />
+        <div class="texto">
+            <h1>Seguridad informática</h1>
+            <p>Auditar equipos informáticos</p>
+        </div>
+        <nav class="nav">
+            <a href="./index.html">Inicio</a> |
+            <a href="./entorno.html">Entorno Físico</a> |
+            <a href="./check.html">Checklist</a> |
+            <a href="./app.html">app</a>
+          
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            
+            <h2>🖼️ Topología General de la Red Local</h2>
+            <p>La red implementada está estrictamente segmentada para aislar el tráfico sensible del tráfico de usuarios. La interconexión y la seguridad perimetral se gestionan desde el Router Principal (R1) y el Switch Multicapa (Core).</p>
+
+            <article class="red"> 
+                <h3>Estructura de la Red</h3>
+                <p>La red local consta de una sala de servidores con la **VLAN 10**, una **VLAN 20** dedicada para la administración y una **VLAN 30** dedicada a las aulas. Todo el tráfico se agrega en el Switch Multicapa y se enruta en el Router R1.</p>
+                <img src="./assets/img/red.png" alt="red" />
+            </article>
+
+            <article class="servidores"> 
+                <h2>🏠 Sala de Servidores (VLAN 10)</h2>
+                <p>La **VLAN 10** (`192.168.10.0/24`) alberga los activos más críticos y sensibles, aislados del resto de la red. Esta VLAN es gestionada por el **Switch Multicapa 3560**.</p>
+                <img src="./assets/img/vlan10.png" alt="vlan10" />
+                
+                <h3>Inventario de Servidores y Equipos Críticos</h3>
+                <ul>
+                    <li><strong>Servidor DNS:</strong> IP: <code>192.168.10.10</code>. Ofrece resolución de nombres.</li>
+                    <li><strong>Servidor Web/LDAP:</strong> IP: <code>192.168.10.5</code>. Alojamiento de servicios web y directorio ligero.</li>
+                    <li><strong>Servidor AD/LDAP:</strong> IP: <code>192.168.10.6</code>. Autenticación y gestión de usuarios.</li>
+                    <li><strong>Gateway (R1 VLAN 10):</strong> IP: <code>192.168.10.1</code>. Punto de salida de la VLAN 10.</li>
+                    <li><strong>Switch Multicapa (Core):</strong> IP: <code>192.168.10.30</code> (gestión). Dispositivo central para trunking y control inter-VLAN.</li>
+                </ul>
+
+                <h3>Seguridad Física del Rack</h3>
+                <p>Los equipos están ubicados en un rack securizado. Se incluye un **SAI (Sistema de Alimentación Ininterrumpida)** y sistemas de monitorización ambiental (Termostato, AC, Detector de Humo) para mitigar riesgos físicos.</p>
+            </article>
+
+            <article class="vlan20"> 
+                <h2>⚙️ Sección de Administración (VLAN 20)</h2>
+                <p>La **VLAN 20** (`192.168.20.0/24`) está reservada para el personal de administración y TI. Desde aquí se gestionan los equipos y se tiene acceso privilegiado a los servidores.</p>
+                <img src="./assets/img/vlan20.png" alt="vlan20" />
+                
+                <h3>Detalles Técnicos de Administración</h3>
+                <ul>
+                    <li><strong>Rango IP:</strong> <code>192.168.20.0/24</code>.</li>
+                    <li><strong>Gateway (R1 VLAN 20):</strong> IP: <code>192.168.20.1</code>.</li>
+                    <li><strong>Seguridad:</strong> Se espera que los PCs de esta VLAN utilicen **SSH** para la gestión de los equipos de red y contraseñas fuertes.</li>
+                </ul>
+            </article>
+
+            <article class="vlan30"> 
+                <h2>📚 Sección de Aulas (VLAN 30)</h2>
+                <p>La **VLAN 30** (`192.168.30.0/24`) contiene la mayor cantidad de dispositivos de usuario (PC de Aulas) y está sujeta a las **restricciones de seguridad más estrictas** a través de la ACL aplicada en el Router R1.</p>
+                <img src="./assets/img/vlan30.png" alt="vlan30" />
+
+                <h3>Política de Acceso y Perímetro</h3>
+                <ul>
+                    <li><strong>Gateway (R1 VLAN 30):</strong> IP: <code>192.168.30.1</code>.</li>
+                    <li><strong>Restricciones Lógicas:</strong> El tráfico saliente a Internet de esta VLAN es filtrado por una **ACL Extendida** para permitir **solo los servicios DNS (UDP 53) y Web (TCP 80/443)**, bloqueando otros protocolos como Ping, SSH o FTP.</li>
+                </ul>
+            </article>
+
+            <article class="wan">
+                <h2>🌐 Conectividad WAN y Perímetro</h2>
+                <p>El Router Principal R1 gestiona la conexión a la red pública, actuando como el perímetro de seguridad.</p>
+
+                <h3>Detalles de la Conexión WAN</h3>
+                <ul>
+                    <li><strong>Router Principal (R1):</strong> Modelo **ISR 4321**.</li>
+                    <li><strong>IP Pública (Interfaz G0/0/1):</strong> <code>80.58.61.250</code>.</li>
+                    <li><strong>Gateway ISP:</strong> <code>80.58.61.1</code>.</li>
+                    <li><strong>Servicio:</strong> Se utiliza **NAT/PAT (Network Address Translation/Port Address Translation)** en la interfaz G0/0/1 para traducir el tráfico de todas las VLANs a la única IP pública.</li>
+                    <li><strong>Enrutamiento:</strong> La ruta por defecto (<code>ip route 0.0.0.0 0.0.0.0 80.58.61.1</code>) asegura el tráfico de retorno desde Internet.</li>
+                </ul>
+            </article>
+
+        </section>
+    </main>
+</body>
+</html>

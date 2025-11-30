@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Auditoria</title>
+</head>
+<body>
+
+    <header class="cabecera">
+      <img class="icocab" src="./assets/img/driving-logo-school-600nw-2493562929.webp" alt="">
+      <div class="texto">
+        <h1>Seguridad informática</h1>
+        <p>Auditar equipos informáticos</p>
+      </div>      
+      <nav class="nav">
+        <a href="index.html">Inicio</a> |
+        <a href="entorno.html">Entorno Físico</a> |
+        <a href="./check.html">Checklist</a> |
+        <a href="./app.html">app</a>
+      </nav>
+    </header>  
+    <form action=""></form>
+
+  <div class="nav-links">
+        <a href="index.html">1. Introducción</a>
+        <a href="entorno.html">2. Entorno y Topología</a>
+        <a href="preguntas.html">3. Checklist de Auditoría</a>
+    </div>
+
+    <h1>📋 Auditoría de Seguridad Informática (MF_0487)</h1>
+    
+    <p>El presente documento inicia la auditoría de seguridad informática planificada para la infraestructura de red de la organización. El objetivo principal es verificar el cumplimiento de las políticas de acceso, la correcta segmentación de la red y la protección de los activos críticos (Servidores, Router, Switch) tanto a nivel físico como lógico, en preparación para el módulo MF_0487.</p>
+
+    <h2>1. Alcance: Sistemas, Redes y Procesos a Auditar</h2>
+
+    <p>La auditoría se centra en la **infraestructura de red troncal** y los **activos críticos** centralizados en el rack de comunicaciones, incluyendo la configuración de seguridad perimetral y el control de acceso interno.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Activo / Sistema</th>
+                <th>Detalle de Inclusión</th>
+                <th>IP/VLAN</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Router Principal (R1)</strong></td>
+                <td><strong>Núcleo de la Red:</strong> Enrutamiento inter-VLAN, NAT/PAT a la WAN, y aplicación de Listas de Control de Acceso (ACLs).</td>
+                <td>192.168.1.1 (Privada)</td>
+            </tr>
+            <tr>
+                <td><strong>Switch Multicapa (Core)</strong></td>
+                <td>Segmentación por **VLANs** (10, 20, 30), configuración de <em>trunking</em> y seguridad de puertos.</td>
+                <td>192.168.10.30</td>
+            </tr>
+            <tr>
+                <td><strong>Servidores Críticos</strong></td>
+                <td>Servidor DNS, Web/LDAP y AD/LDAP.</td>
+                <td>VLAN 10 (Servidores)</td>
+            </tr>
+            <tr>
+                <td><strong>Redes Segmentadas</strong></td>
+                <td>VLAN 10 (Servidores), VLAN 20 (Administración), VLAN 30 (Aulas).</td>
+                <td>192.168.X.X / 24</td>
+            </tr>
+            <tr>
+                <td><strong>Seguridad Física/Perimetral</strong></td>
+                <td>Conexión WAN, sistemas de alimentación (SAI), control ambiental y acceso al rack.</td>
+                <td>IP Pública (80.58.61.250)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2. Objetivos: Qué se busca comprobar</h2>
+
+    <p>Verificar que la infraestructura implementada cumple con los estándares de buenas prácticas de seguridad y que las políticas de acceso se aplican de manera efectiva.</p>
+    <ul>
+        <li><strong>Verificar la Segmentación:</strong> Comprobar que las VLANs están correctamente implementadas y que el tráfico está aislado según la política (ej., que la VLAN 30 no acceda a la VLAN 10).</li>
+        <li><strong>Evaluar el Perímetro WAN:</strong> Revisar la configuración de NAT y las ACLs aplicadas en R1 para el tráfico de salida, garantizando que solo los servicios autorizados están permitidos.</li>
+        <li><strong>Revisar Servicios Críticos:</strong> Auditar la configuración de los servidores en cuanto a versionado, puertos abiertos innecesarios y seguridad local (firewall, permisos).</li>
+        <li><strong>Cumplimiento Físico:</strong> Asegurar que los activos críticos están protegidos contra acceso no autorizado, fallos de energía (SAI) y riesgos ambientales.</li>
+    </ul>
+
+    <h2>3. Documentación Inicial y Equipo Auditor</h2>
+
+    <h3>Documentación de Partida</h3>
+    <ul>
+        <li><strong>Topología de Red:</strong> Diagrama lógico y físico de la red (disponible en <code>entorno.html</code>).</li>
+        <li><strong>Inventario de Hardware/Software:</strong> Lista detallada de equipos, modelos (R1, Switch 3560, Servidores) y versiones de IOS/SO.</li>
+        <li><strong>Política de Seguridad:</strong> Documento que especifica las restricciones de acceso, especialmente para la VLAN 30 (Alumnos: solo WEB/DNS a Internet).</li>
+    </ul>
+
+    <h3>Equipo Auditor</h3>
+    <ul>
+        <li><strong>Auditor Jefe:</strong> Responsable de la planificación, comunicación y validación final del informe.</li>
+        <li><strong>Técnico de Pruebas:</strong> Encargado de realizar el escaneo de puertos, la detección de vulnerabilidades y las pruebas contra la ACL de Aulas.</li>
+        <li><strong>Responsable de Informes:</strong> Encargado de la documentación de hallazgos, la clasificación de riesgos y la propuesta de medidas correctoras.</li>
+    </ul>
+
+   
+    
+</body>
+</html>

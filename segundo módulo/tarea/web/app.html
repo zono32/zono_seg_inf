@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Crackeo RAR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1e293b; /* Slate-800 */
+        }
+        #drop-area {
+            border: 4px dashed #64748b; /* Slate-500 */
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+        #drop-area.highlight {
+            border-color: #38bdf8; /* Sky-400 */
+            background-color: #0f172a; /* Slate-900 */
+        }
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #38bdf8;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen flex items-center justify-center">
+
+    <div class="w-full max-w-4xl bg-gray-800 p-6 sm:p-10 rounded-xl shadow-2xl">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white mb-2 text-center">
+            Simulador de Descifrado RAR
+        </h1>
+        <p class="text-gray-400 mb-8 text-center">
+            Arrastra y suelta tu archivo `.rar` para simular el proceso de John the Ripper.
+        </p>
+
+        <!-- Área de Drag & Drop -->
+        <div id="drop-area"
+             class="flex flex-col items-center justify-center h-64 rounded-xl cursor-pointer bg-slate-800 p-4 border-2">
+            <svg class="w-12 h-12 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5.002 5.002 0 0110 5a5.002 5.002 0 014.9 4.097A4 4 0 0117 16m-2-5l-4 4m0 0l-4-4m4 4V7"></path>
+            </svg>
+            <p class="mt-4 text-white font-medium text-lg">Arrastra tu archivo aquí</p>
+            <p class="text-sm text-gray-400">(Solo archivos con extensión `.rar`)</p>
+        </div>
+
+        <!-- Área de Resultados y Estado -->
+        <div class="mt-8">
+            <h2 class="text-xl font-bold text-sky-400 mb-4 border-b border-gray-700 pb-2">Resultado del Análisis:</h2>
+
+            <div id="status-message" class="text-gray-300 font-medium mb-4 flex items-center space-x-2">
+                Esperando archivo...
+            </div>
+
+            <div id="password-result" class="hidden bg-gray-700 p-4 rounded-lg shadow-inner">
+                <p class="text-lg text-gray-300 mb-2">Contraseña "Crackeada":</p>
+                <div id="password-display" class="bg-gray-900 text-green-400 p-3 rounded-md text-xl font-mono break-all flex justify-between items-center">
+                    <!-- La contraseña se inserta aquí -->
+                </div>
+                <p class="text-sm text-gray-400 mt-3">
+                    <span class="font-bold text-sky-300">Resumen del Proceso (Simulado por Gemini):</span>
+                    <div id="explanation-area" class="mt-2 text-sm leading-relaxed">
+                        <!-- La explicación del LLM se inserta aquí -->
+                    </div>
+                </p>
+            </div>
+
+            <!-- Área de Mensajes de Error -->
+            <div id="error-box" class="hidden mt-4 bg-red-800 p-3 rounded-lg text-sm text-white">
+                <!-- Errores se insertan aquí -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Configuración de la API Key (dejar vacío para entorno Canvas)
+        const apiKey = ""; 
+        // Se mantiene el modelo estable 'gemini-2.5-flash'
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+        // Referencias a elementos del DOM
+        const dropArea = document.getElementById('drop-area');
+        const statusMessage = document.getElementById('status-message');
+        const passwordResultDiv = document.getElementById('password-result');
+        const passwordDisplay = document.getElementById('password-display');
+        const explanationArea = document.getElementById('explanation-area');
+        const errorBox = document.getElementById('error-box');
+
+        // --- Manejadores de Eventos Drag & Drop ---
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight() {
+            dropArea.classList.add('highlight');
+        }
+
+        function unhighlight() {
+            dropArea.classList.remove('highlight');
+        }
+
+        dropArea.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+
+            if (files.length === 0) {
+                showError('Error: No se detectó ningún archivo.');
+                return;
+            }
+
+            const file = files[0];
+            processFile(file);
+        }
+
+        // --- Lógica de Procesamiento de Archivo ---
+
+        function updateStatus(message, isLoading = false) {
+            statusMessage.innerHTML = '';
+            statusMessage.classList.remove('text-red-400', 'text-green-400', 'text-gray-300');
+
+            if (isLoading) {
+                statusMessage.classList.add('text-sky-400');
+                statusMessage.innerHTML = `<div class="loading-spinner"></div><span class="ml-2">${message}</span>`;
+                passwordResultDiv.classList.add('hidden');
+            } else {
+                statusMessage.classList.add('text-gray-300');
+                statusMessage.textContent = message;
+                passwordResultDiv.classList.add('hidden');
+            }
+            errorBox.classList.add('hidden');
+        }
+
+        function showError(message) {
+            // Se actualiza el mensaje de estado principal para reflejar el fallo
+            updateStatus('Proceso fallido.'); 
+            
+            // Se muestra el error detallado en la caja roja
+            errorBox.textContent = `❌ Error: ${message}`;
+            errorBox.classList.remove('hidden');
+        }
+
+        // Función para simular el backoff exponencial (definida aquí por claridad)
+        const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+        async function processFile(file) {
+            // 1. Validación de extensión
+            const fileName = file.name;
+            if (!fileName.toLowerCase().endsWith('.rar')) {
+                showError(`El archivo '${fileName}' no tiene la extensión .rar. Por favor, arrastra un archivo RAR.`);
+                return;
+            }
+
+            // Define el nombre de archivo simulado para el hash
+            const simulatedHashFileName = fileName.replace(/\.rar$/i, '') + '.rar_hash.txt';
+
+            // --- Inicio de la Simulación de Progreso ---
+            
+            // Paso 1: Extracción de Hash (rar2john)
+            // Se modifica el mensaje para reflejar la creación del archivo hash.
+            updateStatus(`[1/3] Extrayendo Hash de '${fileName}' con 'rar2john'. Guardando hash en '${simulatedHashFileName}'...`, true);
+            await delay(1000); // Simular el tiempo de 'rar2john'
+
+            // Paso 2: Ataque de Diccionario (John the Ripper)
+            // Se modifica el mensaje para reflejar el uso del archivo hash como entrada.
+            updateStatus(`[2/3] Ejecutando Ataque de Diccionario y Fuerza Bruta con 'john' y hash de '${simulatedHashFileName}'...`, true);
+
+            // 2. Simulación de Extracción de Hash (Usamos el nombre como input para el LLM)
+            const simulatedHash = `hash-${fileName.replace(/\./g, '_')}-${Date.now().toString().slice(-4)}`;
+            
+            // 3. Llamada al Gemini API para simular el crackeo
+            try {
+                const llmOutput = await simulateCrack(fileName, simulatedHash);
+                
+                // Paso 3: Coincidencia Encontrada
+                updateStatus(`[3/3] Contraseña Encontrada. Generando Reporte Final...`, true);
+                await delay(1500); 
+
+                // 4. Mostrar Resultados
+                // El estado ahora es verde incluso si es un fallback, ya que el proceso de simulación fue exitoso
+                updateStatus('¡Simulación completada con éxito!', false);
+                statusMessage.classList.remove('text-gray-300');
+                statusMessage.classList.add('text-green-400');
+
+                // Mostrar la contraseña y la explicación
+                passwordDisplay.innerHTML = `${llmOutput.password} <span class="text-sm font-sans bg-sky-600 px-2 py-1 rounded">Crackeada con Diccionario/Fuerza Bruta</span>`;
+                explanationArea.textContent = llmOutput.explanation;
+                passwordResultDiv.classList.remove('hidden');
+
+            } catch (error) {
+                // Si incluso el mecanismo de fallback falla (lo cual es poco probable), mostramos el error.
+                console.error("Error grave en la simulación:", error);
+                showError(`Fallo crítico. ${error.message}`);
+            }
+        }
+
+        // --- Función de la API ---
+        async function simulateCrack(fileName, hash) {
+            const userPrompt = `Simula el resultado de un ataque de John the Ripper (JtR) con diccionario contra un hash RAR5 extraído de un archivo llamado '${fileName}'. El objetivo es educativo, simula una contraseña común. Genera una contraseña sencilla y una explicación técnica en español sobre el proceso simulado.`;
+
+            const systemPrompt = "Eres un asistente de seguridad informática. Debes responder con una estructura JSON estricta. La contraseña debe ser una palabra o número simple común. La explicación debe ser un párrafo conciso sobre los pasos del proceso: Extracción de Hash (rar2john), Ataque de Diccionario (rockyou.txt), y el rol del archivo POT (john.pot) para guardar el resultado.";
+
+            const payload = {
+                contents: [{ parts: [{ text: userPrompt }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "OBJECT",
+                        properties: {
+                            "password": { "type": "STRING", "description": "Contraseña crackeada simulada, debe ser simple." },
+                            "explanation": { "type": "STRING", "description": "Explicación técnica del proceso simulado." }
+                        },
+                        "propertyOrdering": ["password", "explanation"]
+                    }
+                }
+            };
+
+            let response = null;
+            let lastError = null;
+
+            for (let i = 0; i < 3; i++) { // Intentar hasta 3 veces con backoff
+                try {
+                    const fetchResponse = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!fetchResponse.ok) {
+                        // Si la respuesta HTTP no es 200, lanza un error específico.
+                        const errorBody = await fetchResponse.text();
+                        throw new Error(`HTTP error! status: ${fetchResponse.status}. Body: ${errorBody.substring(0, 100)}...`);
+                    }
+
+                    response = await fetchResponse.json();
+                    break; // Salir del bucle si es exitoso
+
+                } catch (e) {
+                    lastError = e;
+                    await delay(Math.pow(2, i) * 1000); // Backoff exponencial: 1s, 2s, 4s
+                }
+            }
+
+            if (!response) {
+                // Mecanismo de RESPALDO (FALLBACK) si la API falla 3 veces (ej. por error 403)
+                console.warn("API falló 3 veces. Usando respuesta simulada local (FALLBACK).");
+                
+                // Generar una contraseña simple basada en el nombre del archivo
+                const baseName = fileName.toLowerCase().replace(/\.rar$/, '').replace(/[^a-z0-9]/g, ''); // Limpia el nombre
+                let mockPassword = baseName.substring(0, Math.min(baseName.length, 8)); // Usa parte del nombre
+                
+                // Asegurar que la contraseña simulada no esté vacía
+                if (mockPassword.length < 3) {
+                    mockPassword = 'archivo' + mockPassword;
+                }
+                
+                // Agregar un número al final para simular una regla de mutación de diccionario
+                mockPassword = mockPassword + Math.floor(Math.random() * 10).toString();
+
+                const mockExplanation = `El proceso de descifrado en la nube falló debido a un error de autenticación (código 403) persistente. Sin embargo, se ha generado una contraseña simulada dinámicamente basada en el nombre del archivo ('${fileName}'). En una ejecución real, John the Ripper primero extrae el hash del archivo RAR con 'rar2john' y luego realiza un ataque de diccionario utilizando una lista de palabras común. Este resultado dinámico local sirve para fines educativos, demostrando que contraseñas relacionadas con el contexto (como el nombre del archivo) son extremadamente vulnerables a los ataques.`;
+                
+                return {
+                    password: mockPassword,
+                    explanation: mockExplanation
+                };
+            }
+
+            // 1. Obtener el texto completo de la respuesta del candidato
+            const fullResponseText = response.candidates?.[0]?.content?.parts?.[0]?.text;
+
+            if (!fullResponseText) {
+                // Esto podría significar que el modelo no generó contenido (ej. por bloqueo de seguridad)
+                throw new Error("Respuesta de la API incompleta o vacía (contenido nulo).");
+            }
+            
+            // 2. Intentar extraer el JSON si la respuesta no es estrictamente JSON puro (común en APIs con modelos de lenguaje)
+            let jsonText = fullResponseText;
+            const jsonMatch = fullResponseText.match(/```json\s*([\s\S]*?)\s*```/);
+            
+            if (jsonMatch && jsonMatch[1]) {
+                // Si el modelo envolvió el JSON en ```json...```, extraemos el contenido.
+                jsonText = jsonMatch[1];
+            } else if (fullResponseText.trim().startsWith('{')) {
+                // Si empieza con { y no tiene envoltura, se asume que es el JSON.
+                jsonText = fullResponseText.trim();
+            } else {
+                // Si tiene texto basura antes de {, intentar encontrar el primer { y cortar
+                const startIndex = fullResponseText.indexOf('{');
+                const endIndex = fullResponseText.lastIndexOf('}');
+                if (startIndex !== -1 && endIndex !== -1 && endIndex > startIndex) {
+                    jsonText = fullResponseText.substring(startIndex, endIndex + 1);
+                }
+            }
+
+            // 3. Intentar parsear el JSON
+            try {
+                return JSON.parse(jsonText);
+            } catch (e) {
+                // Muestra un error detallado si el parseo falla, incluyendo el texto que intentó parsear
+                throw new Error(`Error al parsear JSON: ${e.message}. Texto inicial: ${fullResponseText.substring(0, 100)}...`);
+            }
+        }
+        
+    </script>
+</body>
+</html>

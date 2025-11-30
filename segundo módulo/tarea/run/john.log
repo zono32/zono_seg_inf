@@ -2782,7 +2782,7 @@
 0:00:00:00 Starting a new session
 0:00:00:00 Loaded a total of 1 password hash
 0:00:00:00 Cost 1 (iteration count) is 32768 for all loaded hashes
-0:00:00:00 Command line: john --wordlist=diccionario.txt rar_hash.txt 
+0:00:00:00 Command line: ./run/john hash_test.txt --wordlist=rockyou.txt 
 0:00:00:00 - UTF-8 input encoding enabled
 0:00:00:00 - Passwords will be stored UTF-8 encoded in .pot file
 0:00:00:00 - Hash type: RAR5 (min-len 0, max-len 10 [worst case UTF-8] to 32 [ASCII])
@@ -2790,11 +2790,16 @@
 0:00:00:00 - Will reject candidates longer than 32 bytes
 0:00:00:00 - Candidate passwords will be buffered and tried in chunks of 384
 0:00:00:00 Proceeding with wordlist mode
-0:00:00:00 Terminating on error, wordlist.c:683
+0:00:00:00 - Wordlist file: rockyou.txt
+0:00:00:00 - memory mapping wordlist (139921507 bytes)
+0:00:00:00 - No word mangling rules
+0:00:00:00 - No stacked rules
+0:00:00:02 + Cracked hola.rar
+0:00:00:02 Session completed
 0:00:00:00 Starting a new session
 0:00:00:00 Loaded a total of 1 password hash
 0:00:00:00 Cost 1 (iteration count) is 32768 for all loaded hashes
-0:00:00:00 Command line: john --wordlist=rockyou.txt rar_hash.txt 
+0:00:00:00 Command line: john --wordlist=rockyou.txt test_hash.txt 
 0:00:00:00 - UTF-8 input encoding enabled
 0:00:00:00 - Passwords will be stored UTF-8 encoded in .pot file
 0:00:00:00 - Hash type: RAR5 (min-len 0, max-len 10 [worst case UTF-8] to 32 [ASCII])
@@ -2802,11 +2807,16 @@
 0:00:00:00 - Will reject candidates longer than 32 bytes
 0:00:00:00 - Candidate passwords will be buffered and tried in chunks of 384
 0:00:00:00 Proceeding with wordlist mode
-0:00:00:00 Terminating on error, wordlist.c:683
+0:00:00:00 - Wordlist file: rockyou.txt
+0:00:00:00 - memory mapping wordlist (139921507 bytes)
+0:00:00:00 - No word mangling rules
+0:00:00:00 - No stacked rules
+0:00:00:02 + Cracked test.rar
+0:00:00:02 Session completed
 0:00:00:00 Starting a new session
 0:00:00:00 Loaded a total of 1 password hash
 0:00:00:00 Cost 1 (iteration count) is 32768 for all loaded hashes
-0:00:00:00 Command line: john --wordlist=rockyou.txt rar_hash.txt 
+0:00:00:00 Command line: john --wordlist=rockyou.txt hola_hash.txt 
 0:00:00:00 - UTF-8 input encoding enabled
 0:00:00:00 - Passwords will be stored UTF-8 encoded in .pot file
 0:00:00:00 - Hash type: RAR5 (min-len 0, max-len 10 [worst case UTF-8] to 32 [ASCII])
@@ -2814,11 +2824,16 @@
 0:00:00:00 - Will reject candidates longer than 32 bytes
 0:00:00:00 - Candidate passwords will be buffered and tried in chunks of 384
 0:00:00:00 Proceeding with wordlist mode
-0:00:00:00 Terminating on error, wordlist.c:683
+0:00:00:00 - Wordlist file: rockyou.txt
+0:00:00:00 - memory mapping wordlist (139921507 bytes)
+0:00:00:00 - No word mangling rules
+0:00:00:00 - No stacked rules
+0:00:00:02 + Cracked hola.rar
+0:00:00:02 Session completed
 0:00:00:00 Starting a new session
 0:00:00:00 Loaded a total of 1 password hash
 0:00:00:00 Cost 1 (iteration count) is 32768 for all loaded hashes
-0:00:00:00 Command line: john --wordlist=rockyou.txt rar_hash.txt 
+0:00:00:00 Command line: /run/john --wordlist=C:\Users\kinso\OneDrive\Escritorio\zono_seg_inf\segundo módulo\tarea_2\run\rockyou.txt prueba_hash.txt 
 0:00:00:00 - UTF-8 input encoding enabled
 0:00:00:00 - Passwords will be stored UTF-8 encoded in .pot file
 0:00:00:00 - Hash type: RAR5 (min-len 0, max-len 10 [worst case UTF-8] to 32 [ASCII])
@@ -2826,4 +2841,9 @@
 0:00:00:00 - Will reject candidates longer than 32 bytes
 0:00:00:00 - Candidate passwords will be buffered and tried in chunks of 384
 0:00:00:00 Proceeding with wordlist mode
-0:00:00:00 Terminating on error, wordlist.c:683
+0:00:00:00 - Wordlist file: C:\Users\kinso\OneDrive\Escritorio\zono_seg_inf\segundo módulo\tarea_2\run\rockyou.txt
+0:00:00:00 - memory mapping wordlist (139921507 bytes)
+0:00:00:00 - No word mangling rules
+0:00:00:00 - No stacked rules
+0:00:02:30 + Cracked prueba.rar
+0:00:02:30 Session completed

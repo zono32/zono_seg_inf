@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <title>Auditoría - Checklist de Preguntas</title>
+</head>
+<body>
+    <header class="cabecera">
+        <img
+            class="icocab"
+            src="./assets/img/driving-logo-school-600nw-2493562929.webp"
+            alt="Logo de la organización"
+        />
+        <div class="texto">
+            <h1>Seguridad informática</h1>
+            <p>Auditar equipos informáticos</p>
+        </div>
+        <nav class="nav">
+            <a href="./index.html">Inicio</a> |
+            <a href="./entorno.html">Entorno Físico</a> |
+            <a href="./check.html">Checklist</a> |
+            <a href="./app.html">app</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1>🔎 Checklist de Auditoría de Seguridad</h1>
+            
+            <p>A continuación, se presenta la batería de 23 preguntas de auditoría, divididas en las secciones clave para evaluar la postura de seguridad de la red segmentada y los activos críticos.</p>
+
+            <article class="seccion-auditoria">
+                <h2>I. Seguridad Física y Control de Acceso (Min. 5 Preguntas)</h2>
+                <p>Evalúa la protección física de los activos centrales ubicados en el rack de comunicaciones y la sala de servidores.</p>
+                <ol>
+                    <li><strong>Acceso Físico (Rack/Sala):</strong> ¿Está la sala de servidores securizada con una cerradura o sistema de alarma para que sólo personal autorizado acceda?</li>
+                    <li><strong>Control Ambiental:</strong> ¿El rack y sus componentes están protegidos contra temperaturas extremas, humedad, polvo, agua o luz solar excesiva? (Se verifica el uso del Termostato, AC y Detector de Humo).</li>
+                    <li><strong>Suministro Eléctrico (SAI):</strong> ¿Está el Sistema de Alimentación Ininterrumpida (SAI/UPS) conectado a los equipos críticos (Router R1, Switch Core, Servidores) para un apagado seguro?</li>
+                    <li><strong>Cableado y Puertos Físicos:</strong> ¿La red está físicamente segura sin peligro de conexión no autorizada, y solo el personal autorizado tiene acceso a la red física?</li>
+                    <li><strong>Dispositivos Deshabilitados:</strong> ¿Están los puertos paralelo / serie / infrarrojo / USB / SCSI asegurados o deshabilitados en los Servidores y Routers para prevenir el acceso físico no autorizado?</li>
+                </ol>
+            </article>
+
+            <article class="seccion-auditoria">
+                <h2>II. Seguridad de Redes y Segmentación (Min. 7 Preguntas)</h2>
+                <p>Verifica la arquitectura de red (VLANs) y la seguridad del tráfico interno y perimetral.</p>
+                <ol start="6">
+                    <li><strong>Segmentación de Red:</strong> ¿Existe segmentación por VLAN (10, 20, 30) y esta segmentación es funcional para aislar lógicamente los dominios de tráfico?</li>
+                    <li><strong>Red de Administración:</strong> ¿La VLAN de Administración (VLAN 20) está separada de la red de usuarios (VLAN 30) y Servidores (VLAN 10) y restringida a personal específico?</li>
+                    <li><strong>Control de Acceso (ACL):</strong> ¿Se ha implementado una ACL Extendida en el Router R1 para imponer la política de restricción de la VLAN 30 (Aulas), permitiendo solo DNS y servicios Web?</li>
+                    <li><strong>Aislamiento de Puertos (Switch):</strong> ¿Se ha configurado la seguridad y aislamiento de puertos en el Core Switch 3560 para prevenir la suplantación de MAC o ataques en Capa 2?</li>
+                    <li><strong>Protocolos de Enlace:</strong> ¿Está configurado STP o RSTP en el Switch Multicapa para prevenir bucles de red que puedan llevar a una denegación de servicio (DoS)?</li>
+                    <li><strong>Puertos Abiertos Externos:</strong> ¿Qué puertos están accesibles desde la IP pública (WAN) y están justificados por el servicio NAT/PAT?</li>
+                    <li><strong>Tráfico no Aprobado:</strong> ¿Se mantienen registros (logs) de intentos repetidos de conexión no autorizados o tráfico inusual entre VLANs (ej. de VLAN 30 a VLAN 10)?</li>
+                </ol>
+            </article>
+
+            <article class="seccion-auditoria">
+                <h2>III. Seguridad del Dispositivo (Router y Switch) (Min. 5 Preguntas)</h2>
+                <p>Revisa la configuración de seguridad y la gestión de los equipos de red activos (R1 y Switch Core).</p>
+                <ol start="13">
+                    <li><strong>Contraseñas por Defecto:</strong> ¿Se han cambiado las contraseñas por defecto en el Router R1 y el Core Switch 3560, y se utilizan contraseñas robustas (más de 8 caracteres, alfanuméricas, mayúsculas/minúsculas)?</li>
+                    <li><strong>Administración Segura:</strong> ¿La gestión de los equipos de red se realiza exclusivamente a través de **SSH/HTTPS**, deshabilitando protocolos inseguros como Telnet o HTTP?</li>
+                    <li><strong>Versionado del Sistema Operativo:</strong> ¿Se han revisado las versiones de IOS en el Router y el Switch para asegurar que no contienen vulnerabilidades críticas conocidas?</li>
+                    <li><strong>Copia de Configuración:</strong> ¿Existe una copia de la configuración activa (running-config) y de inicio (startup-config) guardada externamente (ej. en un Servidor TFTP seguro)?</li>
+                    <li><strong>Puertos No Usados:</strong> ¿Los puertos no utilizados en el Core Switch están deshabilitados o asignados a una VLAN de *blackhole* para evitar conexiones no autorizadas?</li>
+                </ol>
+            </article>
+
+            <article class="seccion-auditoria">
+                <h2>IV. Seguridad del Servidor y Protocolos (Min. 5 Preguntas)</h2>
+                <p>Examina la seguridad lógica de los Servidores críticos ubicados en la VLAN 10.</p>
+                <ol start="18">
+                    <li><strong>Firewall Local:</strong> ¿El firewall local está activo y configurado en los Servidores (DNS, Web/LDAP) para permitir solo el tráfico estrictamente necesario (principio de mínimo privilegio)?</li>
+                    <li><strong>Servicios Innecesarios:</strong> ¿Se han deshabilitado todos los servicios que no son esenciales (ej. FTP, SNMPv1/v2, Telnet) para el funcionamiento de los Servidores?</li>
+                    <li><strong>Permisos Mínimos de Usuario:</strong> ¿Se han aplicado permisos mínimos de usuario para que solo las cuentas autorizadas puedan acceder a archivos sensibles o ejecutar comandos administrativos en el sistema operativo?</li>
+                    <li><strong>Versionado de Servicios:</strong> ¿Están actualizadas las versiones de los servicios clave (DNS, LDAP, HTTP) y se revisan periódicamente los boletines de seguridad de los desarrolladores?</li>
+                    <li><strong>Copias de Seguridad:</strong> ¿Existen copias de seguridad de los datos de los Servidores y están estas copias cifradas y custodiadas, separadas de la red de producción?</li>
+                    <li><strong>Contraseñas de Cuentas:</strong> ¿Se obligan a utilizar contraseñas únicas y complejas, y existe una política de rotación (caducidad) de contraseñas de las cuentas de administrador?</li>
+                </ol>
+            </article>
+
+        </section>
+    </main>
+</body>
+</html>
