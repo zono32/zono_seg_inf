@@ -111,3 +111,29 @@ header {
   background-color: #6c757d;
   cursor: not-allowed;
 }
+
+
+body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1e293b; /* Slate-800 */
+        }
+        #drop-area {
+            border: 4px dashed #64748b; /* Slate-500 */
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+        #drop-area.highlight {
+            border-color: #38bdf8; /* Sky-400 */
+            background-color: #0f172a; /* Slate-900 */
+        }
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #38bdf8;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }

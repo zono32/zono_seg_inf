@@ -1,0 +1,131 @@
+.contenido {
+    padding: 50px;
+    background-color: #e0e5f8;
+}   
+
+/* ======================================= */
+/* 1. Base y Tipografía */
+/* ======================================= */
+:root {
+    --color-principal: #2c3e50; /* Gris Oscuro/Azul Marino (texto principal) */
+    --color-secundario: #3498db; /* Azul corporativo (líneas, enlaces) */
+    --color-fondo: #357585; /* Gris muy claro (fondo general) */
+    --color-tabla-header: #f2f2f2;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #fff; /* Fondo blanco para contenido */
+    color: var(--color-principal);
+}
+
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+
+
+/* ======================================= */
+/* 2. Títulos y Secciones */
+/* ======================================= */
+
+
+h2 {
+    font-size: 1.6em;
+    color: var(--color-secundario);
+    margin-top: 30px;
+    padding-left: 10px;
+    border-left: 4px solid var(--color-principal);
+    font-weight: 500;
+}
+
+h3 {
+    font-size: 1.2em;
+    color: #34495e;
+    margin-top: 20px;
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 5px;
+}
+
+/* Espaciado de listas */
+ul, ol {
+    padding-left: 20px;
+}
+
+ul li, ol li {
+    margin-bottom: 8px;
+}
+
+/* ======================================= */
+/* 4. Tablas (Inventario y Alcance) */
+/* ======================================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: var(--color-secundario);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: var(--color-tabla-header); /* Cebra */
+}
+
+/* Énfasis en texto de la tabla */
+table strong {
+    color: var(--color-secundario);
+}
+
+/* ======================================= */
+/* 5. Estilos Específicos del Entorno */
+/* ======================================= */
+.red, .servidores, .vlan20, .vlan30, .wan, .seccion-auditoria {
+    padding: 20px;
+    margin-bottom: 25px;
+    background-color: #fcfcfc;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+}
+
+/* Imágenes de Topología */
+.red img, .servidores img, .vlan20 img, .vlan30 img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilo para los artículos de las secciones de preguntas */
+.seccion-auditoria ol {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.seccion-auditoria ol li {
+    background-color: #f9f9f9;
+    padding: 12px;
+    border-left: 5px solid var(--color-secundario);
+    margin-bottom: 10px;
+    border-radius: 4px;
+    font-weight: 400;
+}

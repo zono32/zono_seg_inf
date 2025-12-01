@@ -1,0 +1,173 @@
+/* ======================================= */
+/* 1. Definición de Variables (Opcional, si no están en style.css) */
+/* Se asume que estos colores ya están definidos en style.css */
+/*
+:root {
+    --color-principal: #2c3e50; 
+    --color-secundario: #3498db;
+}
+*/
+
+/* ======================================= */
+/* 2. Estilos del Contenido Principal (main) */
+/* ======================================= */
+main {
+    max-width: 1600px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: aliceblue;
+}
+body {
+    background-color: #726d6d; /* Fondo oscuro para todo el cuerpo */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+h2 {
+    
+    text-align: center;
+    font-size: 2em;
+    padding: 30px;
+}
+p {
+    font-size: 1.1em;
+    margin-bottom: 20px;  
+    padding: 20px;
+}
+
+/* ======================================= */
+/* 3. Estilos de las Secciones (article) */
+/* ======================================= */
+
+/* Contenedor general para cada artículo (VLAN, WAN, Servidores) */
+.red, .servidores, .vlan20, .vlan30, .wan {
+    padding: 25px;
+    margin-bottom: 35px;
+    background-color: #4b4343; /* Fondo ligeramente gris */
+    border: 1px solid #96f3fa;
+    border-radius: 8px; /* Bordes suaves */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra sutil para profundidad */
+    transition: transform 0.3s; /* Animación al pasar el ratón */
+}
+
+.red:hover, .servidores:hover, .vlan20:hover, .vlan30:hover, .wan:hover {
+    transform: translateY(-3px); /* Efecto 3D al interactuar */
+}
+
+/* Títulos de las subsecciones (h2 y h3) */
+.servidores h2, .vlan20 h2, .vlan30 h2, .wan h2 {
+    color: rgb(247, 152, 27);/* Título de sección en azul corporativo */
+    border-bottom: 2px solid #4b4545;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.servidores h3, .vlan20 h3, .vlan30 h3, .wan h3 {
+    color: rgb(247, 152, 27);
+    font-size: 1.15em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* ======================================= */
+/* 4. Listas y Detalles Técnicos */
+/* ======================================= */
+
+ul {
+    list-style: none; /* Elimina las viñetas por defecto */
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+/* Viñeta personalizada con un checkmark o punto */
+ul li::before {
+    content: "•"; /* O si prefieres un punto más técnico: content: "•"; */
+    color: #a3f1fc; /* Verde para Checkmark */
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* Estilo para los nombres de los equipos y datos clave (strong) */
+article strong {
+    color: var(--color-secundario);
+    font-weight: 600;
+}
+
+/* Estilo para el código técnico (IPs, Comandos, etc.) */
+code {
+    background-color: #312f2f;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    color: #e74c3c; /* Color rojo para destacar código */
+    font-size: 0.95em;
+}
+
+/* ======================================= */
+/* 5. Imágenes (Topología) */
+/* ======================================= */
+
+article img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 25px auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* ======================================= */
+/* Estilos para Contenedor de 2 Columnas (VLAN 10) */
+/* ======================================= */
+
+.inventario-flex {
+    display: flex; /* Habilita Flexbox */
+    gap: 30px; /* Espacio entre la imagen y la lista */
+    align-items: flex-start; /* Alinea los elementos en la parte superior */
+    margin-top: 20px;
+}
+
+.flex-item-img {
+    flex: 1; /* Ocupa 1 parte del espacio */
+    max-width: 40%; /* La imagen ocupa el 40% del ancho */
+    min-width: 250px; /* Mínimo para que no se haga muy pequeña */
+    padding: 20px;
+}
+
+.flex-item-list {
+    flex: 2; /* Ocupa 2 partes del espacio (el doble de la imagen) */
+    padding: 20px;
+}
+
+/* Asegurar que la imagen dentro del contenedor se ajuste */
+.flex-item-img img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0; /* Elimina márgenes extra de la imagen */
+}
+
+/* Media Query: Para pantallas pequeñas (móviles) */
+@media (max-width: 900px) {
+    .inventario-flex {
+        flex-direction: column; /* Apila los elementos en vertical */
+        gap: 15px;
+    }
+    
+    .flex-item-img {
+        max-width: 100%; /* La imagen ocupa todo el ancho */
+        min-width: unset;
+    }
+}
+th{
+    background-color: #726d6d;
+    padding: 10px;
+    text-align: center;
+}
