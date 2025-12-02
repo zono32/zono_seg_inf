@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="./assets/styleentorno.css" />
+    <title>Auditoría - Entorno Físico</title>
+  </head>
+  <body>
+    <header class="cabecera">
+      <img
+        class="icocab"
+        src="./assets/img/driving-logo-school-600nw-2493562929.webp"
+        alt="Logo de la organización"
+      />
+      <div class="texto">
+        <h1>Seguridad informática</h1>
+        <p>Auditar equipos informáticos</p>
+      </div>
+      <nav class="nav">
+        <a href="./index.html">Inicio</a> |
+        <a href="./entorno.html">Entorno Físico</a> |
+        <a href="./check.html">Checklist</a>
+    </header>
+
+    <main class="contenido">
+      <article class="red">
+        <h2>Topología General de la Red Local</h2>
+        <p>
+          La red implementada está estrictamente segmentada para aislar el
+          tráfico sensible del tráfico de usuarios. La interconexión y la
+          seguridad perimetral se gestionan desde el Router Principal (R1) y el
+          Switch Multicapa (Core).
+        </p>
+
+        <h3>Estructura de la Red</h3>
+        <p>La red local consta de:</p>
+        <ul>
+          <li>Una sala de servidores a la cual definimos con la VLAN 10</li>
+          <li>una VLAN 20 dedicada para la administración</li>
+          <li>una VLAN 30 dedicada a las aulas</li>
+        </ul>
+        <p>
+          Todo el tráfico se agrega en el Switch Multicapa y se enruta en el
+          Router R1.
+        </p>
+        <img src="./assets/img/red.png" alt="red" />
+      </article>
+
+      <article class="servidores">
+        <h2>Sala de Servidores (VLAN 10)</h2>
+        <p>
+          La <strong>VLAN 10</strong> (`192.168.10.0/24`) alberga los activos
+          más críticos y sensibles, aislados del resto de la red. Esta VLAN es
+          gestionada por el **Switch Multicapa 3560**.
+        </p>
+
+        <div class="inventario-flex">
+          <div class="flex-item-img">
+            <img src="./assets/img/vlan10.png" alt="vlan10" />
+          </div>
+
+          <div class="flex-item-list">
+            <h3>Inventario de Servidores y Equipos Críticos</h3>
+            <ul>
+              <li>
+                <strong>Servidor DNS:</strong> IP: <code>192.168.10.10</code>.
+                Ofrece resolución de nombres.
+              </li>
+              <li>
+                <strong>Servidor Web/LDAP:</strong> IP:
+                <code>192.168.10.5</code>. Alojamiento de servicios web y
+                directorio ligero.
+              </li>
+              <li>
+                <strong>Servidor AD/LDAP:</strong> IP:
+                <code>192.168.10.6</code>. Autenticación y gestión de usuarios.
+              </li>
+              <li>
+                <strong>Gateway (R1 VLAN 10):</strong> IP:
+                <code>192.168.10.1</code>. Punto de salida de la VLAN 10.
+              </li>
+              <li>
+                <strong>Switch Multicapa (Core):</strong> Dispositivo central
+                para trunking y control inter-VLAN.
+              </li>
+            </ul>
+            <h3>Seguridad Física del Rack</h3>
+            <p>
+              Los equipos están ubicados en un rack securizado. Se incluye un
+              **SAI (Sistema de Alimentación Ininterrumpida)** y sistemas de
+              monitorización ambiental (Termostato, AC, Detector de Humo) para
+              mitigar riesgos físicos.
+            </p>
+          </div>
+        </div>
+        <h3>Inventario de Equipos Críticos y Hardware</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Activo</th>
+              <th>Modelo / SO</th>
+              <th>CPU / RAM</th>
+              <th>Almacenamiento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Servidor DNS</strong></td>
+              <td>Linux Ubuntu Server 20.04 LTS</td>
+              <td>Intel Xeon E5-2600 / 8 GB RAM</td>
+              <td>500 GB SSD</td>
+            </tr>
+            <tr>
+              <td><strong>Servidor Web / LDAP</strong></td>
+              <td>Windows Server 2019 / IIS</td>
+              <td>Intel Xeon E5-2600 / 16 GB RAM</td>
+              <td>1 TB SSD (RAID 1)</td>
+            </tr>
+            <tr>
+              <td><strong>Servidor AD / LDAP</strong></td>
+              <td>Windows Server 2019</td>
+              <td>Intel Xeon E5-2600 / 32 GB RAM</td>
+              <td>500 GB SSD (RAID 1)</td>
+            </tr>
+            <tr>
+              <td><strong>Router Principal (R1)</strong></td>
+              <td>Cisco ISR 4321 / IOS XE</td>
+              <td>Quad-Core MIPS64 / 4 GB DRAM</td>
+              <td>4 GB Flash</td>
+            </tr>
+            <tr>
+              <td><strong>Switch Multicapa (Core)</strong></td>
+              <td>Cisco Catalyst 3560G</td>
+              <td>CPU PPC8540 / 128 MB DRAM</td>
+              <td>16 MB Flash</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          Todos los servidores utilizan procesadores Intel Xeon de la serie
+          E5-2600 y están configurados con unidades de estado sólido (SSD). Se
+          revisará la configuración de RAID 1 en los discos críticos durante la
+          auditoría.
+        </p>
+      </article>
+
+      <article class="vlan20">
+        <h2>Sección de Administración (VLAN 20)</h2>
+        <p>
+          La <strong>VLAN 20</strong> (`192.168.20.0/24`) es la red de gestión y
+          administración. Gracias al presupuesto ilimitado, todos los equipos
+          están equipados con hardware de última generación, maximizando la
+          eficiencia y las capacidades de seguridad como el cifrado de disco y
+          el uso de TPM 2.0.
+        </p>
+        <img src="./assets/img/vlan20.png" alt="vlan20" />
+
+        <h3>
+          Inventario de Estaciones de Trabajo, Servidores de Gestión y
+          Almacenamiento
+        </h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Activo</th>
+              <th>Modelo / SO</th>
+              <th>CPU / RAM</th>
+              <th>Almacenamiento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>PC de Gestión (Admin)</strong></td>
+              <td>Workstation Enterprise-Class / **Windows 11 Pro**</td>
+              <td>Intel Core i9 (última generación) / **64 GB RAM DDR5**</td>
+              <td>2 TB NVMe SSD (Cifrado BitLocker)</td>
+            </tr>
+            <tr>
+              <td><strong>PC Recepciona / Dirección</strong></td>
+              <td>Modelo Ultra Slim Business / **Windows 11 Pro**</td>
+              <td>Intel Core i7 (última generación) / **32 GB RAM DDR5**</td>
+              <td>1 TB NVMe SSD (Cifrado BitLocker)</td>
+            </tr>
+            <tr>
+              <td>PC Recepción 1 y 2</td>
+              <td>Modelo All-in-One Professional / Windows 11 Pro</td>
+              <td>Intel Core i5 (última generación) / 16 GB RAM DDR5</td>
+              <td>512 GB NVMe SSD</td>
+            </tr>
+            <tr>
+              <td>Server-PT Data Base</td>
+              <td>HP ProLiant DL380 Gen10 / Windows Server 2022</td>
+              <td>Intel Xeon Gold / 64 GB RAM ECC</td>
+              <td>4 TB SAS SSD (RAID 5)</td>
+            </tr>
+            <tr>
+              <td>**Server-PT M/V/S (Monitorización)</td>
+              <td>Dell PowerEdge R650 / Linux (CentOS)</td>
+              <td>Intel Xeon Gold / 96 GB RAM ECC</td>
+              <td>1 TB SSD (Para NMS y Virtualización)</td>
+            </tr>
+            <tr>
+              <td>Server-PT Backup</td>
+              <td>Synology RackStation RS2821RP+ / Synology DSM</td>
+              <td>AMD Ryzen V1500B / 32 GB RAM</td>
+              <td>64 TB HDD (RAID 6) (Cifrado AES-256)</td>
+            </tr>
+            <tr>
+              <td>Impresora 0 y 1</td>
+              <td>Lexmark Enterprise Secure M7100 Series</td>
+              <td>N/A</td>
+              <td>N/A</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Detalles Técnicos y Seguridad Esperada</h3>
+        <ul>
+          <li><strong>Rango:</strong> <code>192.168.20.0/24</code>.</li>
+          <li><strong>Gateway:</strong> <code>192.168.20.1</code>.</li>
+
+          <li>
+            <strong>Servidor Backup:</strong> IP: <code>192.168.20.3</code>.
+            Ofrece Copias de seguridad.
+          </li>
+          <li>
+            <strong>Servidor Data Base:</strong> IP: <code>192.168.20.4</code>.
+            Guarda todos los datos importantes de la empresa.
+          </li>
+          <li>
+            <strong>Servidor MVS:</strong> IP: <code>192.168.20.5</code>. Guarda
+            la monitorización de las camaras de seguridad.
+          </li>
+          <li>
+            <strong>Seguridad Crítica:</strong> Se auditará el cumplimiento de
+            la política de seguridad, incluyendo el uso obligatorio de
+            conexiones SSH, la activación de BitLocker en todas las estaciones,
+            y el cifrado en el servidor de Backup.
+          </li>
+        </ul>
+
+        <h3>Seguridad Física de los Equipos</h3>
+        <p>
+          Los equipos (de tipo servidor)están ubicados en un rack securizado. Se
+          incluye un SAI (Sistema de Alimentación Ininterrumpida) y sistemas de
+          monitorización ambiental (Termostato, AC, Detector de Humo) para
+          mitigar riesgos físicos. el resto de equipos de administracion se
+          encuentran en mesas especializadas con la seguridad adecuada ante
+          riesgos fisicos.
+        </p>
+      </article>
+
+      <article class="vlan30">
+        <h2> Sección de Aulas (VLAN 30)</h2>
+        <p>
+          La <strong>VLAN 30</strong> (`192.168.30.0/24`) alberga a la mayor
+          parte de los usuarios. Para estandarizar el rendimiento y la
+          experiencia del alumno, se ha implementado un servidor de
+          aplicaciones centralizado en el aula 1 que aloja todo el software
+          necesario y un hardware robusto y de última generación en las
+          estaciones de trabajo.
+        </p>
+
+        <div class="inventario-flex">
+          <img
+            src="./assets/img/vlan30.png"
+            alt="Diagrama de la VLAN de Aulas"
+          />
+        </div>
+
+        <h3>Inventario de Equipos Centrales y Estaciones de Trabajo</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Activo</th>
+              <th>Modelo / SO</th>
+              <th>CPU / RAM</th>
+              <th>Almacenamiento</th>
+              <th>Cantidad Aproximada</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Servidor de Aplicaciones (Aula 1)</strong></td>
+              <td>HP ProLiant DL325 Gen10 Plus / Windows Server 2022</td>
+              <td>AMD EPYC™ (Alto Rendimiento) / 128 GB RAM ECC</td>
+              <td>2 TB NVMe SSD (RAID 5)</td>
+              <td>1 Unidad</td>
+            </tr>
+            <tr>
+              <td><strong>PC de Alumno (Torre Estándar)</strong></td>
+              <td>Desktop SFF Gaming-Ready / Windows 10 Pro LTS</td>
+              <td>Intel Core i7 (13va Gen) / 16 GB RAM DDR5</td>
+              <td>1 TB NVMe SSD</td>
+              <td>60 Unidades</td>
+            </tr>
+            <tr>
+              <td><strong>PC del Profesor</strong></td>
+              <td>Workstation Minitower / Windows 11 Pro</td>
+              <td>Intel Core i7 (14va Gen) / 32 GB RAM DDR5</td>
+              <td>1 TB NVMe SSD</td>
+              <td>3 Unidades</td>
+            </tr>
+            <tr>
+              <td><strong>Switch de Acceso por Aula</strong></td>
+              <td>Cisco Catalyst 2960-L (Capa 2)</td>
+              <td>N/A / IOS L</td>
+              <td>N/A</td>
+              <td>1 por aula</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Política de Restricción y Puntos de Auditoría</h3>
+        <ul>
+          <li><strong>Rango:</strong> <code>192.168.30.0/24</code>.</li>
+          <li><strong>Gateway:</strong> <code>192.168.30.1</code>.</li>
+          <li>
+            Servidor de Aplicaciones: Se auditará el acceso desde los PCs de
+            alumnos al servidor para asegurar que solo se utilicen los
+            protocolos de compartición de archivos y aplicaciones definidos.
+          </li>
+          <li>
+            <strong>Restricciones Lógicas:</strong> El tráfico de esta VLAN está
+            filtrado por una ACL Extendida en R1. Se verificará que se
+            permite el acceso al Servidor de Aplicaciones (Aula 1) y al DNS/Web
+            de la VLAN 10, bloqueando todo lo demás.
+          </li>
+          <li>
+            Seguridad de Puertos: Es vital auditar la configuración de
+            Port Security en todos los Switch de Acceso (2960-L) para
+            impedir la conexión de dispositivos no autorizados.
+          </li>
+        </ul>
+      </article>
+
+      <article class="wan">
+        <h2>Conectividad WAN y Perímetro</h2>
+        <p>
+          El Router Principal R1 gestiona la conexión a la red pública, actuando
+          como el perímetro de seguridad.
+        </p>
+
+        <h3>Detalles de la Conexión WAN</h3>
+        <ul>
+          <li><strong>Router Principal (R1):</strong> Modelo ISR 4321.</li>
+          <li>
+            <strong>IP Pública (Interfaz G0/0/1):</strong>
+            <code>80.58.61.250</code>.
+          </li>
+          <li><strong>Gateway ISP:</strong> <code>80.58.61.1</code>.</li>
+          <li>
+            <strong>Servicio:</strong> Se utiliza NAT/PAT (Network Address
+            Translation/Port Address Translation) en la interfaz G0/0/1 para
+            traducir el tráfico de todas las VLANs a la única IP pública.
+          </li>
+          <li>
+            <strong>Enrutamiento:</strong> La ruta por defecto (<code
+              >ip route 0.0.0.0 0.0.0.0 80.58.61.1</code
+            >) asegura el tráfico de retorno desde Internet.
+          </li>
+        </ul>
+      </article>
+    </main>
+  </body>
+</html>

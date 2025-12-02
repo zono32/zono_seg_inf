@@ -7,7 +7,7 @@ body{
 .cabecera {
     /* Reducimos el relleno (padding) de 10px 20px a un valor más pequeño (ej. 5px)
        Esto reduce el espacio vertical y horizontal alrededor del contenido. */
-    padding: 5px 20px; 
+    padding: 20px; 
     
     display: flex;
     justify-content: space-between; 
@@ -29,7 +29,7 @@ body{
 /* Reducimos el texto dentro del div.texto */
 .cabecera h1 {
     margin: 0;
-    /* Reducimos el tamaño del título de 1.5em a 1.2em */
+    margin-bottom: 10px;
     font-size: 1.2em; 
     color: rgb(19, 182, 247); 
 }
@@ -56,22 +56,6 @@ body{
     justify-content: right;
     gap: 5px; /* Aquí se define la separación entre los enlaces */
     font-size: 0.9em; 
-}
-a{
-  color:  #e8e9eb;
-  text-decoration: none;
-}
-
-.icocab{
-  width: 70px;
-  height: 70px;
-  vertical-align: middle;
-}
-
-.nav {
-  display: flex;
-  justify-content: right;
-  gap: 10px;
 }
 
 header,

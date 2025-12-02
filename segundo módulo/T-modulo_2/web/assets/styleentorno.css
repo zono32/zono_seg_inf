@@ -12,7 +12,7 @@
 /* 2. Estilos del Contenido Principal (main) */
 /* ======================================= */
 main {
-    max-width: 1600px;
+    max-width: 90%;
     margin: 40px auto;
     padding: 0 20px;
     color: aliceblue;
@@ -27,11 +27,7 @@ h2 {
     text-align: center;
     font-size: 2em;
 }
-p {
-    font-size: 1.1em;
-    margin-bottom: 20px;  
-    padding: 10px;
-}
+
 
 /* ======================================= */
 /* 3. Estilos de las Secciones (article) */
