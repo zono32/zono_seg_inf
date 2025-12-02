@@ -1,266 +1,587 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Auditoría - Checklist de Seguridad</title>
-    <link rel="stylesheet" href="./assets/stylecheck.css">
-    <link rel="stylesheet" href="./assets/style.css">
-</head>
-<body>
+    <title>Auditoría de Seguridad</title>
+    <link rel="stylesheet" href="./assets/stylecheck.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="./checklist.js"></script>
+  </head>
+  <body>
     <header class="cabecera">
-        <img
-            class="icocab"
-            src="./assets/img/driving-logo-school-600nw-2493562929.webp"
-            alt="Logo de la organización"
-        />
-        <div class="texto">
-            <h1>Seguridad informática</h1>
-            <p>Auditar equipos informáticos</p>
-        </div>
-        <nav class="nav">
-            <a href="./index.html">Inicio</a> |
-            <a href="./entorno.html">Entorno Físico</a> |
-            <a href="./check.html">Checklist</a>
-        </nav>
+      <img
+        class="icocab"
+        src="./assets/img/driving-logo-school-600nw-2493562929.webp"
+        alt="Logo de la organización"
+      />
+      <div class="texto">
+        <h1>Seguridad informática</h1>
+        <p>Auditar equipos informáticos</p>
+      </div>
+      <nav class="nav">
+        <a href="./index.html">Inicio</a> |
+        <a href="./entorno.html">Entorno Físico</a> |
+        <a href="./check.html">Checklist</a>
+      </nav>
     </header>
 
     <main>
-        <h1>Checklist de Auditoría de Seguridad</h1>
-        
-        <p>A continuación, se presenta la batería de preguntas de auditoría, divididas en las secciones clave para evaluar la postura de seguridad de la red segmentada y los activos críticos.</p>
+      <h1>Checklist de Auditoría de Seguridad</h1>
 
+      <div class="gestion-empresa">
+        <label for="nombreEmpresa" style="font-weight: bold">Empresa:</label>
+        <input
+          type="text"
+          id="nombreEmpresa"
+          placeholder="Escribe aquí el nombre de la empresa a auditar"
+        />
+
+        <label for="cargarEmpresa" style="font-weight: bold">Cargar:</label>
+        <select id="cargarEmpresa" disabled>
+          <option value="">Selecciona una empresa guardada...</option>
+        </select>
+      </div>
+      <p>A continuación, se presenta la batería de preguntas de auditoría.</p>
+
+      <button id="guardarBtn" class="boton-flotante">Guardar Resultados</button>
+      <form id="checklistForm">
         <article class="seccion-auditoria" id="fisica">
-            <h2>I. Seguridad Física y Control de Acceso</h2>
-            <p>Evalúa la protección física de los activos centrales ubicados en el rack de comunicaciones y la sala de servidores.</p>
-            
-            <ol class="checklist-items">
-                <li>
-                    <div class="pregunta">1. Acceso Físico (Rack/Sala): ¿Está la sala de servidores securizada con una cerradura o sistema de alarma para que sólo personal autorizado acceda?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Alto">Alto</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">Se asume control de acceso físico reforzado, complementado por la monitorización de los dispositivos IoT de seguridad perimetral (Webcam, Detector de Humo).</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">2. Control Ambiental: ¿El rack y sus componentes están protegidos contra temperaturas extremas, humedad, polvo, agua o luz solar excesiva?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Alto">Alto</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">El diagrama muestra el uso del Termostato (IoT11) y Aire Acondicionado (IoT14) para el control ambiental. Se requiere verificar su operatividad y umbrales de alerta.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">3. Suministro Eléctrico (SAI): ¿Está el Sistema de Alimentación Ininterrumpida (SAI/UPS) conectado a los equipos críticos (Router R1, Switch Core, Servidores) para un apagado seguro?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Alto">Alto</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">Punto de auditoría CRÍTICO. El SAI no ha sido especificado ni se ve en el diagrama ni en el inventario. Es un punto de falla que debe ser implementado de inmediato.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">4. Cableado y Puertos Físicos: ¿La red está físicamente segura sin peligro de conexión no autorizada, y solo el personal autorizado tiene acceso a la red física?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Bajo">Bajo</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">Se asume que todo el cableado estructural está contenido y etiquetado dentro del rack de comunicaciones.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">5. Dispositivos Deshabilitados: ¿Están los puertos paralelo / serie / infrarrojo / USB / SCSI asegurados o deshabilitados en los Servidores y Routers para prevenir el acceso físico no autorizado?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Medio">Medio</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">Es un requisito de hardening del sistema operativo y BIOS en los equipos de alta gama definidos (Servidores y Workstations VLAN 20).</textarea>
-                    </div>
-                </li>
-            </ol>
+          <h2>I. Seguridad Física y Entorno</h2>
+          <p>
+            Verifica el acceso físico a los equipos y el entorno donde están
+            instalados.
+          </p>
+          <ol class="checklist-items" start="1">
+            <li data-id="1">
+              <div class="pregunta">
+                1. Acceso a la Sala (Rack): ¿La sala de equipos tiene llave o
+                alarma para que solo entre quien debe?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones "
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="2">
+              <div class="pregunta">
+                2. Cuidado Ambiental: ¿Los equipos están protegidos de mucho
+                calor, humedad o polvo?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones"
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="3">
+              <div class="pregunta">
+                3. Batería de Respaldo (SAI): ¿Hay un sistema de batería (UPS)
+                conectado a los equipos críticos para que no se apaguen de
+                golpe?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones"
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="4">
+              <div class="pregunta">
+                4. Cableado: ¿Los cables de red están ordenados y seguros para
+                que nadie se conecte sin permiso?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones"
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="5">
+              <div class="pregunta">
+                5. Puertos Innecesarios: ¿Están desactivados o tapados los
+                puertos USB, serie, etc., que no se usan en los servidores?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones"
+                ></textarea>
+              </div>
+            </li>
+          </ol>
         </article>
 
-        <hr>
-
+        <hr />
         <article class="seccion-auditoria" id="redes">
-            <h2>II. Seguridad de Redes y Segmentación</h2>
-            <p>Verifica la arquitectura de red (VLANs) y la seguridad del tráfico interno y perimetral.</p>
-            
-            <ol class="checklist-items" start="6">
-                <li>
-                    <div class="pregunta">6. Segmentación de Red: ¿Existe segmentación por VLAN (10, 20, 30) y esta segmentación es funcional para aislar lógicamente los dominios de tráfico?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Alto">Alto</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">La arquitectura troncal del Switch Multicapa 3560 está diseñada para segmentar el tráfico entre Servidores, Administración y Aulas.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">7. Red de Administración: ¿La VLAN de Administración (VLAN 20) está separada de la red de usuarios (VLAN 30) y Servidores (VLAN 10) y restringida a personal específico?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Alto">Alto</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">La VLAN 20 es el segmento privilegiado. Su acceso de gestión a los equipos Cisco se realiza por SSH desde esta VLAN.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">8. Control de Acceso (ACL): ¿Se ha implementado una ACL Extendida en el Router R1 para imponer la política de restricción de la VLAN 30 (Aulas)?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Alto">Alto</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">Se estableció como política el uso de ACLs en R1 para filtrar el tráfico de Aulas (VLAN 30), limitando la comunicación al Servidor de Aplicaciones y DNS/Web.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">9. Aislamiento de Puertos (Switch): ¿Se ha configurado la seguridad y aislamiento de puertos (**Port Security**) en el Core Switch 3560 para prevenir la suplantación de MAC o ataques en Capa 2?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Medio">Medio</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">Se verifica la configuración de Port Security en los puertos de acceso (ej. con limitación de MAC y violación de tipo shutdown). Esto es clave en la VLAN 30.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">10. Protocolos de Enlace: ¿Está configurado STP o RSTP en el Switch Multicapa para prevenir bucles de red que puedan llevar a una denegación de servicio (DoS)?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Bajo">Bajo</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">Se asume la configuración por defecto de RSTP (Rapid STP) o PVST+ para asegurar la convergencia rápida y prevenir bucles.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">11. Puertos Abiertos Externos: ¿Qué puertos están accesibles desde la IP pública (WAN) y están justificados por el servicio NAT/PAT?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Alto">Alto</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">Solo deben estar abiertos los puertos 80/443 (Servidor Web VLAN 10). Se debe verificar que no hay otros puertos mapeados (NAT Estático) sin justificación.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">12. Tráfico no Aprobado: ¿Se mantienen registros (logs) de intentos repetidos de conexión no autorizados o tráfico inusual entre VLANs (ej. de VLAN 30 a VLAN 10)?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Medio">Medio</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">Se asume la configuración de Syslog en los equipos Cisco y el uso del Servidor NMS/Monitorización (VLAN 20) para la gestión y alerta de logs de tráfico.</textarea>
-                    </div>
-                </li>
-            </ol>
+          <h2>II. Seguridad de Redes y Segmentación</h2>
+          <p>
+            Verifica la arquitectura de red (VLANs) y la seguridad del tráfico
+            interno y perimetral.
+          </p>
+          <ol class="checklist-items" start="6">
+            <li data-id="6">
+              <div class="pregunta">
+                6. División de Red: ¿La red está bien separada en VLANs para aislar cada tipo de tráfico?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones"
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="7">
+              <div class="pregunta">
+                7. Red de Jefes (VLAN 20): ¿La red de administración está
+                totalmente aislada de la red de usuarios y restringida solo a
+                los responsables?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones"
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="8">
+              <div class="pregunta">
+                8. Reglas de Acceso (ACL): ¿El Router tiene reglas de filtrado
+                (ACL) para impedir que las redes accedan a donde no deben?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones"
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="9">
+              <div class="pregunta">
+                9. Seguridad de Puertos (MAC): ¿El Switch tiene protección de
+                puertos activa para evitar que alguien se haga pasar por otra
+                máquina (cambiando su MAC)?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones"
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="10">
+              <div class="pregunta">
+                10. Anti-Bucle (STP): ¿Está activo un sistema (como STP) para
+                evitar que la red se caiga por un bucle de cables?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones y Comandos..."
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="11">
+              <div class="pregunta">
+                11. Puertos a Internet: ¿Qué puertos de la red interna se pueden
+                ver desde Internet? ¿Están justificados?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones y Comandos..."
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="12">
+              <div class="pregunta">
+                12. Alarmas de Tráfico: ¿Estamos guardando un registro (logs) de
+                conexiones fallidas o tráfico raro entre las redes?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones y Comandos..."
+                ></textarea>
+              </div>
+            </li>
+          </ol>
         </article>
 
-        <hr>
+        <hr />
 
         <article class="seccion-auditoria" id="wan-r1">
-            <h2>III. Perímetro de Seguridad (Router R1 y WAN)</h2>
-            <p>Revisión exhaustiva del Router Principal (ISR 4321), su configuración NAT y las reglas de seguridad aplicadas a la conexión a Internet.</p>
-            
-            <ol class="checklist-items" start="13">
-                <li>
-                    <div class="pregunta">13. ACL Perimetral: ¿El Router R1 tiene configuradas y activas las ACLs en las interfaces de las VLANs para cumplir con las políticas de restricción de tráfico?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Alto">Alto</span>
-                        <textarea placeholder="Observaciones y comandos utilizados (show access-lists)...">Es un requisito obligatorio (pregunta 8) que la ACL esté implementada en la subinterfaz de la VLAN 30 del Router R1.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">14. Protección de IP Pública: ¿La IP Pública está protegida contra tráfico ICMP (Ping) y otros servicios innecesarios provenientes de la WAN?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Alto">Alto</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">Se asume una ACL aplicada en la interfaz G0/0/1 (WAN) denegando tráfico de entrada no deseado, como ICMP o intentos de conexión a puertos altos.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">15. Configuración NAT: ¿El servicio NAT/PAT está configurado correctamente en G0/0/1 sin exponer puertos internos innecesariamente?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Medio">Medio</span>
-                        <textarea placeholder="Observaciones y comandos utilizados (show ip nat translations)...">Se verifica que solo existe una lista de acceso (ACL NAT) que traduce las redes internas a la IP pública, y no hay NAT estático no solicitado.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">16. Gestión Segura: ¿Se han deshabilitado todos los servicios de gestión no cifrados en el Router R1 (como Telnet y HTTP) a favor de **SSH y HTTPS**?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Alto">Alto</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">El acceso al router debe ser exclusivamente cifrado (SSH) desde la VLAN 20. Se verifica la configuración de llaves RSA y usuarios locales.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">17. Versionado del IOS: ¿El IOS del Router Principal (ISR 4321) está actualizado a la última versión estable (IOS XE)?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Medio">Medio</span>
-                        <textarea placeholder="Observaciones y comandos utilizados (show version)...">El uso de hardware moderno (ISR 4321) implica mantener el IOS XE actualizado para asegurar los parches de seguridad.</textarea>
-                    </div>
-                </li>
-            </ol>
+          <h2>III. Perímetro de Seguridad (Router R1 y WAN)</h2>
+          <p>
+            Revisión exhaustiva del Router Principal, su configuración NAT y las
+            reglas de seguridad aplicadas a la conexión a Internet.
+          </p>
+          <ol class="checklist-items" start="13">
+            <li data-id="13">
+              <div class="pregunta">
+                13. Filtro del Router (ACL): ¿El Router R1 tiene las reglas de
+                seguridad (ACL) activadas en sus interfaces?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones y Comandos..."
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="14">
+              <div class="pregunta">
+                14. Ping de la WAN: ¿Bloqueamos los intentos de "ping" y otros
+                servicios inútiles que vienen de Internet?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones y Comandos..."
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="15">
+              <div class="pregunta">
+                15. NAT: ¿La configuración que permite salir a Internet (NAT)
+                está bien hecha y no expone puertos internos sin querer?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones y Comandos..."
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="16">
+              <div class="pregunta">
+                16. Gestión Segura: ¿Desactivamos la conexión Telnet/HTTP y solo
+                usamos SSH/HTTPS para acceder a los equipos?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones y Comandos..."
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="17">
+              <div class="pregunta">
+                17. Actualización del Router: ¿El sistema operativo (IOS) del
+                Router R1 está actualizado a la última versión segura?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones y Comandos..."
+                ></textarea>
+              </div>
+            </li>
+          </ol>
         </article>
 
-        <hr>
+        <hr />
 
         <article class="seccion-auditoria" id="dispositivo">
-            <h2>IV. Seguridad del Dispositivo (Core Switch y Puestos Privilegiados)</h2>
-            <p>Revisa la configuración de seguridad y la gestión de los equipos de red activos (Switch Core) y las estaciones privilegiadas (VLAN 20).</p>
-            
-            <ol class="checklist-items" start="18">
-                <li>
-                    <div class="pregunta">18. Contraseñas por Defecto: ¿Se han cambiado las contraseñas por defecto en el Core Switch, y se utilizan contraseñas robustas?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Alto">Alto</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">Las contraseñas de enable secret y las cuentas de línea vty/console deben ser complejas y estar cifradas.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">19. Copia de Configuración: ¿Existe una copia de la configuración activa (running-config) y de inicio (startup-config) guardada externamente?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-estado="Bajo">Bajo</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">Se asume el uso del Servidor Backup (VLAN 20) o un servidor TFTP seguro para almacenar las configuraciones de los equipos Cisco.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">20. Puertos No Usados: ¿Los puertos no utilizados en el Core Switch están deshabilitados o asignados a una VLAN de *blackhole* para evitar conexiones no autorizadas?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Bajo">Bajo</span>
-                        <textarea placeholder="Observaciones y comandos utilizados (show interface status)...">Los puertos sin uso deben estar en modo "shutdown" para mitigar el riesgo de acceso físico.</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">21. Cifrado de Disco (Admin): ¿Está activo el cifrado de disco (**BitLocker**) y el TPM 2.0 en todas las estaciones de Windows 11 Pro de la VLAN 20 (Administración)?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Alto">Alto</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">Se especificó hardware de última generación con TPM y la obligatoriedad del cifrado para los equipos privilegiados de la VLAN 20 (Admin, Recepción, DB).</textarea>
-                    </div>
-                </li>
-            </ol>
+          <h2>
+            IV. Seguridad del Dispositivo (Core Switch y Puestos Privilegiados)
+          </h2>
+          <p>
+            Revisa la configuración de seguridad y la gestión de los equipos de
+            red activos y las estaciones privilegiadas.
+          </p>
+          <ol class="checklist-items" start="18">
+            <li data-id="18">
+              <div class="pregunta">
+                18. Contraseñas por Defecto: ¿Se cambiaron todas las contraseñas
+                por defecto en el Switch y se usan contraseñas fuertes?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones y Comandos..."
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="19">
+              <div class="pregunta">
+                19. Copia de Configuración: ¿Tenemos una copia de seguridad de
+                la configuración del Router/Switch guardada en un lugar externo
+                seguro?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones y Comandos..."
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="20">
+              <div class="pregunta">
+                20. Puertos Sin Usar: ¿Los puertos del Switch que no tienen nada
+                conectado están desactivados?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones y Comandos..."
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="21">
+              <div class="pregunta">
+                21. Cifrado de Puestos: ¿Los discos duros de los ordenadores de
+                Administración (VLAN 20) tienen el cifrado (BitLocker) activado?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones y Comandos..."
+                ></textarea>
+              </div>
+            </li>
+          </ol>
         </article>
-
-        <hr>
-
         <article class="seccion-auditoria" id="servidor">
-            <h2>V. Seguridad del Servidor y Protocolos</h2>
-            <p>Examina la seguridad lógica de los Servidores críticos ubicados en la VLAN 10.</p>
-            
-            <ol class="checklist-items" start="22">
-                <li>
-                    <div class="pregunta">22. Firewall Local: ¿El firewall local está activo y configurado en los Servidores (DNS, Web/LDAP) para permitir solo el tráfico estrictamente necesario?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Alto">Alto</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">Se asume la configuración de reglas de entrada y salida aplicando el principio de mínimo privilegio (bloqueo por defecto, permitir solo puertos necesarios: 53, 80/443, 389/636, etc.).</textarea>
-                    </div>
-                </li>
-                <li>
-                    <div class="pregunta">23. Copias de Seguridad: ¿Existen copias de seguridad de los datos de los Servidores y están estas copias **cifradas** y custodiadas, separadas de la red de producción?</div>
-                    <div class="respuesta">
-                        <span class="estado" data-estado="Cumple">Cumple</span>
-                        <span class="riesgo" data-riesgo="Alto">Alto</span>
-                        <textarea placeholder="Observaciones y comandos utilizados...">Se cuenta con un Servidor Backup (VLAN 20) de alta capacidad con RAID 6 y cifrado AES-256 (según inventario) para el resguardo seguro y separado de los datos de la VLAN 10.</textarea>
-                    </div>
-                </li>
-                </ol>
+          <h2>V. Seguridad del Servidor y Protocolos</h2>
+          <p>
+            Examina la seguridad lógica de los Servidores críticos.
+          </p>
+          <ol class="checklist-items" start="22">
+            <li data-id="22">
+              <div class="pregunta">
+               22. Firewall Local: ¿El firewall local está activo y configurado en los Servidores (DNS, Web/LDAP) para permitir solo el tráfico estrictamente necesario?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones y Comandos..."
+                ></textarea>
+              </div>
+            </li>
+            <li data-id="23">
+              <div class="pregunta">
+                23. Copias de Seguridad: ¿Existen copias de seguridad de los datos de los Servidores y están estas copias cifradas y custodiadas, separadas de la red de producción?
+              </div>
+              <div class="respuesta">
+                <div class="select-group">
+                  <label>Fase (Estado)</label>
+                  <select class="fase-auditoria" data-name="fase"></select>
+                </div>
+                <div class="select-group">
+                  <label>Resolución (Apto/No Apto)</label>
+                  <select class="resolucion" data-name="resolucion"></select>
+                </div>
+                <textarea
+                  data-name="observaciones"
+                  placeholder="Observaciones y Comandos..."
+                ></textarea>
+              </div>
+            </li>
+          </ol>
         </article>
+      </form>
     </main>
-</body>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyDprblCG-Iyzk6raMtQb0FEkWqPD1QuY28",
+        authDomain: "checklistauditoria-ce8ed.firebaseapp.com",
+        projectId: "checklistauditoria-ce8ed",
+        storageBucket: "checklistauditoria-ce8ed.firebasestorage.app",
+        messagingSenderId: "920208008284",
+        appId: "1:920208008284:web:61a2b3bca57e14994c7299",
+        measurementId: "G-YTSGDVP0J0",
+      }; // Inicializa Firebase
+      const app = firebase.initializeApp(firebaseConfig); // Inicializa Firestore (hace que la variable 'db' esté disponible)
+      const db = app.firestore();
+    </script>
+
+    <script src="./js/checklist.js"></script>
+  </body>
 </html>

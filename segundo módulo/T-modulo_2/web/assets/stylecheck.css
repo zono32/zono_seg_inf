@@ -1,28 +1,34 @@
 /* ================================================= */
 /* ARCHIVO DE AUDITORÍA Y ESTILOS GLOBALES (style-checklist.css) */
-/* Este archivo define las variables de color y el BODY. */
 /* ================================================= */
-:root {
-    /* Paleta de Colores Principal */
-    --color-principal: #2c3e50; 
-    --color-fondo-secundario: #34495e; 
-    --color-acento: #e67e22; 
-    --color-texto-claro: #ecf0f1;
-    --color-texto-oscuro: #2c3e50;
-}
+
+/* Los colores se definen aquí directamente para su uso */
+/* Paleta Principal */
+/* --color-principal: #2c3e50; */ 
+/* --color-fondo-secundario: #34495e; */ 
+/* --color-acento: #e67e22; */ 
+/* --color-texto-claro: #ecf0f1; */
+/* --color-texto-oscuro: #2c3e50; */
+    
+/* Colores de Estado/Resolución */
+/* --color-estado-pendiente: #1a2f4a; (Azul oscuro) */
+/* --color-estado-proceso: #f39c12; (Amarillo/Naranja) */
+/* --color-apto: #27ae60; (Verde) */
+/* --color-noapto: #e74c3c; (Rojo) */
+
 
 body {
     /* Estilo del cuerpo de la página: fuente y fondo oscuro */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--color-principal);
-    color: var(--color-texto-claro);
+    background-color: #2c3e50; /* Antes: var(--color-principal) */
+    color: #ecf0f1; /* Antes: var(--color-texto-claro) */
 }
 
 main {
     padding: 40px;
-    max-width: 1200px;
+    max-width: 90%;
     margin: auto;
 }
 
@@ -33,7 +39,7 @@ hr {
 }
 
 /* ------------------------------------------- */
-/* Estilos del Checklist */
+/* Estilos Base del Checklist y Contenedores */
 /* ------------------------------------------- */
 .seccion-auditoria {
     margin-bottom: 40px;
@@ -43,7 +49,7 @@ hr {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 .seccion-auditoria h2 {
-    color: var(--color-acento);
+    color: #e67e22; /* Antes: var(--color-acento) */
     margin-top: 0;
     border-bottom: 1px solid #555;
     padding-bottom: 10px;
@@ -59,80 +65,218 @@ hr {
 }
 
 .checklist-items li, .seccion-auditoria > ol > li {
-    background-color: #34495e; 
+    background-color: #34495e; /* Antes: var(--color-fondo-secundario) */ 
     margin-bottom: 15px;
     padding: 15px;
     border-radius: 6px;
-    border-left: 5px solid var(--color-acento);
+    border-left: 5px solid #e67e22; /* Antes: var(--color-acento) */
     display: flex;
     flex-direction: column;
 }
 
 .pregunta {
     font-weight: 600;
-    color: var(--color-texto-claro);
+    color: #ecf0f1; /* Antes: var(--color-texto-claro) */
     margin-bottom: 10px;
     font-size: 1.1em;
 }
 
+/* Contenedor de las respuestas y desplegables */
 .respuesta {
     display: flex;
     gap: 15px;
     align-items: stretch;
 }
 
-.estado, .riesgo {
-    padding: 8px 12px;
-    border-radius: 4px;
+/* NUEVOS ESTILOS PARA LA ESTRUCTURA DE ETIQUETAS */
+.select-group {
+    display: flex;
+    flex-direction: column; /* Etiqueta encima del select */
+    min-width: 150px;
+}
+
+.select-group label {
+    font-size: 0.8em;
     font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.85em;
-    min-width: 80px;
-    text-align: center;
-    line-height: 1.5;
-    white-space: nowrap;
+    color: #9cb1c7; /* Un color más suave para las etiquetas */
+    margin-bottom: 3px;
 }
 
-/* Estilos condicionales para el ESTADO */
-[data-estado="Cumple"] {
-    background-color: #27ae60; 
-    color: white;
-}
-[data-estado="No Cumple"] {
-    background-color: #e74c3c; 
-    color: white;
-}
-[data-estado="Pendiente"] {
-    background-color: #f1c40f; 
-    color: var(--color-principal);
-}
 
-/* Estilos condicionales para el RIESGO */
-[data-riesgo="Alto"] {
-    border: 2px solid #e74c3c; 
-    color: #e74c3c;
-    background-color: #383838;
-}
-[data-riesgo="Medio"] {
-    border: 2px solid #f39c12; 
-    color: #f39c12;
-    background-color: #383838;
-}
-[data-riesgo="Bajo"] {
-    border: 2px solid #2ecc71; 
-    color: #2ecc71;
-    background-color: #383838;
-}
+/* ------------------------------------------- */
+/* ESTILOS COMUNES para INPUTS, SELECTS y TEXTAREA */
+/* ------------------------------------------- */
 
+/* Estilos de la caja de comentarios */
 textarea {
     flex-grow: 1;
     min-height: 40px;
     padding: 10px;
     border: 1px solid #555;
     border-radius: 4px;
-    background-color: #4a6379; 
-    color: var(--color-texto-claro);
+    background-color: #40586d; 
+    color: #fcfdfd; /* Antes: var(--color-texto-claro) */
     resize: vertical;
     font-family: inherit;
     font-size: 0.9em;
 }
+
+.fase-auditoria, .resolucion {
+    /* Apariencia */
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    min-width: 100px; 
+    text-align: center;
+    line-height: 1.5;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
+    color: #ecf0f1; /* Antes: var(--color-texto-claro) */
+    border: none;
+} 
+
+/* ------------------------------------------- */
+/* ESTILOS CONDICIONALES (Usando CLASES del JS) */
+/* ------------------------------------------- */
+
+/* ESTADOS DE FASE (Pediste azul oscuro, amarillo y verde) */
+
+/* 1. Pendiente / Sin Resolver (Azul oscuro - Solicitado) */
+.estado-pendiente {
+    background-color: #1a2f4a; /* Antes: var(--color-estado-pendiente) */
+    color: white; 
+}
+
+/* 2. En Proceso (Amarillo - Solicitado) */
+.estado-proceso {
+    background-color: #f39c12; /* Antes: var(--color-estado-proceso) */
+    color: #2c3e50; /* Antes: var(--color-texto-oscuro) */
+}
+
+/* 3. Auditado (Verde - Solicitado) */
+.estado-auditado {
+    background-color: #27ae60; /* Antes: var(--color-apto) */
+    color: white;
+}
+
+/* RESOLUCIÓN (Pediste verde para apto y rojo para no apto) */
+
+.resolucion-pendiente {
+    background-color: #1a2f4a; /* Reutilizando color pendiente */
+    color: white; 
+}
+
+/* 1. Apto (Verde - Solicitado) */
+.resolucion-apto {
+    background-color: #27ae60; /* Antes: var(--color-apto) */
+    color: white;
+}
+
+/* 2. No Apto (Rojo - Solicitado) */
+.resolucion-noapto {
+    background-color: #e74c3c; /* Antes: var(--color-noapto) */
+    color: rgb(255, 255, 255);
+}
+
+/* ------------------------------------------- */
+/* RIESGO (Manteniendo selectores de data-attributes por si se usan en otro lugar) */
+/* ------------------------------------------- */
+[data-riesgo="Alto"] {
+    border: 2px solid #e74c3c; /* Antes: var(--color-noapto) */
+    color: #e74c3c; /* Antes: var(--color-noapto) */
+    background-color: #383838;
+}
+[data-riesgo="Medio"] {
+    border: 2px solid #f39c12; /* Naranja medio */
+    color: #f39c12;
+    background-color: #383838;
+}
+[data-riesgo="Bajo"] {
+    border: 2px solid #2ecc71; /* Verde esmeralda */
+    color: #2ecc71;
+    background-color: #383838;
+}
+
+/* ------------------------------------------- */
+/* GESTIÓN DE EMPRESA Y BOTÓN FLOTANTE */
+/* ------------------------------------------- */
+
+/* Estilos de la barra de gestión de empresa */
+.gestion-empresa {
+    /* Mantenemos tus estilos existentes */
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Estilos para INPUT y SELECT dentro de la barra de gestión */
+.gestion-empresa input[type="text"], .gestion-empresa select {
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #34495e; /* Antes: var(--color-fondo-secundario) */
+    color: #ecf0f1; /* Antes: var(--color-texto-claro) */
+    flex-grow: 1;
+    min-width: 200px;
+}
+
+.boton-flotante {
+    position: fixed; 
+    right: 20px;
+    bottom: 20px;
+    z-index: 1000; 
+    
+    padding: 15px 25px;
+    background-color: #e67e22; /* Antes: var(--color-acento) */
+    color: white;
+    border: none;
+    border-radius: 50px; 
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.boton-flotante:hover {
+    background-color: #d35400; 
+    transform: scale(1.05);
+}
+
+  .gestion-empresa {
+        background-color: #1f2a36; /* Un color más oscuro para la gestión */
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 8px;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+      .gestion-empresa input[type="text"],
+      .gestion-empresa select {
+        padding: 10px;
+        border: 1px solid #555;
+        border-radius: 4px;
+        background-color: #34495e;
+        color: var(--color-texto-claro);
+        flex-grow: 1;
+        min-width: 200px;
+      }
+      .gestion-empresa button {
+        padding: 10px 15px;
+        background-color: var(--color-acento); /* Naranja */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .gestion-empresa button:hover {
+        opacity: 0.9;
+      }
