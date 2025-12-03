@@ -35,7 +35,7 @@
         práctica para ver si nuestra red es tan robusta como creemos.
       </p>
 
-      <h2>1. Alcance: ¿Qué Vamos a Poner a Prueba?</h2>
+      <h2>1. Alcance: ¿Qué vamos a poner a prueba?</h2>
 
       <p>
         La auditoría tiene un alcance de extremo a extremo, cubriendo toda la
@@ -48,30 +48,30 @@
         <thead>
           <tr>
             <th>Activo / Sistema</th>
-            <th>¿Qué Revisaremos?</th>
+            <th>¿Qué revisaremos?</th>
             <th>Clave (IP/VLAN)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Router Principal (R1) / Salida a Internet</strong></td>
+            <td><strong>Router principal (R1) / Salida a Internet</strong></td>
             <td>
-              <strong>El Cerebro y el Perímetro:</strong> Enrutamiento
+              <strong>El cerebro y el perímetro:</strong> Enrutamiento
               inter-VLAN, la traducción NAT para salir a Internet y las Listas
-              de Control de Acceso (ACLs) aplicadas a la WAN.
+              de control de acceso (ACLs) aplicadas a la WAN.
             </td>
             <td>192.168.1.1 (Privada)</td>
           </tr>
           <tr>
-            <td><strong>Switch Multicapa (Core)</strong></td>
+            <td><strong>Switch multicapa (Core)</strong></td>
             <td>
-              La Columna Vertebral: Segmentación por **VLANs** (10, 20, 30), el
+              La columna vertebral: segmentación por **VLANs** (10, 20, 30), el
               *trunking* de datos y la seguridad de los puertos.
             </td>
             <td>192.168.10.30</td>
           </tr>
           <tr>
-            <td><strong>Servidores Críticos</strong></td>
+            <td><strong>Servidores críticos</strong></td>
             <td>
               DNS, Web/LDAP, y AD/LDAP. Revisaremos su estado de salud,
               versiones y permisos.
@@ -79,7 +79,7 @@
             <td>VLAN 10 (Servidores)</td>
           </tr>
           <tr>
-            <td><strong>Redes Segmentadas (VLANs)</strong></td>
+            <td><strong>Redes segmentadas (VLANs)</strong></td>
             <td>
               VLAN 10 (Servidores), VLAN 20 (Admin) y **VLAN 30 (Aulas)**. Se
               auditará el flujo de tráfico entre ellas.
@@ -87,7 +87,7 @@
             <td>192.168.X.X / 24</td>
           </tr>
           <tr>
-            <td>Punto Final (PC del Aula)</td>
+            <td>Punto final (PC del Aula)</td>
             <td>
               El último eslabón: Se auditará el tráfico generado por un PC de la
               VLAN 30 para verificar que las restricciones de la ACL se aplican
@@ -96,7 +96,7 @@
             <td>VLAN 30</td>
           </tr>
           <tr>
-            <td><strong>Seguridad Física</strong></td>
+            <td><strong>Seguridad física</strong></td>
             <td>
               Asegurar que el rack esté protegido físicamente: cerrado, con SAI
               operativo y control ambiental.
@@ -106,7 +106,7 @@
         </tbody>
       </table>
 
-      <h2>2. Nuestros Objetivos: ¿Qué Queremos Demostrar?</h2>
+      <h2>2. Nuestros objetivos: ¿Qué queremos demostrar?</h2>
 
       <p>
         Queremos obtener un "aprobado" en seguridad. Aquí están las metas clave,
@@ -114,37 +114,37 @@
       </p>
       <ul>
         <li>
-          Aislamiento Total: Confirmar que la separación de redes (VLANs)
+          Aislamiento total: Confirmar que la separación de redes (VLANs)
           funciona. Es decir, que los alumnos del Aula 3 no puedan ni "oler" a
           los servidores de la VLAN 10.
         </li>
         <li>
-          Puerta a la Calle Segura: Verificar que nuestra salida a Internet (el
+          Puerta a la calle segura: Verificar que nuestra salida a Internet (el
           Router R1) solo permite el paso de tráfico autorizado (Web y DNS)
         </li>
         <li>
-          Servidores a Prueba de Balas Auditar que todos los servidores (Web,
+          Servidores a prueba de balas auditar que todos los servidores (Web,
           DNS, AD) están actualizados, sin servicios extra que den problemas y
           con sus firewalls activos.
         </li>
         <li>
-          El Hardware, Protegido: Asegurar que los equipos críticos del rack
+          El hardware, protegido: Asegurar que los equipos críticos del rack
           (Router, Switch, Servidores) están seguros contra robos, fallos de luz
           (gracias al SAI) y problemas de temperatura.
         </li>
       </ul>
 
-      <h2>3. Documentos y Equipo de Trabajo</h2>
+      <h2>3. Documentos y equipo de trabajo</h2>
 
-      <h3>La Documentación que Necesitamos</h3>
+      <h3>La documentación que necesitamos</h3>
       <p>Para empezar, el equipo auditor debe tener estos documentos a mano:</p>
       <ul>
         <li>
-          <strong>El Mapa de la Red:</strong> El diagrama de topología
+          <strong>El mapa de la red:</strong> El diagrama de topología
           (disponible en <code>entorno.html</code>).
         </li>
         <li>
-          <strong>El Checklist de Seguridad:</strong> La lista detallada de
+          <strong>El checklist de seguridad:</strong> La lista detallada de
           preguntas para auditar (disponible en <code>check.html</code>).
         </li>
         <li>
@@ -152,7 +152,7 @@
           (modelos, IPs, versiones de sistema operativo).
         </li>
         <li>
-          <strong>Las Reglas del Juego:</strong> El documento de Política de
+          <strong>Las reglas del juego:</strong> El documento de Política de
           Seguridad que dice, por ejemplo, qué pueden hacer los alumnos y qué
           no.
         </li>
