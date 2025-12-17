@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarea 3 - Configuración de Sistemas</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="./assets/script.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <span class="logo">Tarea 3</span>
+        <ul class="nav-links">
+          <li><a href="./index.html">Intro</a></li>
+          <li><a href="./virtualbox.html">VirtualBox</a></li>
+          <li><a href="./wserver.html">Windows Server</a></li>
+          <li><a href="./linux.html">Linux Mint</a></li>
+          <li><a href="./ad.html">Active Directory</a></li>
+        </ul>
+        <button id="theme-toggle" class="btn-toggle">🌓 Modo</button>
+      </div>
+    </nav>
+
+    <main class="content">
+      <section id="intro" class="card">
+        1. El Cimiento: Virtualización con Oracle VirtualBox El funcionamiento
+        comienza con la Virtualización. VirtualBox actúa como un "anfitrión" que
+        permite engañar al hardware de tu ordenador real para que crea que hay
+        varios ordenadores distintos (Máquinas Virtuales) funcionando al mismo
+        tiempo. Aislamiento: Cada sistema operativo (Windows Server y Linux
+        Mint) funciona de forma independiente sin interferir con tu Windows
+        base. Recursos compartidos: VirtualBox gestiona cuánta memoria RAM y
+        procesador le "presta" tu PC real a cada servidor o cliente virtual. 2.
+        El Sistema Circulatorio: La Red NAT Para que estas máquinas hablen entre
+        sí, necesitan un canal de comunicación. En tu caso, has creado una Red
+        NAT llamada "Seguridad". Segmentación: Al usar la red 192.168.32.0 y
+        deshabilitar el DHCP, has obligado a que todos los equipos tengan una
+        "dirección postal" fija (IP Estática). Salida a Internet: La NAT permite
+        que las máquinas virtuales salgan a internet para descargar
+        actualizaciones, pero impide que amenazas externas entren directamente a
+        tu red privada. 3. El Cerebro: Windows Server y Active Directory Esta es
+        la pieza central del proyecto. Al instalar el rol de Active Directory
+        (AD), has convertido un simple servidor en un Controlador de Dominio
+        (DC20). El Dominio (int.zonocar.com): Es un límite lógico. Todo lo que
+        esté dentro del dominio debe obedecer las reglas dictadas por el
+        servidor. Base de Datos Centralizada: En lugar de crear usuarios en cada
+        ordenador, los creas una sola vez en el AD (como el usuario "Pumuky").
+        Cualquier ordenador de la red reconocerá a ese usuario. DNS (Sistema de
+        Nombres): El servidor actúa como una "guía telefónica". Cuando Linux
+        busca el dominio, el servidor le dice dónde está. 4. El Invitado: Linux
+        Mint como Cliente El funcionamiento termina con la Integración de
+        Sistemas Mixtos. Linux Mint no pertenece naturalmente a Windows, por lo
+        que necesita "traductores" (realmd y sssd). Unión al Dominio: Al unir
+        Linux al dominio, el equipo deja de ser independiente. Ahora, para
+        iniciar sesión, el Linux le pregunta al Windows Server: "¿Este usuario y
+        contraseña son correctos?". Configuración del Login: Como has visto en
+        tu tarea, Linux requiere ajustes específicos (como lightdm.conf) para
+        permitir que usuarios del dominio (externos a la máquina local) puedan
+        introducir sus credenciales manualmente. Resumen del Flujo de Trabajo
+        Hardware Real → Ejecuta VirtualBox. VirtualBox → Crea la red y las
+        máquinas. Windows Server → Dicta las leyes, gestiona los nombres (DNS) y
+        guarda los usuarios. Linux Mint → Obedece las leyes del servidor y
+        permite que los usuarios de la empresa trabajen en él. Este montaje es
+        la base de cómo funcionan las redes en casi todas las empresas modernas:
+        un centro de mando (Windows Server) y múltiples puestos de trabajo
+        (Clientes) conectados de forma segura.
+      </section>
+    </main>
+  </body>
+</html>

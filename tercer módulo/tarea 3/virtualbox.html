@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarea 3 - Configuración de Sistemas</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="./assets/script.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <span class="logo">Tarea 3</span>
+        <ul class="nav-links">
+          <li><a href="./index.html">Intro</a></li>
+          <li><a href="./virtualbox.html">VirtualBox</a></li>
+          <li><a href="./wserver.html">Windows Server</a></li>
+          <li><a href="./linux.html">Linux Mint</a></li>
+          <li><a href="./ad.html">Active Directory</a></li>
+        </ul>
+        <button id="theme-toggle" class="btn-toggle">🌓 Modo</button>
+      </div>
+    </nav>
+
+    <main class="content">
+      <section id="virtualbox">
+        <h1>Oracle VirtualBox</h1>
+        <article class="card">
+          <h2>Instalación</h2>
+          <p>
+            Primero en el navegador buscamos la página oficial de Oracle
+            virtualbox desde ahí nos bajamos el instalador del programa para el
+            sistema operativo en el que lo vayamos a utilizar en mi caso en
+            Windows host. Una vez descargado procedemos a la instalación. Este
+            paso es muy sencillo es todo darle a siguiente. Una vez instalado
+            abrimos el programa y comprobamos que todo funciona correctamente.
+            <a href="https://www.youtube.com/watch?v=HaVCSPHV7xw&t=43s"
+              >(Video explicativo)</a
+            >.
+          </p>
+        </article>
+        <article class="card">
+          <h2>Configuración de Red NAT</h2>
+          <p>
+            Antes de empezar con la instalación de ninguna máquina virtual me
+            voy a crear un entorno y para ello crearé una red nat. Voy a la
+            parte de la izquierda donde pone red, después pincho en la pestaña
+            Redes NAT y le doy al botón de crear, en la parte de abajo le pongo
+            el nombre a mi red nat en este caso seguridad, le digo que prefijo
+            de ip tendrá mi red en este caso será la 192.168.32.0 y por último
+            deshabilito el DHCP. Le damos a aplicar y ya témenos nuestra red
+            nat.
+          </p>
+          <img src="./assets/img/red_nat_1.jpg" class="img1" alt="red nat 1" />
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

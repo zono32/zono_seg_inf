@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarea 3 - Configuración de Sistemas</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="./assets/script.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <span class="logo">Tarea 3</span>
+        <ul class="nav-links">
+          <li><a href="./index.html">intro</a></li>
+          <li><a href="./virtualbox.html">VirtualBox</a></li>
+          <li><a href="./wserver.html">Windows Server</a></li>
+          <li><a href="./linux.html">Linux Mint</a></li>
+          <li><a href="./ad.html">Active Directory</a></li>
+        </ul>
+        <button id="theme-toggle" class="btn-toggle">🌓 Modo</button>
+      </div>
+    </nav>
+
+    <main class="content">
+      <section id="linux" class="card">
+        <h1>Linux Mint (Cinnamon)</h1>
+        <p>
+          Instalación ligera para actuar como cliente en la red[cite: 21]. Se
+          configura manualmente para que apunte al DNS del servidor
+          (192.168.32.20)[cite: 85].
+        </p>
+        <h3>Unión al Dominio</h3>
+        <p>
+          Se instalan herramientas como <code>realmd</code> y
+          <code>sssd</code> para integrar el equipo en el dominio
+          <code>int.zonocar.com</code>[cite: 86, 90].
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

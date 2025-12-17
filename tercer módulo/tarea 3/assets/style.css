@@ -1,17 +1,150 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; 
-}
-body{
-    font-family: Arial, sans-serif;
-    background-color: #333;
-    color: #38f113;
-    padding: 20px;
+:root {
+  /* Modo Claro */
+  --bg-color: #f4f7f6;
+  --card-bg: #ffffff;
+  --text-color: #333;
+  --nav-bg: #2c3e50;
+  --accent-color: #3498db;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-h1{
-    text-align: center;
-    margin-bottom: 20px;
+[data-theme="dark"] {
+  /* Modo Oscuro */
+  --bg-color: #1a1a1a;
+  --card-bg: #2d2d2d;
+  --text-color: #e0e0e0;
+  --nav-bg: #000000;
+  --accent-color: #5dade2;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s, color 0.3s;
+  font-size: 1.125rem;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+.img1 {
+  display: block;    /* INDISPENSABLE para que funcione el margin auto */
+  width: 90%;
+  max-width: 1000px; /* Opcional: para que no se vea gigante en pantallas muy grandes */
+  padding: 10px;
+  border-radius: 15px;
+  margin: 20px auto; /* Eliminada la coma. '20px' da espacio arriba/abajo y 'auto' centra */
+  box-shadow: var(--shadow);
+}
+
+.navbar {
+  background-color: var(--nav-bg);
+  color: white;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn-toggle {
+  background: var(--accent-color);
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.content {
+  width: 70%;
+  margin: 40px auto;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 30px;
+  margin-bottom: 50px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+h1 {
+  color: var(--accent-color);
+  margin-bottom: 15px;
+  text-align: center;
+}
+h2 {
+  margin-top: 20px;
+  border-bottom: 2px solid var(--accent-color);
+  display: inline-block;
+  margin-bottom: 30px;
+}
+h3 {
+  margin-top: 15px;
+  font-size: 1.1rem;
+}
+ul {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+code {
+  background: #eee;
+  padding: 2px 5px;
+  border-radius: 3px;
+  color: #c7254e;
+}
+[data-theme="dark"] code {
+  background: #444;
+  color: #ffadad;
+}
+
+/* Seleccionamos los enlaces que están dentro de un article o una card */
+article a,
+.card a {
+  color: #ff8c00 !important; /* Naranja */
+  text-decoration: none; /* Quita el subrayado si quieres */
+  font-weight: bold; /* Para que resalte más en el texto */
+}
+
+/* IMPORTANTE: Esto evita que se ponga morado al hacer clic */
+article a:visited,
+.card a:visited {
+  color: #ff8c00 !important;
+}
+
+/* Efecto opcional al pasar el ratón */
+article a:hover,
+.card a:hover {
+  color: #ffa500 !important;
+  text-decoration: underline;
+}
+
+ol{
+  margin-left: 10%;
+  margin-top: 10px;
+}
