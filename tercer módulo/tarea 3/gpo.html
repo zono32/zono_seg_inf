@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarea 3 - Configuración de Sistemas</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="./assets/script.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <span class="logo">Autozono</span>
+        <ul class="nav-links">
+          <li><a href="./index.html">intro</a></li>
+          <li><a href="./instalacion.html">Instalación</a></li>
+          <li><a href="./configuracion.html">Configuracion</a></li>
+        </ul>
+        <span>
+          <div class="menus">
+            <!-- Menú Información -->
+            <div class="menu">
+              <button class="hamburger" onclick="toggleMenu('menu-i')">
+                i
+              </button>
+              <ul class="dropdown" id="menu-i">
+                <li><a href="./virtualbox.html">Virtual Box</a></li>
+                <li><a href="./wserver.html">Windows Server</a></li>
+                <li><a href="./linux.html">Linux Mint</a></li>
+                <li><a href="./win.html">Windows 7</a></li>
+              </ul>
+            </div>
+
+            <!-- Menú Contenido -->
+            <div class="menu">
+              <button class="hamburger" onclick="toggleMenu('menu-c')">
+                c
+              </button>
+              <ul class="dropdown" id="menu-c">
+                <li><a href="./ad.html">Active Directory</a></li>
+                <li><a href="./confServer.html">Windows Server</a></li>
+                <li><a href="./dhcp.html">DHCP</a></li>
+                <li><a href="./users.html">Usuarios</a></li>
+                <li><a href="./gpo.html">GPO</a></li>
+                <li><a href="./unionLD.html">Unión de linux al Dominio</a></li>
+              </ul>
+            </div>
+            <button id="theme-toggle" class="btn-toggle">🌓 Modo</button>
+          </div>
+        </span>
+      </div>
+    </nav>
+
+    <main class="content">
+      <section id="activedirectory" class="card">
+        <h1>Crear una GPO</h1>
+        <h2>Configuración</h2>
+
+        <p>
+          En el contexto de un dominio bajo Active Directory de Microsoft, una
+          GPO es una política, regla o configuración que permite administrar
+          específicamente una Unidad Organizativa (OU). En esencia, una GPO
+          aplicada a una OU se parece mucho a un permiso específico para un
+          grupo aplicado a un fichero.<br />
+          Eso es a muy grandes rasgos, hay diferencias sustanciales. Para
+          empezar una GPO no se aplica a ningún fichero y sí a usuarios o
+          equipos.<br />
+          Además, los permisos estaban limitados a dejar leer, escribir y
+          ejecutar, pero las GPOs tienen más que ver con configuraciones de
+          seguridad, restricciones de funciones, mapeo de unidades, despliegue
+          de aplicaciones en equipos y ejecución de scripts al iniciar sesión.
+          Es cierto que las GPOs se pueden aplicar a todo el dominio entero
+          afectando a todos los usuarios y equipos, pero su aplicación ideal es
+          sobre Unidades Organizativas porque solo afectarán a los objetos
+          contenidos en ellas.<br />
+          La correcta estructuración de la organización en OUs es un asunto
+          complejo que requiere de mucho conocimiento y más experiencia. El modo
+          de funcionamiento es simple, en el momento de la autenticación del
+          usuario, Active Directory determina las GPOs que se deben aplicar
+          según la correspondiente OU y las aplica.<br />
+          Es por ello por lo que muchas veces los cambios requieren un cierre de
+          sesión o reiniciar el equipo. Si queremos que una sesión abierta
+          recargue de nuevo las GPOs y no queremos/podemos reiniciar tendremos
+          que ejecutar el siguiente comando (aunque no es 100% funcional en
+          todos los casos):<br />
+          <strong>gpupdate /force</strong><br />
+          Una GPO se edita para habilitar o deshabilitar una o varias políticas.
+          Estas políticas se encuentran organizadas en un árbol que aparece a la
+          derecha.<br />
+          En general encontraremos opciones similares en dos grandes grupos, las
+          relacionadas con el equipo y las relacionadas con el usuario. Por
+          poner un ejemplo, la ejecución de un script para que ejecute algo se
+          puede aplicar al arranque y apagado de un equipo o al abrir o cerrar
+          sesión de un usuario.
+        </p>
+        <br /><br />
+        <article class="card img_der">
+          <p>
+            Desde el "Administrador del servidor" pincharemos en el menú
+            "Herramientas" y seleccionaremos "Administración de directivas de
+            grupo". Desde allí, dentro de la zona de trabajo de nuestro
+            dominio,encima de "Objetos de directiva de grupo" usaremos el botón
+            derecho del ratón para añadir una "Nueva directiva de grupo".<br />
+            Le pondremos un nombre significativo, en mi caso "cambio de fondo".
+          </p>
+          <img src="./assets/img/gpo1.jpg" alt="" />
+        </article>
+        <article class="card img_der">
+          <p>
+            "Compartir", nos aparecerá una ventana en la que tenemos que definir
+            qué usuarios tienen permisos de acceso. Escribiremos "todos" que es
+            un grupo por defecto en Windows que incluye a la totalidad de los
+            usuarios. Hago un paréntesis aquí para dejar constancia de que esta
+            es una configuración didáctica pero extremadamente insegura.<br />
+            Finalmente veremos una ventana como la siguiente en la que
+            confirmamos que los administradores pueden escribir para modificar o
+            añadir fondos, y que el resto de los usuarios solo pueden leer. Nos
+            vale.
+          </p>
+          <img src="./assets/img/gpo2.jpg" alt="" />
+        </article>
+
+        <article class="card">
+          Pincharemos en "Compartir" y aparecerá una nueva ventana resumen donde
+          podemos ver la dirección de red en la que estarán accesibles los
+          fondos de pantalla "\\DC01\Users\Administrador\Desktop\Fondos"
+          <img src="./assets/img/gpo3.jpg" class="img1" alt="" />
+        </article>
+
+        <article class="card">
+          <p>
+            Ahora que ya tenemos los fondos de pantalla en una carpeta
+            compartida del servidor es el momento de configurar la GPO.<br />
+            Desde el "Administrador de servidor" abrimos "Administrador de
+            directivas de grupo" desde el menú de "Herramientas".<br />
+            Allí crearemos la GPO "Fondo actores" en el contenedor de "Objetos
+            de directiva de grupo" y la editaremos cambiando lo siguiente:
+          </p>
+          <ol>
+            <li>
+              Configuración de usuario / Directivas / Plantillas administrativas
+              / Active Desktop / Active Desktop / Tapiz del escritorio:
+              Habilitada
+            </li>
+            <li>
+              Configuración de usuario / Directivas / Plantillas administrativas
+              / Panel de control / Personalización / Impedir cambiar el fondo de
+              pantalla: Habilitar
+            </li>
+            <li>
+              Tendremos que pasar la ruta del archivo y el estilo que queremos
+              aplicar.
+            </li>
+          </ol>
+
+          <img src="./assets/img/gpo4.jpg" class="img1" alt="" />
+        </article>
+        <article class="card img_der">
+          <p>
+            El resultado debería ser:<br />
+            Y por último vincular la GPO con la OU de actores. El resultado en
+            el siguiente inicio de sesión con alguno de los usuarios de la OU
+            "Actores" será como en la siguiente captura:
+          </p>
+          <img src="./assets/img/gpo5.jpg" alt="" />
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

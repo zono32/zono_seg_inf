@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarea 3 - Configuración de Sistemas</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="./assets/script.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <span class="logo">Autozono</span>
+        <ul class="nav-links">
+          <li><a href="./index.html">intro</a></li>
+          <li><a href="./instalacion.html">Instalación</a></li>
+          <li><a href="./configuracion.html">Configuracion</a></li>
+        </ul>
+        <span>
+          <div class="menus">
+            <!-- Menú Información -->
+            <div class="menu">
+              <button class="hamburger" onclick="toggleMenu('menu-i')">
+                i
+              </button>
+              <ul class="dropdown" id="menu-i">
+                <li><a href="./virtualbox.html">Virtual Box</a></li>
+                <li><a href="./wserver.html">Windows Server</a></li>
+                <li><a href="./linux.html">Linux Mint</a></li>
+                <li><a href="./win.html">Windows 7</a></li>
+              </ul>
+            </div>
+
+            <!-- Menú Contenido -->
+            <div class="menu">
+              <button class="hamburger" onclick="toggleMenu('menu-c')">
+                c
+              </button>
+              <ul class="dropdown" id="menu-c">
+                <li><a href="./ad.html">Active Directory</a></li>
+                <li><a href="./confServer.html">Windows Server</a></li>
+                <li><a href="./dhcp.html">DHCP</a></li>
+                <li><a href="./users.html">Usuarios</a></li>
+                <li><a href="./gpo.html">GPO</a></li>
+                <li><a href="./unionLD.html">Unión de linux al Dominio</a></li>
+              </ul>
+            </div>
+            <button id="theme-toggle" class="btn-toggle">🌓 Modo</button>
+          </div>
+        </span>
+      </div>
+    </nav>
+
+    <main class="content">
+      <section id="activedirectory" class="card">
+        <h1>Crear Usuarios</h1>
+        <h2>Configuración</h2>
+
+        <p>
+          Ya tenemos creado el dominio ahora procederemos a crear los usuarios
+          aunque antes de crear usuarios en el dominio debemos hablar de
+          "Unidades Organizativas" (OUs). Las OUs son carpetas y subcarpetas en
+          las que podemos distribuir y organizar todos los elementos del dominio
+          como usuarios y equipos.<br />
+          Conceptualmente es muy parecido a los grupos que ya conocemos de
+          permisos de usuarios, pero en este caso engloba también a los equipos
+          y puede tener OUs anidadas.<br />
+          Aunque tenemos un contenedor llamado "usuarios" no es buena idea crear
+          los usuarios allí porque no es una OU y no podremos asociar fácilmente
+          una política de grupo.<br />
+          En cambio, las OUs sí que están pensadas para que se pueda aplicar en
+          ellas una política de manera sencilla. Para la creación de OUs hay
+          muchas buenas prácticas.<br />
+          En general la idea es crear OUs por departamento, ubicación física o
+          tipo de usuario. Todo dependerá del escenario particular.
+        </p>
+        <br /><br />
+        <article class="card img_der">
+          <p>
+            Desde el "Administrador del servidor" pincharemos en el menú
+            "Herramientas" y seleccionaremos "Usuarios y equipos de Active
+            Directory" Desde dentro de la zona de trabajo de nuestro dominio,
+            usaremos el botón derecho del ratón para añadir una "Nueva" "Unidad
+            Organizativa".<br />
+            En mi caso he creado una unidad organizativa general y cinco para
+            Administración, Gerencia, Recepción, Monitores y Alumnos.
+          </p>
+          <img src="./assets/img/u1.jpg" alt="" />
+        </article>
+        <article class="card img_der">
+          <p>
+            Ahora ya podemos crear los usuarios dentro de cada Unidad
+            Organizativa, (OU). <br />El mecanismo es muy sencillo.<br />
+            En primer lugar, desde “Herramientas”, “Usuarios y equipos de Active
+            Directory” abrimos la OU donde queremos guardar el usuario y en la
+            zona de trabajo pinchamos con botón derecho, nuevo, usuario.<br />
+            Aparecerá una ventana para poder escribir su nombre completo y su
+            usuario.
+          </p>
+          <img src="./assets/img/u2.jpg" alt="" />
+        </article>
+        <article class="card img_der">
+          <p>
+            En la siguiente ventana tendremos que escribir una contraseña para
+            ese usuario en mi caso “123.abc”. <br />Por sencillez eliminaré la
+            obligación de cambiar la contraseña en el primer inicio de
+            sesión.<br />
+            Le damos a finalizar y tenemos un usuario creado.<br />
+            Para Administración voy a crear un usuario Pumuky.<br />
+            Para Gerencia voy a crear un usuario Rayo.<br />
+            Para Recepción voy a crear dos usuarios Mate y Don.<br />
+            Para monitores voy a crear a tres usuarios Phil, Max y Bruce <br />
+            Para Alumnos voy a crear a cinco usuarios Pepe, Pepa, Nico, Noel y
+            Zoe.
+          </p>
+          <img src="./assets/img/u3.jpg" alt="" />
+        </article>
+        <article class="card img_der">
+          <p>
+            Bien ahora voy a darle permisos a Pumuky para que pueda loguearse en
+            el server 22 para ello le doy doble click sobre Pumuky, vamos a la
+            pestaña de miembro de y al botón de agregar, nos aparecerá un
+            apartado donde podemos buscar los grupos en los cuales queremos
+            añadir a nuestro usuario, en este caso lo voy a meter en los grupos
+            Administradores y Administrador de dominio.<br />
+            Le damos en aplicar y aceptar y listo, ya nos podemos loguear en la
+            máquina servidor.
+          </p>
+          <img src="./assets/img/u4.jpg" alt="" />
+        </article>
+        <article class="card img_der">
+          <p>
+            Ahora he tenido un pequeño problema con internet, no me iba por
+            culpa de las DNS, hay que volver a configurarlas, me ha quedado asi:
+            Servidor DNS preferido 192.168.32.20
+          </p>
+          <img src="./assets/img/u5.jpg" alt="" />
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

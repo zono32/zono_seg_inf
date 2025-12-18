@@ -10,15 +10,40 @@
   <body>
     <nav class="navbar">
       <div class="nav-container">
-        <span class="logo">Tarea 3</span>
+        <span class="logo">Autozono</span>
         <ul class="nav-links">
           <li><a href="./index.html">intro</a></li>
-          <li><a href="./virtualbox.html">VirtualBox</a></li>
-          <li><a href="./wserver.html">Windows Server</a></li>
-          <li><a href="./linux.html">Linux Mint</a></li>
-          <li><a href="./ad.html">Active Directory</a></li>
+          <li><a href="./instalacion.html">Instalación</a></li>
+          <li><a href="./configuracion.html">Configuracion</a></li>
         </ul>
-        <button id="theme-toggle" class="btn-toggle">🌓 Modo</button>
+        <span>
+          <div class="menus">
+          <!-- Menú Información -->
+          <div class="menu">
+            <button class="hamburger" onclick="toggleMenu('menu-i')">i</button>
+            <ul class="dropdown" id="menu-i">
+               <li><a href="./virtualbox.html">Virtual Box</a></li>
+                <li><a href="./wserver.html">Windows Server</a></li>
+                <li><a href="./linux.html">Linux Mint</a></li>
+                <li><a href="./win.html">Windows 7</a></li>
+            </ul>
+          </div>
+
+          <!-- Menú Contenido -->
+          <div class="menu">
+            <button class="hamburger" onclick="toggleMenu('menu-c')">c</button>
+            <ul class="dropdown" id="menu-c">
+                <li><a href="./ad.html">Active Directory</a></li>
+                <li><a href="./confServer.html">Windows Server</a></li>
+                <li><a href="./dhcp.html">DHCP</a></li>
+                <li><a href="./users.html">Usuarios</a></li>
+                <li><a href="./gpo.html">GPO</a></li>
+                <li><a href="./unionLD.html">Unión de linux al Dominio</a></li>
+            </ul>
+          </div>
+          <button id="theme-toggle" class="btn-toggle">🌓 Modo</button>
+        </div>
+        </span>        
       </div>
     </nav>
 
@@ -32,7 +57,7 @@
             caso vamos a la versión 22). Lo primero es bajarnos el archivo .iso
             a ser posible y recomendado de la página oficial de Windows, ponemos
             en el navegador windows server 22 y le damos al primer enlace ahí
-            nos lleva a la (página oficial) desde donde nos podremos descargar
+            nos lleva a la <a href="https://www.microsoft.com/es-es/evalcenter/download-windows-server-2022" target="_blank">(página oficial)</a> desde donde nos podremos descargar
             la iso. Yo me he bajado la versión en español (Descargas ISO Edición
             de 64 bits). En mi caso he creado una carpeta para guardar los
             archivos .iso, desde la caperta de descargas me traigo el archivo a

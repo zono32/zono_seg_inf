@@ -42,6 +42,24 @@ body {
   box-shadow: var(--shadow);
 }
 
+.img_der {
+  display: flex;          /* Activa el modo flexible */
+  align-items: center;    /* Alinea verticalmente el texto y la imagen al centro */
+  gap: 20px;              /* Añade un espacio de separación entre el texto y la imagen */
+}
+
+.img_der p {
+  flex: 3;                /* Ocupa 3/4 partes del ancho total (75%) */
+  margin: 0;              /* Quita márgenes por defecto para que alinee bien */
+}
+
+.img_der img {
+  flex: 1;                /* Ocupa 1/4 parte del ancho total (25%) */
+  max-width: 25%;         /* Asegura que la imagen no sobrepase su espacio */
+  height: auto;           /* Mantiene la proporción de la imagen */
+  border-radius: 8px;     /* Opcional: le da un toque estético con bordes redondeados */
+}
+
 .navbar {
   background-color: var(--nav-bg);
   color: white;
@@ -92,7 +110,9 @@ body {
   border-radius: 8px;
   box-shadow: var(--shadow);
 }
-
+.azul {
+  color: var(--accent-color);
+}
 h1 {
   color: var(--accent-color);
   margin-bottom: 15px;
@@ -147,4 +167,53 @@ article a:hover,
 ol{
   margin-left: 10%;
   margin-top: 10px;
+}
+.menus {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.menu {
+  position: relative;
+}
+
+/* Botones i y c */
+.hamburger {
+  background: orange;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Menú desplegable */
+.dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 45px;
+  background: var(--card-bg);
+  list-style: none;
+  padding: 10px;
+  min-width: 150px;
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  z-index: 2000;
+}
+
+.dropdown li {
+  margin: 8px 0;
+}
+
+.dropdown a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.dropdown a:hover {
+  color: var(--accent-color);
 }

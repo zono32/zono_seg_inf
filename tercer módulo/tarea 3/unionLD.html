@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarea 3 - Configuración de Sistemas</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="./assets/script.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <span class="logo">Autozono</span>
+        <ul class="nav-links">
+          <li><a href="./index.html">intro</a></li>
+          <li><a href="./instalacion.html">Instalación</a></li>
+          <li><a href="./configuracion.html">Configuracion</a></li>
+        </ul>
+        <span>
+          <div class="menus">
+            <!-- Menú Información -->
+            <div class="menu">
+              <button class="hamburger" onclick="toggleMenu('menu-i')">
+                i
+              </button>
+              <ul class="dropdown" id="menu-i">
+                <li><a href="./virtualbox.html">Virtual Box</a></li>
+                <li><a href="./wserver.html">Windows Server</a></li>
+                <li><a href="./linux.html">Linux Mint</a></li>
+                <li><a href="./win.html">Windows 7</a></li>
+              </ul>
+            </div>
+
+            <!-- Menú Contenido -->
+            <div class="menu">
+              <button class="hamburger" onclick="toggleMenu('menu-c')">
+                c
+              </button>
+              <ul class="dropdown" id="menu-c">
+                <li><a href="./ad.html">Active Directory</a></li>
+                <li><a href="./confServer.html">Windows Server</a></li>
+                <li><a href="./dhcp.html">DHCP</a></li>
+                <li><a href="./users.html">Usuarios</a></li>
+                <li><a href="./gpo.html">GPO</a></li>
+                <li><a href="./unionLD.html">Unión de linux al Dominio</a></li>
+              </ul>
+            </div>
+            <button id="theme-toggle" class="btn-toggle">🌓 Modo</button>
+          </div>
+        </span>
+      </div>
+    </nav>
+
+    <main class="content">
+      <section id="activedirectory" class="card">
+        <h1>Añadir la máquina Linux al dominio</h1>
+        <h2>Configuración</h2>
+
+        <p>
+          Antes de empezar vamos a asegurarnos de que tenemos conexión de red
+          con el controlador de dominio. Primero vamos a añadir la máquina
+          virtual de Linux al dominio para que los usuarios creados en el
+          servidor puedan acceder desde el equipo. Iniciamos la máquina virtual
+          de Linux, como no tengo todavía el servidor dhcp le voy a meter una ip
+          manual para que se puedan ver (hacer ping) los dos equipos.
+        </p>
+
+        <img src="./assets/img/un1.jpg" class="img1" alt="" />
+
+        <p>
+          Nota: en la imagen la pestaña de dns modo automático debe de estar
+          desactivada.
+        </p>
+        <br /><br />
+        <article class="card img_der">
+          <p>
+            Para continuar vamos a asegurarnos de que la hora esté sincronizada
+            (Kerberos es muy tiquismiquis con esto).en la consola metemos los
+            siguientes comandos
+          </p>
+          <img src="./assets/img/un2.jpg" alt="" />
+        </article>
+        <article class="card">
+          <p>
+            Ahora vamos a instalar las herramientas necesarias para la
+            comunicación con Active Directory, abrimos el cmd y ponemos el
+            siguiente comando:<br />
+            <strong class="azul">sudo apt update</strong><br />
+            para instalar las actualizaciones y después para instalar los
+            paquetes necesarios escribimos el siguiente comando:<br />
+            <strong class="azul"
+              >sudo apt install realmd sssd sssd-tools libnss-sss libpam-sss
+              adcli samba-common-bin oddjob oddjob-mkhomedir krb5-user
+              packagekit -y</strong
+            ><br />
+
+            Durante la instalación de krb5-user, te pedirá el "Default Kerberos
+            realm". Escríbelo en MAYÚSCULAS: INT.ZONOCAR.COM.
+          </p>
+          <img src="./assets/img/un3.jpg" class="img1" alt="" />
+        </article>
+
+        <article class="card img_der">
+          <p>
+            Ahora podemos comprobar si todo ha ido bien para ello en la consola
+            escribimos el siguiente comando:<br />
+            En mi caso:
+            <strong class="azul">realm discover int.zonocar.com</strong
+            ><br />Debería devolver algo así
+          </p>
+          <br />
+          <img src="./assets/img/un4.jpg" alt="" />
+        </article>
+
+        <article class="card">
+          <p>
+            El siguiente paso será unir el equipo al dominio, escribimos en la
+            consola:<br />
+            <strong class="azul">
+              Sudo realm join INT.ZONOCAR.COM –U administrador</strong
+            >
+            <br />Con esto tenemos el equipo asignado al dominio.<br />
+            Comprobamos en el servidor dentro de usuarios y equipos de Active
+            Directory que el equipo está dentro del dominio. <br />El siguiente
+            paso será loguearse al equipo con un usuario creado en el servidor,
+            para ello (porque Linux no nos permite de inicio loguearnos con
+            nadie que sea distinto del administrador del equipo), vamos a menú
+            de inicio, administración y en ventana de inicio de sesión,
+            introducimos nuestra contraseña, en la pestaña de usuarios marcamos
+            la pestaña de Permitir el inicio de sesión manual.
+          </p>
+          <img src="./assets/img/un5.jpg" class="img1" alt="" />
+          <p>
+            Ahora debemos configurar el Home Directory: Para ello editamos el
+            archivo que gestiona el inicio de sesión de un usuario usamos el
+            comando:<br /><strong class="azul"
+              >sudo nano /etc/pam.d/common-session</strong
+            ><br />
+            Dentro del archivo al final introducimos la siguiente línea:<br />
+            sesión required pam_mkhomedir.so skel=/etc/skel umask=0022<br />
+            Que hace esta línea exactamente?
+          </p>
+          <ul>
+            <li>
+              pam_mkhomedir.so: Es el módulo que le dice al sistema: “si este
+              usuario de red no tiene una carpeta en /home créala ahora mismo.
+            </li>
+            <li>
+              Skel=/etc/skel: Indica que use la plantilla estándar de Linux,
+              para la nueva carpeta
+            </li>
+            <li>
+              Umask=0022: define los permisos de seguridad de esa nueva carpeta
+            </li>
+          </ul>
+          <p>Guardamos y cerramos el archivo.</p>
+          <br />
+          <p>
+            Por último para que no tengamos que loguearnos al inicio con el
+            nombre completo por ejemplo con pumuky@int.zonocar.com modificamos
+            el siguiente archivo con el comando:<br />
+            <strong class="azul">sudo nano /etc/sssd/ssd.conf</strong> <br />y
+            en la línea que <br /><strong class="azul"
+              >use_fully_qualified_names = True</strong
+            >
+            <br />la dejamos asi:<br /><strong class="azul"
+              >use_fully_qualified_names = False </strong
+            >.<br />
+            Ahora ya podremos loguearnos con los usuarios creados en el
+            servidor.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarea 3 - Configuración de Sistemas</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="./assets/script.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <span class="logo">Autozono</span>
+        <ul class="nav-links">
+          <li><a href="./index.html">intro</a></li>
+          <li><a href="./instalacion.html">Instalación</a></li>
+          <li><a href="./configuracion.html">Configuracion</a></li>
+        </ul>
+        <span>
+          <div class="menus">
+            <!-- Menú Información -->
+            <div class="menu">
+              <button class="hamburger" onclick="toggleMenu('menu-i')">
+                i
+              </button>
+              <ul class="dropdown" id="menu-i">
+                <li><a href="./virtualbox.html">Virtual Box</a></li>
+                <li><a href="./wserver.html">Windows Server</a></li>
+                <li><a href="./linux.html">Linux Mint</a></li>
+                <li><a href="./win.html">Windows 7</a></li>
+              </ul>
+            </div>
+
+            <!-- Menú Contenido -->
+            <div class="menu">
+              <button class="hamburger" onclick="toggleMenu('menu-c')">
+                c
+              </button>
+              <ul class="dropdown" id="menu-c">
+                <li><a href="./ad.html">Active Directory</a></li>
+                <li><a href="./confServer.html">Windows Server</a></li>
+                <li><a href="./dhcp.html">DHCP</a></li>
+                <li><a href="./users.html">Usuarios</a></li>
+                <li><a href="./gpo.html">GPO</a></li>
+                <li><a href="./unionLD.html">Unión de linux al Dominio</a></li>
+              </ul>
+            </div>
+            <button id="theme-toggle" class="btn-toggle">🌓 Modo</button>
+          </div>
+        </span>
+      </div>
+    </nav>
+
+    <main class="content">
+      <section id="activedirectory">
+        <article class="card">
+          <h1>Configuración del servicio de DHCP</h1>
+          <h2>Configuración</h2>
+          <p>
+            Para simplificar la configuración de los nuevos equipos que se
+            añadan al dominio vamos a instalar el servicio DHCP en "dc10" de
+            manera que configure automáticamente los parámetros de red de los
+            nuevos equipos. Para ello, desde "Agregar roles y características"
+            seleccionamos el "role" de DHCP y dejamos que asigne las
+            características que necesite para finalmente pinchar en "Instalar"
+          </p>
+          <img src="./assets/img/DHCP1.jpg" class="img1" alt="" />
+          <p>
+            Para completar la puesta en marcha del servicio DHCP es necesario
+            configurarlo. Podremos hacerlo desde varios puntos, yo seleccionaré
+            el "Completar configuración DHCP" que aparece en las notificaciones.
+          </p>
+          <img src="./assets/img/dhcp2.jpg" class="img1" alt="" />
+        </article>
+        <article class="card img_der">
+          <p>
+            El haber instalador el servidor DHCP después de promocionar el
+            equipo "dc10" a controlador de dominio nos permite configurar el
+            servicio DHCP teniendo en cuenta las credenciales del administrador
+            del dominio. Para crear un nuevo ámbito DHCP debemos entrar en el
+            menú "Herramientas" y seleccionar "DHCP". Allí encontraremos que el
+            servidor está totalmente identificado con su nombre de dominio.
+            Desplegaremos la opción de IPv4 para crear en ella un "nuevo ámbito"
+            y entonces aparecerá un asistente. En la primera ventana podemos
+            poner un nombre significativo al DHCP, yo usaré "dhcp_dominio"
+          </p>
+          <img src="./assets/img/dhcp3.jpg" alt="">
+        </article>
+        <article class="card img_der">
+          <p>
+            En la siguiente ventana indicamos el rango de IP que serviremos. Yo usaré desde la 100 a la 200.
+          </p>
+          <img src="./assets/img/dhcp4.jpg" alt="">
+        </article>
+        <article class="card img_der">
+          <p>
+            Pasaremos algunas ventanas hasta llegar al "enrutador" o "puerta de enlace" donde añadiremos la IP acabada en 1, en mi caso la 192.168.100.1
+          </p>
+          <img src="./assets/img/dhcp5.jpg" alt="">
+        </article>
+        <article class="card img_der">
+          <p>
+            La siguiente ventana del asistente tiene la información del DNS que ha detectado automáticamente y no es necesario hacer nada.
+          </p>
+          <img src="./assets/img/dhcp6.jpg" alt="">
+        </article>
+        <p class="card
+        ">Por último, activaremos el ámbito y lo probaremos con un equipo cliente.</p>
+      </section>
+    </main>
+  </body>
+</html>

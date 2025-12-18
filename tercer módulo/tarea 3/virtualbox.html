@@ -10,15 +10,44 @@
   <body>
     <nav class="navbar">
       <div class="nav-container">
-        <span class="logo">Tarea 3</span>
+        <span class="logo">Autozono</span>
         <ul class="nav-links">
-          <li><a href="./index.html">Intro</a></li>
-          <li><a href="./virtualbox.html">VirtualBox</a></li>
-          <li><a href="./wserver.html">Windows Server</a></li>
-          <li><a href="./linux.html">Linux Mint</a></li>
-          <li><a href="./ad.html">Active Directory</a></li>
+          <li><a href="./index.html">intro</a></li>
+          <li><a href="./instalacion.html">Instalación</a></li>
+          <li><a href="./configuracion.html">Configuracion</a></li>
         </ul>
-        <button id="theme-toggle" class="btn-toggle">🌓 Modo</button>
+        <span>
+          <div class="menus">
+            <!-- Menú Información -->
+            <div class="menu">
+              <button class="hamburger" onclick="toggleMenu('menu-i')">
+                i
+              </button>
+              <ul class="dropdown" id="menu-i">
+                <li><a href="./virtualbox.html">Virtual Box</a></li>
+                <li><a href="./wserver.html">Windows Server</a></li>
+                <li><a href="./linux.html">Linux Mint</a></li>
+                <li><a href="./win.html">Windows 7</a></li>
+              </ul>
+            </div>
+
+            <!-- Menú Contenido -->
+            <div class="menu">
+              <button class="hamburger" onclick="toggleMenu('menu-c')">
+                c
+              </button>
+              <ul class="dropdown" id="menu-c">
+                <li><a href="./ad.html">Active Directory</a></li>
+                <li><a href="./confServer.html">Windows Server</a></li>
+                <li><a href="./dhcp.html">DHCP</a></li>
+                <li><a href="./users.html">Usuarios</a></li>
+                <li><a href="./gpo.html">GPO</a></li>
+                <li><a href="./unionLD.html">Unión de linux al Dominio</a></li>
+              </ul>
+            </div>
+            <button id="theme-toggle" class="btn-toggle">🌓 Modo</button>
+          </div>
+        </span>
       </div>
     </nav>
 
@@ -34,7 +63,9 @@
             Windows host. Una vez descargado procedemos a la instalación. Este
             paso es muy sencillo es todo darle a siguiente. Una vez instalado
             abrimos el programa y comprobamos que todo funciona correctamente.
-            <a href="https://www.youtube.com/watch?v=HaVCSPHV7xw&t=43s"
+            <a
+              href="https://www.youtube.com/watch?v=HaVCSPHV7xw&t=43s"
+              target="_blank"
               >(Video explicativo)</a
             >.
           </p>

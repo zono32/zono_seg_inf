@@ -10,32 +10,152 @@
   <body>
     <nav class="navbar">
       <div class="nav-container">
-        <span class="logo">Tarea 3</span>
+        <span class="logo">Autozono</span>
         <ul class="nav-links">
           <li><a href="./index.html">intro</a></li>
-          <li><a href="#virtualbox">VirtualBox</a></li>
-          <li><a href="#winserver">Windows Server</a></li>
-          <li><a href="#linux">Linux Mint</a></li>
-          <li><a href="#activedirectory">Active Directory</a></li>
+          <li><a href="./instalacion.html">Instalación</a></li>
+          <li><a href="./configuracion.html">Configuracion</a></li>
         </ul>
-        <button id="theme-toggle" class="btn-toggle">🌓 Modo</button>
+        <span>
+          <div class="menus">
+            <!-- Menú Información -->
+            <div class="menu">
+              <button class="hamburger" onclick="toggleMenu('menu-i')">
+                i
+              </button>
+              <ul class="dropdown" id="menu-i">
+                <li><a href="./virtualbox.html">Virtual Box</a></li>
+                <li><a href="./wserver.html">Windows Server</a></li>
+                <li><a href="./linux.html">Linux Mint</a></li>
+                <li><a href="./win.html">Windows 7</a></li>
+              </ul>
+            </div>
+
+            <!-- Menú Contenido -->
+            <div class="menu">
+              <button class="hamburger" onclick="toggleMenu('menu-c')">
+                c
+              </button>
+              <ul class="dropdown" id="menu-c">
+                <li><a href="./ad.html">Active Directory</a></li>
+                <li><a href="./confServer.html">Windows Server</a></li>
+                <li><a href="./dhcp.html">DHCP</a></li>
+                <li><a href="./users.html">Usuarios</a></li>
+                <li><a href="./gpo.html">GPO</a></li>
+                <li><a href="./unionLD.html">Unión de linux al Dominio</a></li>
+              </ul>
+            </div>
+            <button id="theme-toggle" class="btn-toggle">🌓 Modo</button>
+          </div>
+        </span>
       </div>
     </nav>
 
     <main class="content">
       <section id="activedirectory" class="card">
         <h1>Active Directory</h1>
+        <h2>Configuración</h2>
         <p>
-          Instalación del rol "Servicios de dominio de Active Directory" y
-          promoción a controlador de dominio en el bosque
-          <code>int.zonocar.com</code>[cite: 40, 44].
+          Comenzamos con la instalación de Active Directory para crear y
+          gestionar nuestro propio dominio. A través de "Agregar roles y
+          características" añadimos a nuestro único servidor el role de
+          "Servicios de dominio de Active Directory". Se añadirán
+          automáticamente las características necesarias, no es necesario
+          agregar ninguna característica extra.
         </p>
-        <h3>Estructura de Usuarios</h3>
+        <img src="./assets/img/ad1.jpg" class="img1" alt="" />
+        <p>Le damos a siguiente,</p>
+        <img src="./assets/img/ad2.jpg" class="img1" alt="" />
+        <p>siguiente,</p>
+        <img src="./assets/img/ad3.jpg" class="img1" alt="" />
         <p>
-          Se crearon Unidades Organizativas (OUs) para Administración, Gerencia,
-          Recepción, Monitores y Alumnos[cite: 70]. Ejemplo: Usuario
-          <em>Pumuky</em> en Administración[cite: 77].
+          Por último pulsamos en instalar. Cuando ya esté instalado se
+          habilitará el botón de cerrar lo pulsamos y ya tenemos el active
+          directory,
         </p>
+      </section>
+      <section class="img_der card">
+        <p>
+          pero todavía queda configurarlo, si nos fijamos en la parte superior
+          derecha hay un icono de precaución, pinchamos en él.
+        </p>
+        <img src="./assets/img/ad4.jpg" alt="" />
+      </section>
+      <section class="img_der card">
+        <p>y le damos a promover este servidor a controlador de dominio.</p>
+        <img src="./assets/img/ad5.jpg" alt="" />
+      </section>
+      <section class="img_der card">
+        <p>
+          Agregamos un nuevo bosque y le damos un nombre al dominio en mi caso
+          le he puesto int.zonocar.com pulsamos en siguiente.
+        </p>
+        <img src="./assets/img/ad6.jpg" alt="" />
+      </section>
+
+      <section class="img_der card">
+        <p>
+          En esta pantalla debemos escribir la contraseña para la restauración
+          en caso de problemas. En mi caso le he puesto Kinso_1978.
+        </p>
+        <img src="./assets/img/ad8.jpg" alt="" />
+      </section>
+      <section class="img_der card">
+        <p>
+          En esta ventana se nos informa que el asistente no ha sido capaz de
+          encontrar ningún servidor DNS autoritativo Windows para nuestra zona
+          int.zonocar.com. De haberlo encontrado nos daría la opción de crear
+          una delegación DNS para que el AD pudiera escribir en él. En nuestro
+          escenario no tenemos ningún DNS por lo que saltamos este paso y se
+          descargará y configurará automáticamente un servidor DNS en este
+          equipo.
+        </p>
+        <img src="./assets/img/ad9.jpg" alt="" />
+      </section>
+      <section class="img_der card">
+        <p>
+          En la siguiente ventana podemos crear un "Alias" para el nombre del
+          dominio. De esta manera podemos convertir un nombre de dominio
+          "técnico" en algo más amigable. En nuestro caso lo cambiaremos por
+          "netzono". Siguiente. Siguiente. Siguiente
+        </p>
+        <img src="./assets/img/ad10.jpg" alt="" />
+      </section>
+      <section class="img_der card">
+        <p>
+          La última ventana del asistente es una comprobación de que el equipo
+          cumple con los requisitos para ser controlador de dominio. Veremos
+          algunos mensajes de aviso en referencia a valores predeterminados y la
+          advertencia de que no se ha encontrado una delegación del DNS (así que
+          asume que él será el autoritativo para ese dominio). Lo verdaderamente
+          importante es que en la parte superior pone que sí cumple con los
+          requisitos así podemos proceder a la instalación sin problema.
+          Instalar
+        </p>
+        <img src="./assets/img/ad11.jpg" alt="" />
+      </section>
+      <section class="card">
+        <p>
+          Ahora el equipo se reiniciará solo. Recordemos que ahora tenemos dos
+          usuarios "Administradores". Uno es local y pertenece solamente al
+          equipo "DC20". El otro es del dominio y pertenece a cualquier equipo
+          dentro de "int.zonocar.com". Para poder distinguirlos ahora los
+          veremos precedidos del ámbito al que pertenezcan. Los equipos que
+          pertenecen a un AD arrancarán preferentemente contra el dominio. Si
+          queremos forzar a que se comprueben las credenciales contra el equipo
+          local tendremos que hacer explícito en ámbito y el usuario por ejemplo
+          DC20\Administrador.
+        </p>
+      </section>
+      <section class="img_der card">
+        <p>
+          Una vez autenticados como administradores del dominio en "DC20"
+          podremos comprobar en el panel que ya no pertenecemos a ningún grupo
+          de trabajo y sí pertenecemos al dominio " int.zonocar.com ". Además
+          también podemos ver como se ha creado un panel para el DNS y otro para
+          en AD.
+        </p>
+        <img src="./assets/img/ad12.jpg" alt="" />
       </section>
     </main>
   </body>

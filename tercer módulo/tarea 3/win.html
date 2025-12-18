@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+win7<!DOCTYPE html>
 <html lang="es" data-theme="light">
   <head>
     <meta charset="UTF-8" />
@@ -18,55 +18,48 @@
         </ul>
         <span>
           <div class="menus">
-            <!-- Menú Información -->
-            <div class="menu">
-              <button class="hamburger" onclick="toggleMenu('menu-i')">
-                i
-              </button>
-              <ul class="dropdown" id="menu-i">
-                <li><a href="./virtualbox.html">Virtual Box</a></li>
+          <!-- Menú Información -->
+          <div class="menu">
+            <button class="hamburger" onclick="toggleMenu('menu-i')">i</button>
+            <ul class="dropdown" id="menu-i">
+             <li><a href="./virtualbox.html">Virtual Box</a></li>
                 <li><a href="./wserver.html">Windows Server</a></li>
                 <li><a href="./linux.html">Linux Mint</a></li>
-                <li><a href="./win.html">Windows 7</a></li>
-              </ul>
-            </div>
+                <li><a href="./win.html">Windows 7</a></li> <li>              
+            </ul>
+          </div>
 
-            <!-- Menú Contenido -->
-            <div class="menu">
-              <button class="hamburger" onclick="toggleMenu('menu-c')">
-                c
-              </button>
-              <ul class="dropdown" id="menu-c">
+          <!-- Menú Contenido -->
+          <div class="menu">
+            <button class="hamburger" onclick="toggleMenu('menu-c')">c</button>
+            <ul class="dropdown" id="menu-c">
                 <li><a href="./ad.html">Active Directory</a></li>
                 <li><a href="./confServer.html">Windows Server</a></li>
                 <li><a href="./dhcp.html">DHCP</a></li>
                 <li><a href="./users.html">Usuarios</a></li>
                 <li><a href="./gpo.html">GPO</a></li>
                 <li><a href="./unionLD.html">Unión de linux al Dominio</a></li>
-              </ul>
-            </div>
-            <button id="theme-toggle" class="btn-toggle">🌓 Modo</button>
+            </ul>
           </div>
-        </span>
+          <button id="theme-toggle" class="btn-toggle">🌓 Modo</button>
+        </div>
+        </span>        
       </div>
     </nav>
 
     <main class="content">
       <section id="linux" class="card">
-        <h1>Linux Mint (Cinnamon)</h1>
+        <h1>Windows 7</h1>
         <h2>Instalacion</h2>
         <p>
-          Procedemos a realizar la instalación del Linux mint (en este caso
-          vamos a la versión Cinnamon, he elegido el mint porque es más ligero
-          que otras versiones). Lo primero es bajarnos el archivo .iso a ser
-          posible y recomendado de la página oficial de linux, ponemos en el
-          navegador linux mint iso y le damos al primer enlace ahí nos lleva a
-          la
-          <a href="https://linuxmint.com/download.php" target="_blank"
-            >(página oficial)</a
+          Procedemos a realizar la instalación de Windows 7 (en este caso
+          he elegido esta version por que es mucho más ligera y me trae muy buenos recuerdos). Lo primero es bajarnos el archivo .iso a ser
+          posible y recomendado de la página oficial de Microsoft, pero al ser un SO tan antiguo no lo he logrado conseguir facil de la página oficial de hecho ya no se ni siquiera si lo hay ( no tiene ni soporte asi que encontré el siguiente enlace en youtube) 
+          <a href="https://dl.malwarewatch.org/windows/" target="_blank"
+            >(enlace)</a
           >
           desde donde nos podremos descargar la iso. Yo me he bajado la versión
-          Cinnamon Edition. Como ya tengo la carpeta de isos creada una vez haya
+          windows 7 de 64. Como ya tengo la carpeta de isos creada una vez haya
           descargado, inserto dentro de dicha carpeta el archivo que me acabo de
           descargar. El siguiente paso sería crear la máquina virtual (SO). Va a
           ser muy parecido a la instalación del servidor, abrimos la máquina
@@ -75,7 +68,7 @@
         <ol>
           <li>
             En VM Name le ponemos el nombre al sistema operativo por ejemplo
-            pcmint
+            win7
           </li>
           <li>
             En la parte de ISO Image abrimos el desplegable y buscamos la
@@ -96,28 +89,9 @@
           Aplicamos la misma configuración de red que en el caso del server22 y
           le damos al botón de iniciar
         </p>
-        <img src="./assets/img/linux2.jpg" alt="" class="img1" />
-        <p>Le damos a install Linux mint: y…. comenzamos con la instalación.</p>
-        <ol>
-          <li>Escogemos el idioma ( en mi caso Español), continuar.</li>
-          <li>En códecs multimedia marcamos la pestaña (por si las moscas).</li>
-          <li>
-            En tipo de instalación le damos a borrar disco e instalar Linux
-            mint.y presionamos en instalar ahora, continuar.
-          </li>
-          <li>
-            Y seguimos con la configuración de la instalacion (localización)
-          </li>
-          <li>
-            En usuario (administrador del equipo), ponemos las credenciales que
-            creamos oportunas, en mi caso (img de abajo) contraseña: kinso
-          </li>
-        </ol>
-        <img src="./assets/img/linux3.jpg" alt="" class="img1" />
-
+        
         <p>
-          Toca esperar a que haga la instalación. Reiniciamos y…. listo Linux
-          mint instalado (de momento lo voy a dejar apagado).
+          La instalación es muuy parecida a la del server 22, es muy intuitiva y más rápida.
         </p>
       </section>
     </main>
