@@ -3,15 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tareas</title>
+    <title>Tareas | Joaquín Lafuente</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Tareas seguridad informática</h1>
-    <ol>
-        <li><a href="./tarea_1/index.html" target="_blank">tarea del primer módulo</a></li>
-        <li><a href="./tarea_2/index.html" target="_blank">tarea del segundo módulo</a></li>
-        <li><a href="./tarea_3/index.html" target="_blank">tarea del tercer módulo</a></li>
-    </ol>
-    
+    <div class="container">
+        <header>
+            <h1>Tareas Seguridad Informática</h1>
+            <p class="subtitle">Joaquín Lafuente Espino</p>
+            <div class="badge">Certificado de Ciberseguridad</div>
+        </header>
+
+        <main>
+            <section class="tasks-grid">
+                <a href="./tarea_1/index.html" target="_blank" class="card">
+                    <div class="card-content">
+                        <span class="step">01</span>
+                        <h3>Primer Módulo</h3>
+                        <p>Como asegurar un equipo.</p>
+                    </div>
+                    <span class="view-link">Ver tarea →</span>
+                </a>
+
+                <a href="./tarea_2/index.html" target="_blank" class="card">
+                    <div class="card-content">
+                        <span class="step">02</span>
+                        <h3>Segundo Módulo</h3>
+                        <p>Auditoría de seguridad.</p>
+                    </div>
+                    <span class="view-link">Ver tarea →</span>
+                </a>
+
+                <a href="./tarea_3/index.html" target="_blank" class="card">
+                    <div class="card-content">
+                        <span class="step">03</span>
+                        <h3>Tercer Módulo</h3>
+                        <p>Active directory en Máquinas Virtuales</p>
+                    </div>
+                    <span class="view-link">Ver tarea →</span>
+                </a>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Joaquín Lafuente - Portafolio Académico</p>
+        </footer>
+    </div>
 </body>
 </html>
