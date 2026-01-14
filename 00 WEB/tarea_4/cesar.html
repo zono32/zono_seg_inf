@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifrador César</title>
+    <link rel="stylesheet" href="./assets/assets_cesar/styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>🔐 Cifrado César</h2>
+    
+    <label for="mensaje">Mensaje:</label>
+    <textarea id="mensaje" rows="3" placeholder="Escribe tu mensaje aquí..."></textarea>
+
+    <label for="desplazamiento">Clave (Desplazamiento):</label>
+    <input type="number" id="desplazamiento" value="3" min="1" max="25">
+
+    <div class="buttons">
+        <button id="btnCifrar" class="btn-encrypt">Cifrar</button>
+        <button id="btnDescifrar" class="btn-decrypt">Descifrar</button>
+    </div>
+
+    <div class="result-container">
+        <label>Resultado:</label>
+        <textarea id="resultado" rows="3" readonly></textarea>
+        <button id="btnCopiar" class="btn-copy">Copiar Resultado</button>
+    </div>
+</div>
+
+<script src="./assets/assets_cesar/script.js"></script>
+</body>
+</html>
