@@ -1,15 +1,105 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Configuraciones base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
-    padding: 20px;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  background-image: url(./img/fondo.jpg) ;
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  color: #d5e0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+  min-height: 100vh;
 }
-ol{
-margin-left: 20px;
+
+/* Título principal */
+h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #c5d1ed;
+  margin-bottom: 40px;
+  letter-spacing: -0.025em;
+}
+
+/* Contenedor de la lista */
+ol {
+  list-style: none;
+  width: 100%;
+  max-width: 70%;
+  padding: 0 20px;
+}
+
+li {
+  margin-bottom: 16px;
+}
+
+/* Diseño de las "Tarjetas" con la barrita lateral */
+a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #475569;
+  padding: 18px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 1.8rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  /* La barrita lateral izquierda */
+  border-left: 6px solid #3b82f6; /* Azul moderno */
+  position: relative;
+}
+
+/* Efectos al pasar el ratón */
+a:hover {
+  background-color: #ffffff;
+  color: #3b82f6;
+  transform: translateX(8px); /* Se mueve un poquito a la derecha */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-left-color: #2563eb; /* Azul más oscuro al hacer hover */
+}
+
+/* Diferentes colores para cada barrita (opcional, le da un toque moderno) */
+li:nth-child(1) a {
+  border-left-color: #3b82f6;
+} /* Azul */
+li:nth-child(2) a {
+  border-left-color: #10b981;
+} /* Verde */
+li:nth-child(3) a {
+  border-left-color: #f59e0b;
+} /* Ámbar */
+li:nth-child(4) a {
+  border-left-color: #8b5cf6;
+} /* Violeta */
+
+/* Un pequeño indicador de flecha al final (opcional) */
+a::after {
+  content: "→";
+  position: absolute;
+  right: 24px;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+a:hover::after {
+  opacity: 1;
+  right: 18px;
 }

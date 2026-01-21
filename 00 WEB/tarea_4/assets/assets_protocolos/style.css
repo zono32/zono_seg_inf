@@ -1,0 +1,63 @@
+/* Configuración General */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  font-size: 1.5rem;
+  color: #333;
+  background-color: #f4f7f9;
+  padding: 40px 20px;
+  max-width: 75%;
+  margin: 0 auto;
+}
+
+/* Encabezado Principal */
+h1 {
+  color: #1a3a5f;
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 30px;
+  border-bottom: 3px solid #007bff;
+  display: inline-block;
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+/* Estilo para los Párrafos de Introducción */
+p {
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+/* Estilo para las Secciones de Protocolos (H2) */
+h2 {
+  color: #0056b3;
+  background-color: #e7f1ff;
+  padding: 10px 15px;
+  border-left: 5px solid #007bff;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  border-radius: 0 5px 5px 0;
+  font-size: 2.4rem;
+}
+
+/* Efecto al pasar el ratón sobre los títulos */
+h2:hover {
+  background-color: #d0e3ff;
+  transition: 0.3s;
+}
+
+/* Contenedor visual para el contenido */
+body {
+  background-image: linear-gradient(to bottom, #ffffff, #f4f7f9);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 50px;
+}
