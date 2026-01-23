@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/assets_vpn/styles.css" />
+    <title>certificados</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Certificados VPN</h1>
+      </header>
+
+      <main>
+        <section class="certificates-grid">
+          <div class="certificate-card">
+            <h3>Nuestra misión</h3>
+            <p>
+              Somos los guardianes de la información. Debemos configurar la
+              infraestructura central: El Firewall que protege la red y los
+              servidores donde se aloja la web y los archivos de la empresa.
+              Nada sale de nuestra red sin estar cifrado.
+            </p>
+
+            <h3>Nuestras tareas detalladas:</h3>
+            <ol>
+              <li>
+                <strong>Configuración de red:</strong> Levantar el Firewall
+                (pfSense) y crear una red interna "DMZ" para el servidor.
+              </li>
+              <li>
+                <strong>Solicitud de identidad:</strong> Generar claves privadas
+                y peticiones de certificado (.csr) para nuestro servidor web y
+                para la VPN. Pasarlas al Grupo A por Pendrive
+              </li>
+              <li>
+                <strong>Túnel de comunicación:</strong> Configurar el extremo
+                del túnel VPN (IPsec) para conectar con la sede remota (Grupo C)
+              </li>
+              <li>
+                <strong>Servicios seguros:</strong> Configurar un servidor
+                Apache/Nginx solo por HTTPS y un servidor SFTP
+              </li>
+              <li>
+                <strong>Control de Acceso:</strong>Configurar reglas de Firewall
+                que solo permitan la entrada a través de la VPN
+              </li>
+            </ol>
+          </div>
+          <h1>Nuestra misión</h1>
+          <p>
+            Para empezar las tareas hemos dividido el trabajo equitativamente en
+            cuatro partes, cada una con una responsabilidad técnica y una de
+            apoyo:
+          </p>
+          <p>
+            🧑‍💼 Kinso: infraestructura y conectividad (el "router") es la base
+            del proyecto. Se encarga de que los cables virtuales funcionen.
+            Tarea técnica: instalar el rol de acceso remoto (RRAS) y configurar
+            la VPN Site-to-Site con el grupo C. tarea de apoyo: Configurar el
+            enrutamiento interno para que el tráfico sepa hacia dónde ir.
+          </p>
+          <p>
+            🛠️ Mi odisea como Persona 1 (El Router del equipo) Básicamente, yo
+            he sido el encargado de abrir el camino. Si los demás son los que
+            viven en la casa, yo soy el que ha construido la carretera y ha
+            puesto la puerta blindada. Esto es lo que he hecho:
+          </p>
+          <p>
+            Preparar el terreno: Primero instalé en el Windows Server el rol de
+            Acceso Remoto (RRAS). Es como decirle al servidor: "Oye, a partir de
+            ahora no solo eres un ordenador, ahora eres el guarda de seguridad y
+            el recepcionista de la red".
+          </p>
+          <p>
+            Crear el túnel (La parte técnica): Me metí en faena y creé una
+            Interfaz de Marcado a Demanda. La configuré para que use el
+            protocolo IKEv2 (que es el estándar moderno y seguro).
+          </p>
+          <p>
+            Engañar al sistema (temporalmente): Como todavía no tenía los datos
+            del Grupo C, configuré una IP "de mentira" (1.1.1.1) para poder
+            terminar el asistente, pero dejando claro que el túnel es de tipo
+            Sitio a Sitio (Site-to-Site).
+          </p>
+          <p>
+            Poner el cerrojo (PSK): No podíamos dejar la puerta abierta a
+            cualquiera. Configuré una Clave Compartida (Pre-Shared Key). Es la
+            contraseña secreta que solo mi equipo y el Grupo C sabemos para que
+            el túnel se abra.
+          </p>
+          <p>
+            Hacer de embajador (Protocolo de Pendrive): Me levanté de la silla y
+            fui a negociar con el Grupo C. Les di mi "tarjeta de visita" (IP WAN
+            192.168.32.10, mi red LAN 10.0.0.0) y la clave secreta. A cambio,
+            ellos me dieron sus datos para que yo pudiera quitar la IP falsa
+            (1.1.1.1) y poner la suya de verdad.
+          </p>
+          <p>
+            Conectar y cruzar los dedos: Una vez con los datos reales, actualicé
+            la configuración y le di al botón de Conectar. En cuanto vi que el
+            estado pasaba de "Desconectado" a "Conectado" en verde, supe que la
+            misión estaba cumplida.
+          </p>
+
+          <p>
+            🧑‍💼 Cristian: seguridad y perímetro (el "escudo") se asegura de que
+            el servidor sea una fortaleza. Tarea técnica: configurar el Windows
+            Defender Firewall con seguridad avanzada. Crear reglas de entrada y
+            salida personalizadas. tarea de apoyo: realizar el hardenning
+            (cerrar puertos innecesarios y servicios que no se usen).
+          </p>
+          <p>
+            🧑‍💼 Saúl: criptografía y gestión (el "Notario") es el encargado de la
+            identidad y de que la comunicación entre grupos fluya. Tarea
+            técnica: generar las claves y el CSR (OpenSSL o IIS). Instalar el
+            certificado final una vez firmado. Tarea de apoyo: gestionar el
+            protocolo de pendrive. Debe negociar con el grupo A (CA) y entregar
+            los datos al Grupo C.
+          </p>
+          <p>
+            🧑‍💼 Ezequiel: servicios y almacenamiento (el "host") configura lo que
+            el cliente realmente va a usar. Tarea técnica: instalar y configurar
+            IIS (Web) y el servidor OpenSSH (SFTP). tarea de apoyo: Crear una
+            estructura de carpetas segura y un usuario específico para el acceso
+            SFTP (permisos NTFS).
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <p>&copy; <span id="year"></span> Equipo B - Portafolio Académico</p>
+      </footer>
+      <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+      </script>
+    </div>
+  </body>
+</html>
