@@ -4,7 +4,7 @@
     --card-bg: #1e293b;           /* Gris azulado para tarjetas */
     --accent-color: #06b6d4;      /* Cian vibrante para acentos */
     --text-main: #f1f5f9;         /* Blanco suave */
-    --text-muted: #94a3b8;        /* Gris para descripciones */
+    --text-muted: #feffff;        /* Gris para descripciones */
     --glass-border: rgba(255, 255, 255, 0.1);
 }
 
@@ -113,6 +113,38 @@ ol li strong {
     transform: translateY(-5px);
     border-color: var(--accent-color);
     background: rgba(30, 41, 59, 0.9);
+}
+
+.vpn_section{
+    background-image: url(./vpn.jpg);
+     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /* background-attachment: fixed; */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+}
+.firewall_section{
+    background-image: url(./firewall.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /* background-attachment: fixed; */
+    text-shadow: 8px rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+}
+.pass_section{
+    background-image: url(./pass.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /* background-attachment: fixed; */
+    text-shadow: 8px rgba(0, 0, 0, 0.9);
+}
+img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-top: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Footer elegante */

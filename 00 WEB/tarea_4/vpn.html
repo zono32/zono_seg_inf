@@ -55,54 +55,67 @@
             apoyo:
           </p>
           <p>
-            🧑‍💼 Kinso: infraestructura y conectividad (el "router") es la base
-            del proyecto. Se encarga de que los cables virtuales funcionen.
-            Tarea técnica: instalar el rol de acceso remoto (RRAS) y configurar
-            la VPN Site-to-Site con el grupo C. tarea de apoyo: Configurar el
-            enrutamiento interno para que el tráfico sepa hacia dónde ir.
-          </p>
-          <p>
-            🛠️ Mi odisea como Persona 1 (El Router del equipo) Básicamente, yo
-            he sido el encargado de abrir el camino. Si los demás son los que
-            viven en la casa, yo soy el que ha construido la carretera y ha
-            puesto la puerta blindada. Esto es lo que he hecho:
-          </p>
-          <p>
-            Preparar el terreno: Primero instalé en el Windows Server el rol de
-            Acceso Remoto (RRAS). Es como decirle al servidor: "Oye, a partir de
-            ahora no solo eres un ordenador, ahora eres el guarda de seguridad y
-            el recepcionista de la red".
-          </p>
-          <p>
-            Crear el túnel (La parte técnica): Me metí en faena y creé una
-            Interfaz de Marcado a Demanda. La configuré para que use el
-            protocolo IKEv2 (que es el estándar moderno y seguro).
-          </p>
-          <p>
-            Engañar al sistema (temporalmente): Como todavía no tenía los datos
-            del Grupo C, configuré una IP "de mentira" (1.1.1.1) para poder
-            terminar el asistente, pero dejando claro que el túnel es de tipo
-            Sitio a Sitio (Site-to-Site).
-          </p>
-          <p>
-            Poner el cerrojo (PSK): No podíamos dejar la puerta abierta a
-            cualquiera. Configuré una Clave Compartida (Pre-Shared Key). Es la
-            contraseña secreta que solo mi equipo y el Grupo C sabemos para que
-            el túnel se abra.
-          </p>
-          <p>
-            Hacer de embajador (Protocolo de Pendrive): Me levanté de la silla y
-            fui a negociar con el Grupo C. Les di mi "tarjeta de visita" (IP WAN
-            192.168.32.10, mi red LAN 10.0.0.0) y la clave secreta. A cambio,
-            ellos me dieron sus datos para que yo pudiera quitar la IP falsa
-            (1.1.1.1) y poner la suya de verdad.
-          </p>
-          <p>
-            Conectar y cruzar los dedos: Una vez con los datos reales, actualicé
-            la configuración y le di al botón de Conectar. En cuanto vi que el
-            estado pasaba de "Desconectado" a "Conectado" en verde, supe que la
-            misión estaba cumplida.
-          </p>
+              🧑‍💼 Kinso: infraestructura y conectividad (el "router") es la base
+              del proyecto. Se encarga de que los cables virtuales funcionen.
+              Tarea técnica: instalar el rol de acceso remoto (RRAS) y
+              configurar la VPN Site-to-Site con el grupo C. tarea de apoyo:
+              Configurar el enrutamiento interno para que el tráfico sepa hacia
+              dónde ir.
+            </p>
+          <section class="vpn_section">
+            
+            <ol>
+              <li>
+                <p>
+                  Instalación del rol: Empecé instalando el servicio de Acceso
+                  remoto (RRAS) en el Windows Server para poder gestionar el
+                  enrutamiento y la VPN (Decidí utilizar windows server 22
+                  aprovechando que ya lo tyenía instalado y tb por que así ya
+                  utilizamos el firewall de Windows).
+                </p>
+              </li>
+              <li>
+                <p>
+                  Configuración del túnel: Creé una nueva interfaz de red de
+                  "marcado a demanda". Elegí el protocolo IKEv2 porque es el más
+                  seguro para conectar dos sedes de forma permanente
+                  (Site-to-Site).
+                </p>
+              </li>
+              <li>
+                <p>
+                  Seguridad (PSK): Para que la conexión sea privada, configuré
+                  una clave previamente compartida (preshared key). Es la
+                  contraseña que ambos grupos tenemos que poner igual para que
+                  el túnel se abra.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Intercambio de datos: Fui a hablar con el Grupo C para
+                  pasarles mis datos (mi IP externa y mi red interna) y apuntar
+                  los suyos. Esto es fundamental para que los dos servidores
+                  sepan a quién están llamando.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Puesta en marcha: Una vez tuve sus datos reales, actualicé la
+                  IP de destino en mi servidor y conecté la interfaz. Comprobé
+                  que el estado cambiara a "Conectado", lo que significa que el
+                  tráfico ya fluye cifrado entre las dos redes.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Gestión del grupo: Por último, coordiné con mis compañeros
+                  para que usaran mi IP (10.0.0.1) como su puerta de enlace.
+                  Así, todo lo que ellos hagan (web, archivos, etc.) sale de
+                  forma segura por el túnel que yo he montado.
+                </p>
+              </li>
+            </ol>
+          </section>
 
           <p>
             🧑‍💼 Cristian: seguridad y perímetro (el "escudo") se asegura de que
@@ -111,6 +124,46 @@
             salida personalizadas. tarea de apoyo: realizar el hardenning
             (cerrar puertos innecesarios y servicios que no se usen).
           </p>
+          <h3>Reglas de entrada y salida de VPN y bloqueo de puertos</h3>
+          <section class="firewall_section">
+            
+            <ol>
+              <li>
+                <p>
+                  Lo primero es saber el rango de IPs que operan en la VPN para
+                  definir el ámbito que abarcan las reglas a crear.
+                </p>
+              </li>
+              <li>
+                <p>
+                  El siguiente paso es, desde el panel de administrador ir a
+                  herramientas y a Windows Defender Firewall con seguridad
+                  avanzada.
+                </p>
+              </li>
+              <li>
+                <p>
+                  En la ventana que se abre creamos las reglas de entrada y
+                  salida que necesitamos y las configuramos para que las
+                  conexiones sólo se permitan en el rango de IPs deseado,
+                  configurable en las propiedades, en la pestaña de “ámbito” de
+                  cada regla. <br/> Las reglas se aplican a los siguientes puertos: <ul>
+                    <li><strong>VPN UDP  500/4500</strong></li>
+                    <li><strong>RDP (Escritorio remoto) TCP 3389</strong></li>
+                    <li><strong>WinRM (Windows Remote Management) TCP 5985/5986</strong></li>
+                    <li><strong>SMB (Server Message Block) TCP 445</strong> </li>
+                    <li><strong>SQL Server TCP 1433</strong></li>
+                    <li><strong>SSH (Secure Shell) TCP 22</strong></li>
+                    <li><strong>HTTP TDP/UDP 80</strong></li>
+                    <li><strong>FTP  (para Filezilla) TCP/UDP 14148</strong></li>
+                  </ul>
+                </p>
+              </li>
+              <li>También se crean reglas para bloquear las conexiones que no estén dentro del rango establecido.</li>
+              <li>Así mismo, es recomendable bloquear los puertos de servicios que no serán necesarios. Por ejemplo, si no existen impresoras agregadas al dominio, los puertos correspondientes se bloquean mediante reglas. Si en el futuro se necesita, se puede modificar dicha regla.</li>
+            </ol>
+          </section>
+
           <p>
             🧑‍💼 Saúl: criptografía y gestión (el "Notario") es el encargado de la
             identidad y de que la comunicación entre grupos fluya. Tarea
@@ -119,6 +172,44 @@
             protocolo de pendrive. Debe negociar con el grupo A (CA) y entregar
             los datos al Grupo C.
           </p>
+          <section class="pass_section">
+            
+            <ol>
+              <li>
+                <p>
+                  Primero de todo nos registramos en la web de SSLMANAGER.COM , y lo descargamos en nuestro
+                  Windows Server 22 a traves de la pagina web de WWW.SSL.COM , buscando SSL MANAGER
+                </p>
+                <img src="./assets/assets_vpn/1.png" alt="">
+              </li>
+              <li>
+                <p>
+                 Después del primer paso ,entramos en el programa y vamos al apartado Acount nos aparecera una
+                 ventana para iniciar sesión introducimos usuario y contraseña
+                </p>
+                <img src="./assets/assets_vpn/2.png" alt="">
+              </li>
+              <li>
+                <p>
+                  En este siguinete paso iremos a el apartado MANAGE SSL CERTIFICATES                 
+                </p>
+                <img src="./assets/assets_vpn/3.png" alt="">
+              </li>
+              <li>
+                <p>
+                  Clicaremos y nos aprecera un desplegable en que elegiremos GENERATE SSL CETIFICATES  
+                </p>
+                <img src="./assets/assets_vpn/4.png" alt="">
+              </li>
+              <li>
+                <p>
+                  En esta parte irmos a GENERATE SSL CERTIFICATER REQUEST  y en el nombre de domain (dominio) le eligiremos un nombre con IN delante y con .COM al final , después le damos a exportar elegiendo una ubicación para hacerlo.
+                </p>
+                <img src="./assets/assets_vpn/5.png" alt="">
+              </li>
+           
+            </ol>
+          </section>
           <p>
             🧑‍💼 Ezequiel: servicios y almacenamiento (el "host") configura lo que
             el cliente realmente va a usar. Tarea técnica: instalar y configurar
@@ -126,6 +217,38 @@
             estructura de carpetas segura y un usuario específico para el acceso
             SFTP (permisos NTFS).
           </p>
+          <section class="ssl_section">
+            
+            <ol>
+              <li>
+                <p>
+                 Habilitamos el rol IIS dentro de la administración del servidor 
+                </p>
+                <img src="./assets/assets_vpn/6.png" alt=""><br>
+                <img src="./assets/assets_vpn/7.png" alt="">
+              </li>
+              <li>
+                <p>
+                  Comprobamos su correcto funcionamiento a través de buscarlo en el explorador: HTTPS://localhost                   
+                </p>
+                <img src="./assets/assets_vpn/8.png" alt=""><br>
+                <img src="./assets/assets_vpn/9.png" alt="">
+              </li>
+              <li>
+                <p>
+                  A través de Powershell tenemos que instalar OpenSSH
+                </p>
+                <img src="./assets/assets_vpn/10.png" alt="">
+              </li>
+              <li>
+                <p>
+                 Por último establecemos que los servicios arranquen de manera automática
+                </p>
+                <img src="./assets/assets_vpn/11.png" alt="">
+              </li>
+              
+            </ol>
+          </section>
         </section>
       </main>
 
